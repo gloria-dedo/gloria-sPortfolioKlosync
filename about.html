@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me</title>
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./images/gloriaLogo.svg" type="image/svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alatsi&family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Miss+Fajardose&family=Palanquin:wght@100;200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/button.js" defer></script>
+    <script src="./scripts/navBar.js" defer></script>
+    <script src="./scripts/quotes.js" defer></script>
+    <script src="./scripts/accordian.js" defer></script>
+
+    <style>
+        .menu-transition {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Custom backdrop blur for menu */
+        .menu-backdrop {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-in-out;
+            transform: translateY(-100%);
+            background: #3b353b;
+        }
+
+        .menu-backdrop.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* .link-item{
+            font-family: jost, sans-serif;
+            font-size: 40px;
+            font-weight: 400;
+            line-height: 48px;
+            
+        } */
+        .spread-bg::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: #f8bbd9;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 0;
+        }
+
+        .spread-bg:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        @keyframes fadeBounceSlow {
+
+            0%,
+            20%,
+            53%,
+            80%,
+            100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+
+            40%,
+            43% {
+                transform: translate3d(0, -20px, 0);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes fadeBounce {
+
+            0%,
+            20%,
+            53%,
+            80%,
+            100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+
+            40%,
+            43% {
+                transform: translate3d(0, -15px, 0);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes fadeBounceFast {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-12px);
+                opacity: 0.4;
+            }
+        }
+
+        .fade-bounce-slow {
+            animation: fadeBounceSlow 2s infinite;
+        }
+
+        .fade-bounce {
+            animation: fadeBounce 1.5s infinite;
+        }
+
+        .fade-bounce-fast {
+            animation: fadeBounceFast 1s infinite;
+        }
+
+        .miss-fajardose-regular {
+  font-family: "Miss Fajardose", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+    </style>
+</head>
+
+<body>
+    <section class="bg-[#3B353B] min-h-screen flex items-center pt-20 md:pt-24">
+        <div id="navbar" class=""></div>
+        <div
+            class="text-white flex flex-col md:flex-row justify-between items-center px-14 w-full max-w-6xl mt[100px] min-h-screen">
+            <div class="flex flex-col gap-6">
+                <h1
+                    class="font-['Jost',sans-serif] leading-none md:w-full text-2xl tracking-tight md:text-6xl bg-gradient-to-r from-pink-200 via-pink-300 to-pink-400 inline-block text-transparent bg-clip-text font-bold">
+                    ABOUT ME
+                </h1>
+                <p class="text-sm md:text-lg font-['Jost',sans-serif]">
+                    I was born and raised in Eastern Region, Somanya, Ghana, <br />but
+                    I'm currently living in Accra, with my lovely family.<br />
+                    I solve problems through creative digital solutions—building <br />
+                    user-focused websites and applications that deliver real impact.
+                </p>
+            </div>
+            <div class="">
+                <img class="w-[400px] mt-[20px] md:mt-[100px]" src="./images/gloriaImage.svg" alt="GLORIA" />
+            </div>
+        </div>
+    </section>
+    <section class="bg-[url(./images/2ndImage.jpg)] bg-cover bg-center min-h-screen relative">
+        <div class="absolute inset-0 bg-[#262226] opacity-90 mix-blend-multiply z-10"></div>
+
+        <div
+            class="relative z-20 flex flex-col md:flex-row items-center min-h-screen justify-around md:justify-between w-full px-2 h-full md:px-20 space-y-9 py-[10%]">
+            <div class="text-white font-['Jost',sans-serif] flex flex-col gap-6 text-center md:text-left">
+                <h1 class="text-lg md:text-2xl font-bold">
+                    I BRING TO LIFE WHAT IS NOT
+                </h1>
+                <p class="max-w-[350px] md:max-w-[400px] text-xs md:text-lg font-['Jost',sans-serif] font-normal">
+                    I sketch in silence what the world has never seen,Pixels bloom where
+                    there was only dream.A whisper of an idea, a fleeting thought,I
+                    cradle it gently—bring to life what is not. Blank screens don't
+                    scare me; they beg to be toldOf buttons that beckon and colors that
+                    hold. I carve out meaning in every scroll and slide, Designing the
+                    path where users confide. I speak in structure, fluid, precise, Code
+                    is my compass, clean and concise. From shadows and shapes, from type
+                    and tone, I craft new worlds with lines alone.
+                </p>
+            </div>
+            <div class="font-['Jost',sans-serif] flex flex-col gap-10 md:gap-6">
+                <div
+                    class="bg-[#544D54] flex flex-col gap-8 rounded-2xl border border-[#A69CA6] px-3 py-3 md:px-6 md:py-6">
+                    <p class="text-xs text-white">
+                        I'm a <span class="text-[#FF99FF] font-bold">skilled</span> UI/UX
+                        designer and frontend <br />developer with a strong focus on
+                        delivering<br />
+                        seamless user experiences <br />
+                        and effective digital solutions
+                    </p>
+                    <button
+                        class="px-2 py-3 rounded-full bg-[#3B353B] text-white text-sm flex justify-center items-center gap-4 font-normal hover:bg-pink-300 hover:text-black animate ease-in-out">
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i>Download Resume
+                    </button>
+                </div>
+                <div class="bg-[#544D54] flex flex-col gap-8 rounded-2xl border border-[#A69CA6] px-6 py-6">
+                    <h1
+                        class="bg-gradient-to-r from-pink-400 via-pink-300 to-pink-400 inline-block text-transparent bg-clip-text font-bold uppercase text-xl">
+                        Education
+                    </h1>
+                    <div class="flex gap-6">
+                        <p class="text-xs text-[#CCC4CC]">2022-2025</p>
+                        <div>
+                            <h1 class="text-white text-lg">
+                                Bsc. Information <br />
+                                Technology
+                            </h1>
+                            <p class="text-xs text-[#CCC4CC]">
+                                Ghana Communication<br />
+                                Technology University
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-[#3B353B] min-h-screen flex items-center">
+        <div class="font-['Jost',sans-serif] w-full max-w-4xl px-4 md:px-12 space-y-7">
+            <p
+                class="text-white p-2 md:p-4 text-center font-medium bg-[#262226] rounded-full text-xs md:text-lg w-full md:w-[200px]">
+                MY EXPERIENCE
+            </p>
+            <div id="table" class="w-full max-w-6xl mx-auto">
+                <div
+                    class="flex flex-col md:flex-row justify-between md:items-center items-start border-b border-[#A69CA6] py-2 px-1 md:py-4 md:px-2 hover:bg-[#262226] transition delay-150 duration-700 ease-in-out cursor-pointer">
+                    <div class="flex flex-col text-xs font-normal text-[#CCC4CC]">
+                        <p class="text-[#FF99FF] font-medium text-xs md:text-lg">
+                            Frontend Dev and UI/UX Designer
+                        </p>
+                        <p class="text-xs md:text-sm font-normal text-[#CCC4CC]">
+                            Supreme Concept(Kaat)
+                        </p>
+                    </div>
+                    <p class="text-xs md:text-sm font-normal text-[#CCC4CC] mt-1 md:mt-0">
+                        May 2024 - Jan 2025
+                    </p>
+                </div>
+                <div
+                    class="flex flex-col md:flex-row justify-between md:items-center items-start border-b border-[#A69CA6] py-2 px-1 md:py-4 md:px-2 hover:bg-[#262226] transition delay-150 duration-700 ease-in-out cursor-pointer">
+                    <div class="flex flex-col text-xs font-normal text-[#CCC4CC]">
+                        <p class="text-[#FF99FF] font-medium text-xs md:text-lg">
+                            UI/UX Design and Graphic Designer
+                        </p>
+                        <p class="text-xs md:text-sm font-normal text-[#CCC4CC]">
+                            Ray's I.T Firm
+                        </p>
+                    </div>
+                    <p class="text-xs md:text-sm font-normal text-[#CCC4CC] mt-1 md:mt-0">
+                        May 2019 - Feb 2020
+                    </p>
+                </div>
+                <div
+                    class="flex flex-col md:flex-row justify-between md:items-center items-start border-b border-[#A69CA6] py-2 px-1 md:py-4 md:px-2 hover:bg-[#262226] transition delay-150 duration-700 ease-in-out cursor-pointer">
+                    <div class="flex flex-col text-xs font-normal text-[#CCC4CC]">
+                        <p class="text-[#FF99FF] font-medium text-xs md:text-lg">
+                            Brand Manager
+                        </p>
+                        <p class="text-xs md:text-sm font-normal text-[#CCC4CC]">
+                            Kleosync Ghana
+                        </p>
+                    </div>
+                    <p class="text-xs md:text-sm font-normal text-[#CCC4CC] mt-1 md:mt-0">
+                        Mar 2025 - Present
+                    </p>
+                </div>
+                <div
+                    class="flex flex-col md:flex-row justify-between md:items-center items-start border-b border-[#A69CA6] py-2 px-1 md:py-4 md:px-2 hover:bg-[#262226] transition delay-150 duration-700 ease-in-out cursor-pointer">
+                    <div class="flex flex-col text-xs font-normal text-[#CCC4CC]">
+                        <p class="text-[#FF99FF] font-medium text-xs md:text-lg">
+                            Web Developer and Brand Manager
+                        </p>
+                        <p class="text-xs md:text-sm font-normal text-[#CCC4CC]">
+                            Prestige Institute of Technology
+                        </p>
+                    </div>
+                    <p class="text-xs md:text-sm font-normal text-[#CCC4CC] mt-1 md:mt-0">
+                        Oct 2023 - April 2025
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-[#3B353B] min-h-screen flex items-center justify-center w-full">
+        <div class="font-['Jost',sans-serif] w-full max-w-6xl px-4 md:px-12 space-y-8">
+            <p
+                class="text-white p-2 md:p-4 text-center font-medium bg-[#262226] rounded-full text-xs md:text-lg w-full md:w-[300px]">
+                MY RESEARCH INTERESTS
+            </p>
+            <div class="w-full space-y-4 md:space-y-8">
+                <div class="flex justify-start md:justify-end w-full gap-4 items-center">
+                    <img class="w-[15px] md:w-[30px] md:order-2" src="./images/notation.svg" />
+                    <p class="text-left font-light md:text-right text-white text-lg md:text-2xl md:order-1">
+                        Human Computer Interaction
+                    </p>
+                </div>
+                <div class="flex justify-start md:justify-end w-full gap-4 items-center">
+                    <img class="w-[15px] md:w-[30px] md:order-2" src="./images/notation.svg" />
+                    <p class="text-left font-light md:text-right text-white text-lg md:text-2xl md:order-1">
+                        Ethical Implications of AI in Interface Personalization
+                    </p>
+                </div>
+                <div class="flex justify-start md:justify-end w-full gap-4 items-center">
+                    <img class="w-[15px] md:w-[30px] md:order-2" src="./images/notation.svg" />
+                    <p class="text-left font-light md:text-right text-white text-lg md:text-2xl md:order-1">
+                        Human-Centered Interfaces in Digital Product Design
+                    </p>
+                </div>
+                <div class="flex justify-start md:justify-end w-full gap-4 items-center">
+                    <img class="w-[15px] md:w-[30px] md:order-2" src="./images/notation.svg" />
+                    <p class="text-left font-light md:text-right text-white text-lg md:text-2xl md:order-1">
+                        From Code to Culture: Embedding Identity into UI Components
+                    </p>
+                </div>
+                <div class="flex justify-start md:justify-end w-full gap-4 items-center">
+                    <img class="w-[15px] md:w-[30px] md:order-2" src="./images/notation.svg" />
+                    <p class="text-left font-light md:text-right text-white text-lg md:text-2xl md:order-1">
+                        Cultural Sensitivity in UI: Bridging Global Aesthetics and Usability
+                    </p>
+                </div>
+                <div class="flex justify-start md:justify-end w-full gap-4 items-center">
+                    <img class="w-[15px] md:w-[30px] md:order-2" src="./images/notation.svg" />
+                    <p class="text-left font-light md:text-right text-white text-lg md:text-2xl md:order-1">
+                        Modern Typography and Its Cultural Resonance in Digital Platforms
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-[#3B353B] min-h-screen flex items-center justify-center w-full">
+        <diiv class="font-['Jost',sans-serif] w-full max-w-6xl px-4 md:px-12 space-y-8">
+            <p
+                class="text-white p-2 md:p-4 text-center font-medium bg-[#262226] rounded-full text-xs md:text-lg w-full md:w-[300px]">
+                EXPLORE MY LIBRARY
+            </p>
+            <p class="text-white font-light text-sm md:text-lg "> Here are some of the books I'm exploring during my
+                leisure time.<br> I'm always open to thoughtful recommendations that inspire creativity,<br> design
+                thinking, or personal growth </p>
+            <div class="grid grid-cols-2  md:grid-cols-3 gap-4">
+                <div
+                    class="flex max-w-[150px] md:max-w-[250px] border-2 border-[#A69CA6] justify-center items-center bg-[#544D54] rounded-lg overflow-hidden transition-all duration-700 ease-in-out hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-400 cursor-pointer ">
+                    <img class=" w-[80px] md:w-[150px] py-4  transition-all duration-500 ease-in-out hover:scale-90"
+                        src="./images/book1.svg">
+                </div>
+                <div
+                    class="flex max-w-[150px] md:max-w-[250px] border-2 border-[#A69CA6] justify-center items-center bg-[#544D54] rounded-lg overflow-hidden transition-all duration-700 ease-in-out hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-400 cursor-pointer ">
+                    <img class=" w-[80px] md:w-[150px] py-4  transition-all duration-500 ease-in-out hover:scale-90"
+                        src="./images/book2.svg">
+                </div>
+                <div
+                    class="flex max-w-[150px] md:max-w-[250px] border-2 border-[#A69CA6] justify-center items-center bg-[#544D54] rounded-lg overflow-hidden transition-all duration-700 ease-in-out hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-400 cursor-pointer ">
+                    <img class=" w-[80px] md:w-[150px] py-4  transition-all duration-500 ease-in-out hover:scale-90"
+                        src="./images/book3.svg">
+                </div>
+            </div>
+        </diiv>
+
+    </section>
+    <section class="bg-[url(./images/quotebg.jpg)] bg-cover bg-center min-h-screen relative">
+        <div class="absolute inset-0 bg-[#262226] opacity-90 mix-blend-multiply z-10"></div>
+        <div
+            class="relative z-20 font-['Rubik',sans-serif] w-full max-w-4xl mx-auto px-4 md:px-12 flex flex-col justify-center items-center min-h-screen py-12 md:py-24">
+            <div class="text-center space-y-6 md:space-y-8">
+                <blockquote id="main-quote"
+                    class="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-pink-200 via-pink-300 to-pink-400 inline-block text-transparent bg-clip-text font-bold leading-tight transition-all duration-1000 ease-in-out">
+                    Design or Art is not always meant to be understood, but rather felt in the depths of ambiguity.
+                </blockquote>
+
+                <cite id="quote-author"
+                    class="block text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-medium italic transition-all duration-1000 ease-in-out">
+                    — Design Philosophy
+                </cite>
+            </div>
+            <div class="flex space-x-2 mt-8 md:mt-12">
+                <div class="quote-dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-pink-300 transition-all duration-300"></div>
+                <div class="quote-dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-600 transition-all duration-300"></div>
+                <div class="quote-dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-600 transition-all duration-300"></div>
+                <div class="quote-dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-600 transition-all duration-300"></div>
+                <div class="quote-dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-600 transition-all duration-300"></div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full max-w-[200px] md:max-w-sm mt-4  rounded-full ">
+                <div id="progress-bar"
+                    class="bg-gradient-to-r from-pink-300 to-pink-400 h-1 rounded-full transition-all duration-100 ease-linear w-0">
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
+    <section class="bg-[#3B353B] min-h-screen flex items-center justify-center w-full">
+        <div class="font-['Jost',sans-serif] w-full max-w-6xl py-10 px-4 md:px-12 space-y-8">
+            <p
+                class="text-white p-2 md:p-4 text-center font-medium bg-[#262226] rounded-full text-xs md:text-lg w-full md:w-[300px]">
+                MY CORE PRINCIPLES
+            </p>
+
+            <div class=" grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                <div
+                    class=" group flex flex-col  border-pink-300 bg-transparent border  rounded-3xl p-8  items-start justify-between max-w-[300px] min-h-[100px] md:min-h-[200px] hover:bg-gradient-to-b from-pink-300 via-purple-400 to-purple-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 cursor-pointer">
+                    <h3 class=" group-hover:text-black text-3xl mb-6 text-pink-400 ">Communication</h3>
+                    <h3 class="text-white text-xs md:text-lg font-medium">Design and development are conversations—with
+                        users, with teams, with the product itself. I value clarity, empathy, and listening—because good
+                        communication leads to better outcomes for everyone involved.</h3>
+                </div>
+                <div
+                    class=" group flex flex-col  border-pink-300 bg-transparent border  rounded-3xl p-8  items-start justify-between max-w-[300px] min-h-[100px] md:min-h-[200px] hover:bg-gradient-to-b from-pink-300 via-purple-400 to-purple-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 cursor-pointer">
+                    <h3 class=" group-hover:text-black text-3xl mb-6 text-pink-400 ">Communication</h3>
+                    <h3 class="text-white text-xs md:text-lg font-medium">Design and development are conversations—with
+                        users, with teams, with the product itself. I value clarity, empathy, and listening—because good
+                        communication leads to better outcomes for everyone involved.</h3>
+                </div>
+                <div
+                    class=" group flex flex-col  border-pink-300 bg-transparent border  rounded-3xl p-8  items-start justify-between max-w-[300px] min-h-[100px] md:min-h-[200px] hover:bg-gradient-to-b from-pink-300 via-purple-400 to-purple-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 cursor-pointer">
+                    <h3 class=" group-hover:text-black text-3xl mb-6 text-pink-400 ">Communication</h3>
+                    <h3 class="text-white text-xs md:text-lg font-medium">Design and development are conversations—with
+                        users, with teams, with the product itself. I value clarity, empathy, and listening—because good
+                        communication leads to better outcomes for everyone involved.</h3>
+                </div>
+                <div
+                    class=" group flex flex-col  border-pink-300 bg-transparent border  rounded-3xl p-8  items-start justify-between max-w-[300px] min-h-[100px] md:min-h-[200px] hover:bg-gradient-to-b from-pink-300 via-purple-400 to-purple-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 cursor-pointer">
+                    <h3 class=" group-hover:text-black text-3xl mb-6 text-pink-400 ">Communication</h3>
+                    <h3 class="text-white text-xs md:text-lg font-medium">Design and development are conversations—with
+                        users, with teams, with the product itself. I value clarity, empathy, and listening—because good
+                        communication leads to better outcomes for everyone involved.</h3>
+                </div>
+                <div
+                    class=" group flex flex-col  border-pink-300 bg-transparent border  rounded-3xl p-8  items-start justify-between max-w-[300px] min-h-[100px] md:min-h-[200px] hover:bg-gradient-to-b from-pink-300 via-purple-400 to-purple-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 cursor-pointer">
+                    <h3 class=" group-hover:text-black text-3xl mb-6 text-pink-400 ">Communication</h3>
+                    <h3 class="text-white text-xs md:text-lg font-medium">Design and development are conversations—with
+                        users, with teams, with the product itself. I value clarity, empathy, and listening—because good
+                        communication leads to better outcomes for everyone involved.</h3>
+                </div>
+                <div
+                    class=" group flex flex-col  border-pink-300 bg-transparent border  rounded-3xl p-8  items-start justify-between max-w-[300px] min-h-[100px] md:min-h-[200px] hover:bg-gradient-to-b from-pink-300 via-purple-400 to-purple-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 cursor-pointer">
+                    <h3 class=" group-hover:text-black text-3xl mb-6 text-pink-400 ">Communication</h3>
+                    <h3 class="text-white text-xs md:text-lg font-medium">Design and development are conversations—with
+                        users, with teams, with the product itself. I value clarity, empathy, and listening—because good
+                        communication leads to better outcomes for everyone involved.</h3>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </section>
+    <section class="bg-[#3B353B] min-h-screen flex items-center justify-center w-full">
+        <div class="font-['Jost',sans-serif] w-full max-w-6xl py-10 px-4 md:px-12 space-y-8">
+            <div class="flex flex-col gap-6 md:flex-row">
+                <h1
+                    class="font-['Jost',sans-serif] leading-none md:w-full text-2xl tracking-tight md:text-6xl bg-gradient-to-r from-pink-400 via-pink-300 to-purple-400 inline-block text-transparent bg-clip-text font-bold">
+                    FAQs
+                </h1>
+                <div id="accordianContainer" class="flex flex-col gap-6">
+                    <div
+                        class="accordion-item border border-white/50 rounded-lg bg-gradient-to-br from-white/30 to-white/5 backdrop-blur-3xl shadow-lg ">
+                        <button
+                            class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#544D54] transition-colors duration-200 cursor-pointer">
+                            <span class=" text-sm md:text-lg font-medium text-white">What services do you offer?</span>
+                            <div></div>
+                            <svg class="accordion-icon w-6 h-6  text-white transition-all duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 6v12"></path>
+                                <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 12h12"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-4 text-white font-light">
+                                Other than UI/UX design, I also offer frontend development and graphic design. Based on
+                                your needs, I can put together a great team to handle the specific requirements of your
+                                project. I work with a dedicated group of talented professionals ready to tackle any
+                                challenge you have.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border border-white/50 rounded-lg bg-gradient-to-br from-white/30 to-white/5 backdrop-blur-3xl shadow-lg ">
+                        <button
+                            class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#544D54] transition-colors duration-200 cursor-pointer">
+                            <span class=" text-sm md:text-lg font-medium text-white">How long does it take?</span>
+                            <div></div>
+                            <svg class="accordion-icon w-6 h-6  text-white transition-all duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 6v12"></path>
+                                <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 12h12"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-4 text-white font-light">
+                                Timelines vary depending on the project scope, but typically, smaller projects take 1-2
+                                weeks, while larger ones may take 3-6 weeks or more. Once I understand your specific
+                                needs, I'll provide a clear timeline.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border border-white/50 rounded-lg bg-gradient-to-br from-white/30 to-white/5 backdrop-blur-3xl shadow-lg cursor-pointer">
+                        <button
+                            class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#544D54] transition-colors duration-200 cursor-pointer">
+                            <span class=" text-sm md:text-lg font-medium text-white">04 Do you work
+                                internationally?</span>
+                            <div></div>
+                            <svg class="accordion-icon w-6 h-6  text-white transition-all duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 6v12"></path>
+                                <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 12h12"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-4 text-white font-light">
+                                Yes, I work with clients from all over the world. No matter where you're located, we can
+                                collaborate seamlessly online to bring your project to life.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border border-white/50 rounded-lg bg-gradient-to-br from-white/30 to-white/5 backdrop-blur-3xl shadow-lg ">
+                        <button
+                            class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#544D54] transition-colors duration-200 cursor-pointer">
+                            <span class=" text-sm md:text-lg font-medium text-white">03 How much does it cost?</span>
+                            <div></div>
+                            <svg class="accordion-icon w-6 h-6  text-white transition-all duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 6v12"></path>
+                                <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 12h12"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-4 text-white font-light">
+                                Pricing depends on the scope and complexity of the project. Once I understand your
+                                needs, I’ll provide a custom quote that reflects the value and work required.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border border-white/50 rounded-lg bg-gradient-to-br from-white/30 to-white/5 backdrop-blur-3xl shadow-lg cursor-pointer">
+                        <button
+                            class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#544D54] transition-colors duration-200 cursor-pointer">
+                            <span class=" text-sm md:text-lg font-medium text-white">Will I like working with
+                                you?</span>
+                            <div></div>
+                            <svg class="accordion-icon w-6 h-6  text-white transition-all duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 6v12"></path>
+                                <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 12h12"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-4 text-white font-light">
+                                Absolutely! I value clear communication, creativity, and delivering results that align
+                                with your vision. My goal is to make the process smooth, collaborative, and enjoyable
+                                from start to finish.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border border-white/50 rounded-lg bg-gradient-to-br from-white/30 to-white/5 backdrop-blur-3xl shadow-lg cursor-pointer">
+                        <button
+                            class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#544D54] transition-colors duration-200 cursor-pointer">
+                            <span class=" text-sm md:text-lg font-medium text-white">What does working together fees
+                                like?</span>
+                            <div></div>
+                            <svg class="accordion-icon w-6 h-6  text-white transition-all duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 6v12"></path>
+                                <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 12h12"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-4 text-white font-light">
+                                Working together feels like a smooth and collaborative process. I take time to
+                                understand your goals, keep you updated every step of the way, and make sure you feel
+                                confident and excited about the progress we’re making. It’s a partnership focused on
+                                bringing your vision to life.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </section>
+    <section class="bg-[#3B353B] min-h-screen flex items-center justify-center w-full">
+        <div class="font-['Jost',sans-serif] w-full max-w-6xl  px-4 md:px-12 space-y-8">
+            <div class="flex flex-col justify-center items-center gap-8 bg-[#544D54] w-full rounded-lg py-8">
+                <p class="text-white text-xl  md:text-4xl font-medium">Gloriadedo100@gmail.com</p>
+                <h4 class="flex items-center">
+                    <span class="w-[10px] h-[10px] rounded-full bg-[#FF99FF] inline-block align-middle mr-2"></span>
+                    <span class="text-white text-sm md:text-base">Available for work</span>
+                </h4>
+                <p class="miss-fajardose-regular text-3xl md:text-5xl text-white">I am everywhere</p>
+                <div class="flex gap-8">
+                    <a href="#" class=" text-xs md:text-2xl hover:text-pink-300 text-white underline italic">Linkdn</a>
+                     <a href="#" class=" text-xs md:text-2xl hover:text-pink-300 text-white underline italic">Github</a>
+                      <a href="#" class=" text-xs md:text-2xl hover:text-pink-300 text-white underline italic">Instagram</a>
+                       <a href="#" class=" text-xs md:text-2xl hover:text-pink-300 text-white underline italic">Behance</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+    <section class="bg-[#3B353B] min-h-screen flex items-center justify-center w-full">
+        <div class="font-['Jost',sans-serif] w-full max-w-6xl py-16  px-4 md:px-12 space-y-8">
+            <p
+                class="text-white p-2 md:p-4 text-center font-medium bg-[#262226] rounded-full text-xs md:text-lg w-full md:w-[500px]">
+                HERE IS WHAT I AM LISTENTING TO
+            </p>
+            <p class="text-white font-light text-sm md:text-lg "> From focus-boosting soundtracks to inspiring<br> podcasts, here's what keeps me energized<br> and creatively tuned while designing and coding.</p>
+            <div class="flex flex-col md:flex-row gap-8">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4jcrO2T6XJ1B7hXsAEJ3ve?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5VKXfM7SWob2onq118RjYJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div id="spotifyMusic">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/19AmRhE0Uauep2EgJA0Dip?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    <footer class="aboutMe bg-[url(./images/bubbles.gif)] bg-cover bg-center min-h-screen relative font-['Jost',sans-serif]">
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-[#360125] opacity-100 mix-blend-multiply z-10"></div>
+    
+    <!-- Main content -->
+    <div class="relative z-20 flex flex-col justify-between min-h-screen">
+        <!-- Main section -->
+        <div class="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
+            <div class="text-white max-w-6xl mx-auto w-full">
+                <!-- Large heading -->
+                <h1 class="text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-black uppercase leading-tight mb-8 md:mb-12">
+                    INTERESTED IN WORKING TOGETHER?
+                </h1>
+                
+                <!-- Sub-heading -->
+                <h4 class="text-xl md:text-2xl mb-8 md:mb-12 font-light">Let's talk</h4>
+                
+                <!-- Content row -->
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-16">
+                    <!-- Description text -->
+                    <div class="lg:flex-1 lg:max-w-md">
+                        <p class="text-base md:text-lg leading-relaxed">
+                            I deliver experiences that resonate deeply with you and your audience, creating a timeless impact.
+                        </p>
+                    </div>
+                    
+                    <!-- Email button -->
+                    <div class="lg:flex-shrink-0">
+                        <a href="mailto:gloriadedo100@gmail.com?subject=Hey%20Gloria%20Dedo,%20I%20would%20love%20to%20work%20with%20you"
+                            target="_self"
+                            
+                            class="spread-bg flex items-center relative overflow-hidden bg-[#262226] text-white px-4 py-3   rounded-full hover:bg-[#FF99FF] transition-colors duration-500  font-['Jost',sans-serif] hover:text-[#262226] group">
+                            <div class="w-[20px] h-[15px] flex items-center justify-center mr-2 relative">
+                                <i
+                                    class="fas fa-long-arrow-right absolute opacity-0 transition-all duration-300 delay-100 group-hover:opacity-100 z-10"></i>
+                                <span
+                                    class="w-[20px] group-hover:opacity-0 group-hover:scale-75 h-[20px] rounded-full bg-[#FF99FF] transition-all duration-300"></span>
+                            </div>
+                            <span class="relative z-10 text-xs md:text-sm ">SEND ME AN EMAIL</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Status indicator -->
+                <div class="mt-12 md:mt-16">
+                    <div class="flex items-center text-white">
+                        <div class="w-3 h-3 bg-[#FF99FF] rounded-full mr-3"></div>
+                        <span class="text-sm md:text-base">Available for work</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer bottom -->
+        <div class="bg-pink-300 text-black px-8 md:px-16 lg:px-24 py-4">
+            <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <p class="text-sm">
+                    Designed by <span class="font-medium">Moi</span>
+                </p>
+                <p class="text-sm">
+                    ©️2025 Developed by <span class="font-medium">Moi</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>

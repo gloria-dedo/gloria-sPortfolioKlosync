@@ -17,11 +17,23 @@ const linkItemsButtons = [
     url: "about.html",
     target: "_blank",
   },
+  {
+    id: "allProjects",
+    text: "VIEW ALL MY PROJECTS",
+    url: "projects.html",
+    target: "_blank",
+  },
+  {
+    id: "email2",
+    text: "SEND ME AN EMAIL",
+    url: "mailto:gloriadedo100@gmail.com?subject=Hey%20Gloria%20Dedo,%20I%20would%20love%20to%20work%20with%20you",
+    target: "_blank",
+  },
 ];
 
 function createButton(buttonData) {
   return `
-    <div  ">
+    <div>
                             <a href="${buttonData.url}"
                             target="${buttonData.target}"
                             id="${buttonData.id}"
@@ -50,6 +62,14 @@ function initButtons() {
     ),
     document.getElementById("moreAboutMe").innerHTML = createButton(
         linkItemsButtons[2]
-    )
+    ),
+    document.getElementById("allProjectsLink").innerHTML = createButton(
+        linkItemsButtons[3]
+    ),
+     document.getElementById("emailButtonContainer2").innerHTML = createButton(
+        linkItemsButtons[4]
+    ),
+    
 );
 }
+

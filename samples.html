@@ -3,60 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Simple Accordion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="w-full">
-    <div class="relative right-0">
-      <ul class="relative flex flex-wrap px-1.5 py-1.5 list-none rounded-md bg-slate-100" data-tabs="tabs" role="list">
-        <li class="z-30 flex-auto text-center">
-          <a class="z-30 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer text-slate-600 bg-inherit"
-          data-tab-target="" role="tab" aria-selected="true" aria-controls="dashboard">
-            Dashboard
-          </a>
-        </li>
-        <li class="z-30 flex-auto text-center">
-          <a class="z-30 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-slate-600 bg-inherit"
-          data-tab-target="" role="tab" aria-selected="false"  aria-controls="profile">
-            Profile
-          </a>
-        </li>
-        <li class="z-30 flex-auto text-center">
-          <a class="z-30 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-lg cursor-pointer text-slate-700 bg-inherit"
-          data-tab-target="" role="tab" aria-selected="false" aria-controls="settings">
-            Settings
-          </a>
-        </li>
-      </ul>
-   
-      <div data-tab-content="" class="p-5">
-        <div id="dashboard" role="tabpanel">
-          <p class="text-slate-400 font-light">
-            Because it&apos;s about motivating the doers. Because I&apos;m
-            here to follow my dreams and inspire other people to follow their
-            dreams, too.
-          </p>
+<body class="bg-gray-100 min-h-screen py-12">
+    
+    <div class="max-w-2xl mx-auto px-4">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Frequently Asked Questions</h1>
+        
+        <!-- Accordion Container -->
+        <div class="space-y-4">
+            
+            <!-- Accordion Item 1 -->
+            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
+                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
+                    <span class="text-lg font-medium text-gray-800">What is your return policy?</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
+                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
+                    </svg>
+                </button>
+                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-4 text-gray-600">
+                        We offer a 30-day return policy for all items. Products must be in their original condition and packaging. Simply contact our customer service team to initiate a return, and we'll provide you with a prepaid shipping label.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2 -->
+            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
+                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
+                    <span class="text-lg font-medium text-gray-800">How long does shipping take?</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
+                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
+                    </svg>
+                </button>
+                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-4 text-gray-600">
+                        Standard shipping typically takes 3-5 business days within the continental US. Expedited shipping options are available at checkout for 1-2 day delivery. International shipping times vary by location but generally take 7-14 business days.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
+                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
+                    <span class="text-lg font-medium text-gray-800">Do you offer technical support?</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
+                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
+                    </svg>
+                </button>
+                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-4 text-gray-600">
+                        Yes! We provide 24/7 technical support through multiple channels including live chat, email, and phone. Our technical team is highly trained and can help with installation, troubleshooting, and general product questions.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 4 -->
+            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
+                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
+                    <span class="text-lg font-medium text-gray-800">What payment methods do you accept?</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
+                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
+                    </svg>
+                </button>
+                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-4text-gray-600">
+                        We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, Apple Pay, Google Pay, and bank transfers. All transactions are secured with 256-bit SSL encryption for your safety.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 5 -->
+            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
+                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
+                    <span class="text-lg font-medium text-gray-800">Can I cancel my order?</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
+                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
+                    </svg>
+                </button>
+                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-4 text-gray-600">
+                        Orders can be cancelled within 1 hour of placement if they haven't been processed yet. Once an order enters the fulfillment stage, it cannot be cancelled but can be returned once received. Please contact us immediately if you need to cancel an order.
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        <div class="hidden opacity-0" id="profile" role="tabpanel">
-          <p class="text-slate-400 font-light">
-            The reading of all good books is like a conversation with the
-            finest minds of past centuries.
-          </p>
-        </div>
-        <div class="hidden opacity-0" id="settings" role="tabpanel">
-          <p class="text-slate-400 font-light">
-            Comparing yourself to others is the thief of joy.
-          </p>
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- from node_modules -->
-<script src="node_modules/@material-tailwind/html/scripts/tabs.js"></script>
- 
-<!-- from cdn -->
-<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script>
+
+    <script>
+        // Get all accordion headers
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionItem = header.parentElement;
+                const accordionContent = accordionItem.querySelector('.accordion-content');
+                const accordionIcon = header.querySelector('.accordion-icon');
+                
+                // Check if this accordion is currently open
+                const isOpen = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
+                
+                // Toggle current accordion
+                if (isOpen) {
+                    // Close this accordion - show plus
+                    accordionContent.style.maxHeight = '0px';
+                    accordionIcon.querySelector('.plus-horizontal').style.transform = 'rotate(0deg)';
+                    header.classList.remove('bg-gray-50');
+                } else {
+                    // Open this accordion - show minus (hide vertical line)
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                    accordionIcon.querySelector('.plus-horizontal').style.transform = 'rotate(90deg)';
+                    header.classList.add('bg-gray-50');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
-

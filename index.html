@@ -9,7 +9,11 @@
     <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <script src="./scripts/index.js" defer></script>
+    
+
     <link href="./output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/tab.css">
+    <link rel="stylesheet" href="./css/orbit.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,10 +30,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Alatsi&family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
+     rel="stylesheet">
 
     <script src="./scripts/button.js" defer></script>
     <script src="./scripts/navBar.js" defer></script>
+    <script src="./scripts/tabs.js" defer></script>
+    <script src="./scripts/uiContent.js" defer></script>
     <style>
         .menu-transition {
             transition: all 0.3s ease-in-out;
@@ -165,29 +171,32 @@
 
             <div class="flex justify-between w-full ">
                 <div class="px-4 ">
-                   <h4 class="flex items-center  border-2 border-[#FF99FF] rounded-full px-2 py-5 ">
-                    <span
-                        class="w-[10px] h-[10px] fade-bounce-fast rounded-full bg-[#FF99FF] inline-block align-middle "></span>
-                </h4> 
+                    <h4 class="flex items-center  border-2 border-[#FF99FF] rounded-full px-2 py-5 ">
+                        <span
+                            class="w-[10px] h-[10px] fade-bounce-fast rounded-full bg-[#FF99FF] inline-block align-middle "></span>
+                    </h4>
                 </div>
                 <div class="py-6">
                     <div class="flex items-center gap-4 px-2 py-1 md:px-3 md:py-2 rounded-l-full"
-                    style="background-color: rgba(38, 34, 38, 0.5);">
-                    <div class="w-11 h-11 md:w-[70px] md:h-[70px] border-2 border-[#FF99FF] rounded-full overflow-hidden bg-[#FF99FF]">
-                        <img src="./images/globeGloria.gif" alt="location" class="w-full h-full object-cover">
+                        style="background-color: rgba(38, 34, 38, 0.5);">
+                        <div
+                            class="w-11 h-11 md:w-[70px] md:h-[70px] border-2 border-[#FF99FF] rounded-full overflow-hidden bg-[#FF99FF]">
+                            <img src="./images/globeGloria.gif" alt="location" class="w-full h-full object-cover">
+                        </div>
+                        <p class=" text-xs md:text-sm font-['Jost',sans-serif]">Based in Ghana<br>West Africa</p>
                     </div>
-                    <p class=" text-xs md:text-sm font-['Jost',sans-serif]">Based in Ghana<br>West Africa</p>
                 </div>
-                </div>
-                
+
             </div>
         </div>
     </section>
     <section class="aboutMe bg-[url(./images/CharcoalSmudgeReal.svg)] bg-cover  bg-center h-screen relative">
         <div class="absolute inset-0 bg-[#262226] opacity-80 mix-blend-multiply z-10"></div>
-        <div class="relative z-20 text-white px-12 flex flex-col md:flex-row justify-between items-center w-full h-full ">
+        <div
+            class="relative z-20 text-white px-12 flex flex-col md:flex-row justify-between items-center w-full h-full ">
             <div class="text-white w-full md:max-w-xl flex flex-col space-y-4 mt-20 ">
-                <p class=" text-lg md:text-2xl font-normal font-['Jost',sans-serif]">I am a multi-skilled professional in design and coding, focused on building projects that positively
+                <p class=" text-lg md:text-2xl font-normal font-['Jost',sans-serif]">I am a multi-skilled professional
+                    in design and coding, focused on building projects that positively
                     impact people's lives</p>
                 <p class=" text-lg md:text-2xl font-normal font-['Jost',sans-serif]">
                     Although some may argue that a jack of all trades is a master of none, they often overlook that
@@ -198,19 +207,166 @@
                 <div id="moreAboutMe" class="flex w-full md:w-[70%] mt-4 md:mt-14"></div>
             </div>
             <div class=" flex justify-center">
-                 <img src="./images/croppedGif.gif" alt="globe" class="md:min-w-sm w-[60%]">
+                <img src="./images/croppedGif.gif" alt="globe" class="md:min-w-sm w-[60%]">
             </div>
-           
+
         </div>
     </section>
-    <section class="aboutMe bg-[url(./images/CharcoalSmudgeReal.svg)] bg-cover  bg-center h-screen relative">
-        <div class="absolute inset-0 bg-[#262226] opacity-80 mix-blend-multiply z-10" ></div>
-        <div class="relative z-20 text-white px-12 flex   justify-between items-center w-full h-full ">
-            <h1 class="font-['Jost',sans-serif] text-2xl tracking-[5px] font-bold text-[#FF99FF]">MY EXPERTISE</h1>
-           
-            
-      </div>
+    <section class="aboutMe bg-[url(./images/CharcoalSmudgeReal.svg)] bg-cover bg-center min-h-screen relative">
+        <div class="absolute inset-0 bg-[#262226] opacity-80 mix-blend-multiply z-10"></div>
+        <div class="relative z-20 text-white px-2 mx-auto md:px-12 flex flex-col justify-center items-center min-h-screen">
+            <div class="w-full max-w-6xl flex flex-col gap-10 text-start flex-shrink-0 mt-[250px] md:mt-[200px]">
+                <h1 class="font-['Jost',sans-serif] text-2xl tracking-[5px] font-bold text-[#FF99FF] text-left">MY
+                    EXPERTISE</h1>
+                <div class="flex space-x-12 border-b border-gray-600 pb-0">
+                    <button
+                        class="tablinks cursor-pointer text-sm font-semibold text-gray-400 border-b-2 border-transparent pb-4 transition-all duration-300 hover:text-pink-300"
+                        onclick="openExpert(event, 'design')">
+                        UI/UX Design
+                    </button>
+                    <button
+                        class="tablinks cursor-pointer text-sm font-medium text-gray-400 border-b-2 border-transparent pb-4 hover:text-white hover:border-gray-500 transition-all duration-300"
+                        onclick="openExpert(event, 'webDev')">
+                        Frontend Development
+                    </button>
+                </div>
+                <div class="tabContent" id="design">
+                    <div id="expertiseContentUI" class="grid grid-cols-2 px-4 md:grid-cols-4 gap-4">
+                        <!--  cards go here -->
+                    </div>
+                </div>
+                <div class="tabContent" id="webDev">
+                    <div class="flex flex-col md:flex-row justify-center items-center">
+                        <div class="md:w-1/2 w-full flex flex-col gap-6">
+                            <img src="./images/techStack.svg" class="w-[200px]">
+                            <h1 class="uppercase font-['Jost',sans-serif] text-sm px-2">I build fast, responsive
+                                websites
+                                using<br> modern technologies ensuring your site<br> performs beautifully on every
+                                device.</h1>
+                        </div>
+                        <div class="w-full md:w-1/2 flex justify-center items-center">
+                            
+                            <div class=" relative w-[400px] h-[400px] mx-auto">
+                                <!-- Laptop at center -->
+                                <img src="./images/Laptop-Porfolio.svg" alt="laptop"
+                                    class=" w-[120px] md:w-[250px] absolute top-1/4 left-1/4 md:top-1/2 md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10" />
+
+                                <!-- Orbiting icons -->
+                                <div class="absolute w-1/2 h-1/2 md:w-full md:h-full top-0 left-0 spin-slow">
+                                    <!-- HTML Icon -->
+                                    <img src="./images/html5Icon.svg" alt="html"
+                                        class=" w-[20px] md:w-[40px] absolute top-0 left-1/2 transform -translate-x-1/2" />
+                                    <!-- Node Icon -->
+                                    <img src="./images/nodeIcon.svg" alt="node"
+                                        class="w-[20px] md:w-[40px] absolute top-[20%] left-[90%] transform -translate-x-1/2 -translate-y-1/2" />
+                                    <!-- CSS Icon -->
+                                    <img src="./images/cssIcon.svg" alt="css"
+                                        class="w-[20px] md:w-[40px] absolute top-1/2 left-full transform -translate-x-1/2 -translate-y-1/2" />
+                                    <!-- React Icon -->
+                                    <img src="./images/reactIcon.svg" alt="react"
+                                        class="w-[20px] md:w-[40px] absolute bottom-[20%] left-[90%] transform -translate-x-1/2 translate-y-1/2" />
+                                    <!-- JS Icon -->
+                                    <img src="./images/jsIcon.svg" alt="js"
+                                        class="w-[20px] md:w-[40px] absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2" />
+                                    <!-- WordPress Icon -->
+                                    <img src="./images/wordPressIcon.svg" alt="wordpress"
+                                        class="w-[20px] md:w-[40px] absolute bottom-[20%] left-[10%] transform -translate-x-1/2 translate-y-1/2" />
+                                    <!-- Vite Icon -->
+                                    <img src="./images/viteIcon.svg" alt="vite"
+                                        class="w-[20px] md:w-[40px] absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2" />
+                                    <!-- Tailwind Icon -->
+                                    <img src="./images/tailwindIcon.svg" alt="tailwind"
+                                        class="w-[20px] md:w-[40px] absolute top-[20%] left-[10%] transform -translate-x-1/2 -translate-y-1/2" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class=" flex flex-col md:flex-row font-['Jost',sans-serif]  justify-between gap-6">
+                        <div class="max-w-sm bg-[#544D54] border border-[#A69CA6] text-white p-6 rounded-xl flex gap-6 shadow-md">
+                            <!-- Left Section: Title + Image -->
+                            <div class="flex flex-col md:flex-row justify-between">
+                                <h1 class=" text-sm md:text-lg font-semibold leading-tight">
+                                    Custom Site<br>
+                                    Design +<br>
+                                    Dashboard build
+                                </h1>
+                                <img src="./images/dashboardportfolio.svg" alt="dashboard" class="w-24 mt-4">
+                            </div>
+
+                            <!-- Right Section: Paragraphs -->
+                            <div class="text-xs text-[#CCC4CC] space-y-3 max-w-[150px]">
+                                <p>
+                                    I craft unique, client-focused website designs and powerful dashboards that are
+                                    tailored to your brand, ensuring a seamless user experience.
+                                </p>
+                                <p>
+                                    From concept to launch, I deliver responsive, intuitive interfaces and admin tools
+                                    that help you manage your site with ease and confidence.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-8 max-w-xs bg-[#544D54] border border-[#A69CA6] text-white p-6 rounded-xl gap-6">
+                            <h1 class="text-lg font-semibold leading-loose">Figma-to-Code</h1>
+                            <p class="text-xs text-[#CCC4CC]">I convert your Figma designs into clean,<br> responsive code with pixel-perfect accuracy,
+                                <br> bringing your vision to life exactly as planned.</p>
+                            <img class="w-28" src="./images/figmaToCodeIcon.svg" alt="figma to code">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <section class="aboutMe bg-[url(./images/CharcoalSmudgeReal.svg)] bg-cover  bg-center min-h-screen relative">
+        <div class="absolute inset-0 bg-[#262226] opacity-80 mix-blend-multiply z-10"></div>
+        <div class="relative z-20 text-white px-2 mx-auto md:px-12 flex flex-col justify-center items-center min-h-screen max-w-6xl">
+            <div class="flex flex-col justify-center items-center">
+                <div class="flex justify-center gap-4 md:gap-10 items-center w-full mb-8">
+                <div class="bg-white w-14 h-14 rounded-full flex items-center justify-center hover:bg-gray-200">
+                    <i class="fa fa-long-arrow-left text-black" aria-hidden="true"></i>
+                </div>
+                <div class="bg-[#BCCFF3] min-w-[900px]  flex justify-center items-center rounded-4xl">
+                    <img src="./images/MentorFirstPrototype.svg" class="w-[600px]">
+                </div>
+                <div class="bg-white w-14 h-14 rounded-full flex items-center justify-center hover:bg-gray-200">
+                    <i class="fa fa-long-arrow-right text-black" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <div class="flex justify-around max-w-4xl px-4 md:px-8 items-center w-full mt-4 md:mt-14">
+            <img src="./images/eclipemini.svg" alt="eclipse" class="w-8 flex-shrink-0">
+            <div id="allProjectsLink" class="flex flex-1 mt-4 md:mb-12 justify-end"></div>
+            </div></div>
+            
+           </div>
+    </section>
+    <footer class="aboutMe bg-[url(./images/bubbles.gif)] bg-cover  bg-center min-h-screen relative">
+        <div class="absolute inset-0 bg-[#544D54] opacity-100 mix-blend-multiply z-10"></div>
+        <div class="relative z-20">
+            <div class="text-white">
+                <h1>INTERESTED IN WORKING TOGETHERE?</h1>
+                <h4>Let's Talk</h4>
+                <div class="flex justify-around max-w-4xl px-4 md:px-8 items-center w-full mt-4 md:mt-14">
+                    <p class="text-sm">I deliver experiences that resonate deeply with you and your audience<br>, creating a timeless impact.</p>
+                    <div id="emailButtonContainer2" class="flex flex-1 mt-4 md:mb-12 justify-end"></div>
+                </div>
+                
+                <div>
+
+                </div>
+            </div>
+            <div class="bg-pink-400 flex justify-between p-4">
+                <p>Designed by<span>Moi</span></p>
+                <p>©️2025 Developed by <span>Moi</span></p>
+            </div>
+
+        </div>
+
+
+    </footer>
 </body>
 
 </html>

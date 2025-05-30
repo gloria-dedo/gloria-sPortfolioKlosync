@@ -1,0 +1,13 @@
+    .tabContent {
+    min-height: 300px; /* Adjust based on your content height */
+    display: none;
+}
+
+/* .tabContent:first-of-type {
+    display: block;
+} */
+
+/* Or use this approach to maintain consistent height */
+#design, #webDev {
+    min-height: 400px; /* Set to your tallest tab content height */
+}
