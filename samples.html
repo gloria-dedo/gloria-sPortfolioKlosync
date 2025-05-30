@@ -1,130 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Accordion</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page with Loader</title>
+  <style>
+    /* Loader Styles */
+    #loader {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #ccc;
+      border-top-color: #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Sample page content */
+    .content {
+      padding: 50px;
+      font-family: sans-serif;
+      text-align: center;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 min-h-screen py-12">
-    
-    <div class="max-w-2xl mx-auto px-4">
-        <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Frequently Asked Questions</h1>
-        
-        <!-- Accordion Container -->
-        <div class="space-y-4">
-            
-            <!-- Accordion Item 1 -->
-            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
-                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
-                    <span class="text-lg font-medium text-gray-800">What is your return policy?</span>
-                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
-                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <div class="px-6 pb-4 text-gray-600">
-                        We offer a 30-day return policy for all items. Products must be in their original condition and packaging. Simply contact our customer service team to initiate a return, and we'll provide you with a prepaid shipping label.
-                    </div>
-                </div>
-            </div>
+<body>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
 
-            <!-- Accordion Item 2 -->
-            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
-                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
-                    <span class="text-lg font-medium text-gray-800">How long does shipping take?</span>
-                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
-                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <div class="px-6 pb-4 text-gray-600">
-                        Standard shipping typically takes 3-5 business days within the continental US. Expedited shipping options are available at checkout for 1-2 day delivery. International shipping times vary by location but generally take 7-14 business days.
-                    </div>
-                </div>
-            </div>
+  <!-- Page Content -->
+  <div class="content">
+    <h1>Welcome to My Page!</h1>
+    <p>This is your content. The loader disappears after 3 seconds or when the page fully loads.</p>
+  </div>
 
-            <!-- Accordion Item 3 -->
-            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
-                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
-                    <span class="text-lg font-medium text-gray-800">Do you offer technical support?</span>
-                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
-                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <div class="px-6 pb-4 text-gray-600">
-                        Yes! We provide 24/7 technical support through multiple channels including live chat, email, and phone. Our technical team is highly trained and can help with installation, troubleshooting, and general product questions.
-                    </div>
-                </div>
-            </div>
+  <script>
+    // Function to hide loader
+    function hideLoader() {
+      document.getElementById("loader").classList.add("hidden");
+    }
 
-            <!-- Accordion Item 4 -->
-            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
-                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
-                    <span class="text-lg font-medium text-gray-800">What payment methods do you accept?</span>
-                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
-                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <div class="px-6 pb-4text-gray-600">
-                        We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, Apple Pay, Google Pay, and bank transfers. All transactions are secured with 256-bit SSL encryption for your safety.
-                    </div>
-                </div>
-            </div>
+    // Timeout fallback (3 seconds max wait)
+    const loaderTimeout = setTimeout(hideLoader, 3000);
 
-            <!-- Accordion Item 5 -->
-            <div class="accordion-item border border-gray-200 rounded-lg bg-white shadow-sm">
-                <button class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
-                    <span class="text-lg font-medium text-gray-800">Can I cancel my order?</span>
-                    <svg class="accordion-icon w-6 h-6 text-gray-500 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path class="plus-horizontal" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12"></path>
-                        <path class="plus-vertical" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                    <div class="px-6 pb-4 text-gray-600">
-                        Orders can be cancelled within 1 hour of placement if they haven't been processed yet. Once an order enters the fulfillment stage, it cannot be cancelled but can be returned once received. Please contact us immediately if you need to cancel an order.
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-
-    <script>
-        // Get all accordion headers
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const accordionItem = header.parentElement;
-                const accordionContent = accordionItem.querySelector('.accordion-content');
-                const accordionIcon = header.querySelector('.accordion-icon');
-                
-                // Check if this accordion is currently open
-                const isOpen = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
-                
-                // Toggle current accordion
-                if (isOpen) {
-                    // Close this accordion - show plus
-                    accordionContent.style.maxHeight = '0px';
-                    accordionIcon.querySelector('.plus-horizontal').style.transform = 'rotate(0deg)';
-                    header.classList.remove('bg-gray-50');
-                } else {
-                    // Open this accordion - show minus (hide vertical line)
-                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-                    accordionIcon.querySelector('.plus-horizontal').style.transform = 'rotate(90deg)';
-                    header.classList.add('bg-gray-50');
-                }
-            });
-        });
-    </script>
-
+    // If page loads before 3 seconds, clear timeout and hide loader
+    window.addEventListener("load", () => {
+      clearTimeout(loaderTimeout);
+      hideLoader();
+    });
+  </script>
 </body>
 </html>

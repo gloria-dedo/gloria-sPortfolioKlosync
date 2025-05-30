@@ -1,0 +1,113 @@
+
+
+/* Base styling for scroll-reveal elements */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    will-change: opacity, transform;
+  }
+  
+  /* When element has scrolled into view */
+  .scroll-reveal.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Different animation directions */
+  .scroll-reveal-left {
+    transform: translateX(-50px);
+  }
+  
+  .scroll-reveal-left.scrolled {
+    transform: translateX(0);
+  }
+  
+  .scroll-reveal-right {
+    transform: translateX(50px);
+  }
+  
+  .scroll-reveal-right.scrolled {
+    transform: translateX(0);
+  }
+  
+  .scroll-reveal-zoom {
+    transform: scale(0.8);
+  }
+  
+  .scroll-reveal-zoom.scrolled {
+    transform: scale(1);
+  }
+  
+  /* Different animation speeds */
+  .scroll-reveal-slow {
+    transition-duration: 1s;
+  }
+  
+  .scroll-reveal-fast {
+    transition-duration: 0.4s;
+  }
+  
+  .staggered-parent .scroll-reveal:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  
+  .staggered-parent .scroll-reveal:nth-child(2) {
+    transition-delay: 0.25s;
+  }
+  
+  .staggered-parent .scroll-reveal:nth-child(3) {
+    transition-delay: 0.4s;
+  }
+  
+  .staggered-parent .scroll-reveal:nth-child(4) {
+    transition-delay: 0.55s;
+  }
+  
+  .staggered-parent .scroll-reveal:nth-child(5) {
+    transition-delay: 0.7s;
+  }
+  
+ 
+  .scroll-reveal-early {
+    transition-delay: 0s;
+  }
+
+  #loader {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #141A33;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #ffffff;
+      border-top-color: #f957e3;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Sample page content */
+    .content {
+      padding: 50px;
+      font-family: sans-serif;
+      text-align: center;
+    }

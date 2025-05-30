@@ -28,12 +28,12 @@ function createNavbar() {
 
                     <!-- Menu Links -->
                     <div class=" flex flex-col gap-6 md:gap-10 mt-8 font-['Jost',sans-serif] ">
-                        <a href="#home"
+                        <a href="./index.html"
                             class="block link-item text-white text-lg md:text-3xl lg:text-4xl hover:text-pink-400 transition-colors menu-link">Home</a>
-                        <a href="#about"
+                        <a href="./about.html"
                             class="block link-item text-white text-lg md:text-3xl lg:text-4xl hover:text-pink-300 transition-colors menu-link">About
                             Me</a>
-                        <a href="#projects"
+                        <a href="./projects.html"
                             class="block link-item text-white text-lg  md:text-3xl lg:text-4xl hover:text-pink-300 transition-colors menu-link">Projects</a>
                         <a href="#contact"
                             class="block link-item text-white text-lg  md:text-3xl lg:text-4xl hover:text-pink-300 transition-colors menu-link">Contact</a>
@@ -79,10 +79,10 @@ function loadNavbar() {
 }
 loadNavbar();
 
-document.addEventListener("scroll", () => {
-    const nav = document.getElementById("mainNav");
-    const isScrolled = window.scrollY > 70;
+// document.addEventListener("scroll", () => {
+//     const nav = document.getElementById("mainNav");
+//     const isScrolled = window.scrollY > 70;
 
-    nav.style.backgroundColor = isScrolled ? "rgba(59, 53, 59, 50)" : "transparent";
-    nav.style.transition = "background-color 0.3s ease";
-});
+//     nav.style.backgroundColor = isScrolled ? "rgba(59, 53, 59, 50)" : "transparent";
+//     nav.style.transition = "background-color 0.3s ease";
+// });
