@@ -3,5 +3,24 @@
     "@tailwindcss/cli": "^4.1.7",
     "motion": "^12.12.2",
     "tailwindcss": "^4.1.7"
-  }
+  },
+  "name": "gloria-sportfolioklosync",
+  "version": "1.0.0",
+  "description": "This is a portfolio site for Gloria Dede made with html,Tailwind css and Javascript",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gloria-dedo/gloria-sPortfolioKlosync.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gloria-dedo/gloria-sPortfolioKlosync/issues"
+  },
+  "homepage": "https://github.com/gloria-dedo/gloria-sPortfolioKlosync#readme"
 }

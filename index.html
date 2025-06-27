@@ -20,6 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alatsi&family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="" href="./css/carousel.css">
+    <script src="./scripts/projectCarousel.js" defer></script>
 
     <script src="./scripts/button.js" defer></script>
     <script src="./scripts/navBar.js" defer></script>
@@ -268,22 +270,23 @@
     </section>
 
     <!-- PROJECTS SECTION -->
-    <section class="aboutMe bg-[url(./images/CharcoalSmudgeReal.svg)] bg-cover bg-center min-h-screen relative pt-8">
+    <section class="aboutMe bg-[url(./images/CharcoalSmudgeReal.svg)] bg-cover bg-center min-h-screen relative pt-3 md:pt-12">
         <div class="absolute inset-0 bg-[#262226] opacity-80 mix-blend-multiply z-10"></div>
-        <div class="relative z-20 text-white px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col justify-center items-center min-h-screen max-w-6xl mx-auto">
-            <div class="flex flex-col justify-center items-center w-full">
+        <div class="relative z-20 text-white px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col justify-center items-center  max-w-6xl mx-auto">
+            <div class="flex flex-col justify-center items-center w-full mt-2 space-y-4 md:mt-8">
                 <!-- Project Carousel -->
+                 <p id="project-name" class="project-carousel-name  text-left text-3xl md:text-6xl font-semibold mt-2 font-['Jost',sans-serif] ">Mentor Hub</p>
                 <div class="flex flex-col md:flex-row justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-10 items-center w-full mb-6 sm:mb-8">
-                    <div class="bg-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-gray-200 cursor-pointer">
+                    <div id="prev-btn" class="bg-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-gray-200 cursor-pointer">
                         <i class="fa fa-long-arrow-left text-black text-sm sm:text-base" aria-hidden="true"></i>
                     </div>
                     
                     <!-- Project Display -->
-                    <div class="bg-[#BCCFF3] w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[900px] flex justify-center items-center rounded-2xl sm:rounded-3xl lg:rounded-4xl py-4 sm:py-6">
-                        <img src="./images/MentorFirstPrototype.svg" class="w-full max-w-[240px] sm:max-w-[350px] md:max-w-[500px] lg:max-w-[600px] h-auto">
+                    <div class="bg-[#BCCFF3] w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[900px] flex justify-center items-center rounded-2xl sm:rounded-3xl lg:rounded-4xl ">
+                        <img id="carousel-image" src="./images/MentorFirstPrototype.svg" class="w-full max-w-[240px] sm:max-w-[350px] md:max-w-[500px] lg:max-w-[600px] duration-300 ease-in-out">
                     </div>
                     
-                    <div class="bg-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-gray-200 cursor-pointer">
+                    <div id="next-btn" class="bg-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-gray-200 cursor-pointer">
                         <i class="fa fa-long-arrow-right text-black text-sm sm:text-base" aria-hidden="true"></i>
                     </div>
                 </div>

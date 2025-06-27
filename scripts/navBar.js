@@ -7,7 +7,7 @@ function createNavbar() {
 
             <!-- Sound Icon -->
             <div class="flex items-center">
-                <i class="fas fa-volume-xmark fa-xl text-lg sm:text-xl md:text-2xl lg:text-3xl text-white hover:text-gray-300 transition-colors cursor-pointer"
+                <i id="sound-icon" class="fas fa-volume-xmark fa-xl text-lg sm:text-xl md:text-2xl lg:text-3xl text-white hover:text-gray-300 transition-colors cursor-pointer"
                     aria-hidden="true"></i>
             </div>
 
@@ -72,12 +72,47 @@ function createNavbar() {
     `
 
 }
+function initNavBarAudio() {
+    // Add audio element to the body if not already present
+    if (!document.getElementById('navbar-audio')) {
+        const audio = document.createElement('audio');
+        audio.id = 'navbar-audio';
+        audio.src = './audio/theOrdinary.mp3'; // <-- Update with your music file path
+        // audio.loop = true;
+        document.body.appendChild(audio);
+    }
+
+   const soundIcon = document.getElementById('sound-icon');
+    const audio = document.getElementById('navbar-audio');
+
+    soundIcon.addEventListener('click', () => {
+        console.log("sound icon clicked")
+        if (audio.paused) {
+            audio.play();
+            soundIcon.classList.remove('fa-volume-xmark');
+            soundIcon.classList.add('fa-volume-high');
+        } else {
+            audio.pause();
+            soundIcon.classList.remove('fa-volume-high');
+            soundIcon.classList.add('fa-volume-xmark');
+        }
+    });
+}
 function loadNavbar() {
     document.getElementById('navbar').innerHTML = createNavbar();
-    initButtons();
+     setTimeout(() => {
+        initButtons();
+        initNavBarAudio();
+    }, 0);
     // initNavbar(); 
+
 }
 loadNavbar();
+// ...existing code...
+
+
+
+// ...existing code...
 
 // document.addEventListener("scroll", () => {
 //     const nav = document.getElementById("mainNav");

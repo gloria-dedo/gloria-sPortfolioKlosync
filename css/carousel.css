@@ -1,0 +1,47 @@
+/* Additional custom styles for the carousel */
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+    background-color: #4f46e5;
+}
+
+.carousel-dot:hover {
+    background-color: #9ca3af;
+}
+
+/* Fade animation for image transitions */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Custom arrow hover effects */
+.arrow-btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+/* Responsive font sizing for project names */
+@media (max-width: 640px) {
+    .project-carousel-name {
+        font-size: 1.875rem; /* 30px */
+    }
+}
+
+@media (min-width: 768px) {
+    .project-carousel-name {
+        font-size: 3.75rem; /* 60px */
+    }
+}

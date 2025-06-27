@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Carousel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .carousel-image {
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .carousel-image:hover {
+            transform: scale(1.1);
+        }
+        .carousel-container {
+            overflow: hidden;
+            border-radius: 2rem;
+        }
+        .fade-transition {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .fade-transition.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">My Projects</h1>
+        
+        <!-- Project Carousel -->
+        <div class="flex flex-col md:flex-row justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-10 items-center w-full mb-6 sm:mb-8">
+            <!-- Left Arrow -->
+            <div id="prevBtn" class="bg-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-gray-200 cursor-pointer transition-colors duration-200 shadow-md">
+                <i class="fa fa-long-arrow-left text-black text-sm sm:text-base" aria-hidden="true"></i>
+            </div>
+            
+            <!-- Project Display -->
+            <div class="bg-[#BCCFF3] w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[900px] flex justify-center items-center rounded-2xl sm:rounded-3xl lg:rounded-4xl py-4 sm:py-6 carousel-container shadow-lg">
+                <img id="carouselImage" src="" alt="Project Image" class="carousel-image w-full max-w-[240px] sm:max-w-[350px] md:max-w-[500px] lg:max-w-[600px] fade-transition">
+            </div>
+            
+            <!-- Right Arrow -->
+            <div id="nextBtn" class="bg-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-gray-200 cursor-pointer transition-colors duration-200 shadow-md">
+                <i class="fa fa-long-arrow-right text-black text-sm sm:text-base" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <!-- Project Info -->
+        <div class="text-center">
+            <h2 id="projectTitle" class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2"></h2>
+            <p id="projectDescription" class="text-gray-600 mb-4"></p>
+            <div class="flex justify-center gap-2 mb-4">
+                <!-- Dot indicators will be added here by JavaScript -->
+                <div id="indicators" class="flex gap-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample project data - replace with your actual projects
+        const projects = [
+            {
+                image: "https://via.placeholder.com/600x400/4F46E5/FFFFFF?text=Project+1",
+                title: "Mentor First Prototype",
+                description: "A mentoring platform prototype built with modern web technologies."
+            },
+            {
+                image: "https://via.placeholder.com/600x400/059669/FFFFFF?text=Project+2",
+                title: "E-Commerce Dashboard",
+                description: "Analytics dashboard for tracking sales and customer behavior."
+            },
+            {
+                image: "https://via.placeholder.com/600x400/DC2626/FFFFFF?text=Project+3",
+                title: "Weather App",
+                description: "Real-time weather application with location-based forecasts."
+            },
+            {
+                image: "https://via.placeholder.com/600x400/7C3AED/FFFFFF?text=Project+4",
+                title: "Task Manager",
+                description: "Collaborative task management tool with team features."
+            },
+            {
+                image: "https://via.placeholder.com/600x400/EA580C/FFFFFF?text=Project+5",
+                title: "Portfolio Website",
+                description: "Responsive portfolio website showcasing creative work."
+            }
+        ];
+
+        let currentIndex = 0;
+
+        // DOM elements
+        const carouselImage = document.getElementById('carouselImage');
+        const projectTitle = document.getElementById('projectTitle');
+        const projectDescription = document.getElementById('projectDescription');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        // Create dot indicators
+        function createIndicators() {
+            indicatorsContainer.innerHTML = '';
+            projects.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full cursor-pointer transition-colors duration-200 ${
+                    index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'
+                }`;
+                dot.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(dot);
+            });
+        }
+
+        // Update display
+        function updateDisplay() {
+            const project = projects[currentIndex];
+            
+            // Fade out
+            carouselImage.classList.remove('active');
+            
+            setTimeout(() => {
+                carouselImage.src = project.image;
+                carouselImage.alt = project.title;
+                projectTitle.textContent = project.title;
+                projectDescription.textContent = project.description;
+                
+                // Fade in
+                carouselImage.classList.add('active');
+                
+                // Update indicators
+                const dots = indicatorsContainer.querySelectorAll('div');
+                dots.forEach((dot, index) => {
+                    dot.className = `w-2 h-2 rounded-full cursor-pointer transition-colors duration-200 ${
+                        index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'
+                    }`;
+                });
+            }, 150);
+        }
+
+        // Navigation functions
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % projects.length;
+            updateDisplay();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+            updateDisplay();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateDisplay();
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Auto-play (optional - uncomment to enable)
+        /*
+        let autoPlayInterval = setInterval(nextSlide, 5000);
+        
+        // Pause auto-play on hover
+        const carousel = document.querySelector('.carousel-container');
+        carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carousel.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        });
+        */
+
+        // Initialize carousel
+        function init() {
+            createIndicators();
+            updateDisplay();
+            // Set initial active state for fade transition
+            setTimeout(() => carouselImage.classList.add('active'), 100);
+        }
+
+        // Start the carousel when page loads
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

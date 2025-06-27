@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MentorHub</title>
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./images/gloriaLogo.svg" type="image/svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alatsi&family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Miss+Fajardose&family=Palanquin:wght@100;200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/button.js" defer></script>
+    <script src="./scripts/navBar.js" defer></script>
+    <script src="./scripts/quotes.js" defer></script>
+    <script src="./scripts/accordian.js" defer></script>
+
+    <style>
+        .menu-transition {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Custom backdrop blur for menu */
+        .menu-backdrop {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-in-out;
+            transform: translateY(-100%);
+            background: #3b353b;
+        }
+
+        .menu-backdrop.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* .link-item{
+            font-family: jost, sans-serif;
+            font-size: 40px;
+            font-weight: 400;
+            line-height: 48px;
+            
+        } */
+        .spread-bg::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: #f8bbd9;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 0;
+        }
+
+        .spread-bg:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        @keyframes fadeBounceSlow {
+
+            0%,
+            20%,
+            53%,
+            80%,
+            100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+
+            40%,
+            43% {
+                transform: translate3d(0, -20px, 0);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes fadeBounce {
+
+            0%,
+            20%,
+            53%,
+            80%,
+            100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+
+            40%,
+            43% {
+                transform: translate3d(0, -15px, 0);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes fadeBounceFast {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-12px);
+                opacity: 0.4;
+            }
+        }
+
+        .fade-bounce-slow {
+            animation: fadeBounceSlow 2s infinite;
+        }
+
+        .fade-bounce {
+            animation: fadeBounce 1.5s infinite;
+        }
+
+        .fade-bounce-fast {
+            animation: fadeBounceFast 1s infinite;
+        }
+
+        .miss-fajardose-regular {
+            font-family: "Miss Fajardose", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bg-[#3B353B] min-h-screen  pt-20 md:pt-24 font-['Jost',sans-serif]">
+        <div id="navbar" class=""></div>
+        <div class="mb-16">
+        <div class="mx-auto px-4 md:px-22">
+            <div class="max-w-6xl ml-auto space-y-12">
+                <!-- Header section -->
+                <div class="flex items-center gap-4 md:gap-6 max-w-4xl ml-auto">
+                    <h1 class="font-['Jost',sans-serif] text-xs md:text-lg leading-none text-[#FF99FF] font-medium whitespace-nowrap">
+                        UI/UX Design
+                    </h1>
+                    <hr class="border-gray-300 flex-1">
+                </div>
+                
+                <!-- Content section -->
+                <div class="max-w-4xl ml-auto">
+                    <div class="flex flex-col justify-between md:flex-row gap-6 md:gap-8 lg:gap-[25px] items-start">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl text-white flex-shrink-0" style="font-family: 'Alatsi', sans-serif;">
+                            Mentor Hub
+                        </h1>
+                        <p class="text-white/80 text-sm md:text-base lg:text-lg leading-relaxed max-w-[450px]">
+                            Mentor Hub is a web-based mentorship platform that connects mentors and mentees globally. The app features real-time video and voice calls, in-app messaging, smart AI matching, appointment scheduling, personalized dashboards, and support for both free and paid mentorship programs.
+                        </p>
+                    </div>
+                </div>
+                <section>
+                    <div class="bg-[#262226]">
+                        <img class="max-w-xl" src="./images/mentor1.svg" alt="project"> 
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    </section>
+</body>
+
+</html>
