@@ -100,9 +100,10 @@ function initNavBarAudio() {
 }
 function loadNavbar() {
     document.getElementById('navbar').innerHTML = createNavbar();
+     
      setTimeout(() => {
-        initButtons();
         initNavBarAudio();
+        initButtons();     
     }, 0);
     // initNavbar(); 
 
