@@ -7,7 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-600: oklch(57.7% 0.245 27.325);
     --color-emerald-200: oklch(90.5% 0.093 164.15);
     --color-emerald-950: oklch(26.2% 0.051 172.552);
     --color-cyan-500: oklch(71.5% 0.143 215.221);
@@ -360,6 +359,12 @@
   }
   .mt-16 {
     margin-top: calc(var(--spacing) * 16);
+  }
+  .mt-\[2px\] {
+    margin-top: 2px;
+  }
+  .mt-\[10px\] {
+    margin-top: 10px;
   }
   .mt-\[20px\] {
     margin-top: 20px;
@@ -739,6 +744,10 @@
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
+  .rounded-t-2xl {
+    border-top-left-radius: var(--radius-2xl);
+    border-top-right-radius: var(--radius-2xl);
+  }
   .rounded-l-full {
     border-top-left-radius: calc(infinity * 1px);
     border-bottom-left-radius: calc(infinity * 1px);
@@ -798,9 +807,6 @@
   .bg-\[\#87A898\] {
     background-color: #87A898;
   }
-  .bg-\[\#091e54\] {
-    background-color: #091e54;
-  }
   .bg-\[\#544D54\] {
     background-color: #544D54;
   }
@@ -810,9 +816,6 @@
   .bg-\[\#360125\] {
     background-color: #360125;
   }
-  .bg-\[\#B0C1EB\] {
-    background-color: #B0C1EB;
-  }
   .bg-\[\#BCCFF3\] {
     background-color: #BCCFF3;
   }
@@ -821,15 +824,6 @@
   }
   .bg-blue-500 {
     background-color: var(--color-blue-500);
-  }
-  .bg-cyan-500 {
-    background-color: var(--color-cyan-500);
-  }
-  .bg-fuchsia-200 {
-    background-color: var(--color-fuchsia-200);
-  }
-  .bg-fuchsia-300 {
-    background-color: var(--color-fuchsia-300);
   }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
@@ -842,18 +836,6 @@
   }
   .bg-pink-300 {
     background-color: var(--color-pink-300);
-  }
-  .bg-purple-200 {
-    background-color: var(--color-purple-200);
-  }
-  .bg-purple-300 {
-    background-color: var(--color-purple-300);
-  }
-  .bg-sky-300 {
-    background-color: var(--color-sky-300);
-  }
-  .bg-sky-500 {
-    background-color: var(--color-sky-500);
   }
   .bg-transparent {
     background-color: transparent;
@@ -1475,22 +1457,6 @@
       }
     }
   }
-  .hover\:from-purple-800 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-gradient-from: var(--color-purple-800);
-        --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-      }
-    }
-  }
-  .hover\:from-sky-100 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-gradient-from: var(--color-sky-100);
-        --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-      }
-    }
-  }
   .hover\:from-sky-800 {
     &:hover {
       @media (hover: hover) {
@@ -1523,14 +1489,6 @@
       }
     }
   }
-  .hover\:to-purple-200 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-gradient-to: var(--color-purple-200);
-        --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-      }
-    }
-  }
   .hover\:to-purple-400 {
     &:hover {
       @media (hover: hover) {
@@ -1543,14 +1501,6 @@
     &:hover {
       @media (hover: hover) {
         --tw-gradient-to: var(--color-sky-100);
-        --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-      }
-    }
-  }
-  .hover\:to-sky-600 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-gradient-to: var(--color-sky-600);
         --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
       }
     }
@@ -1977,6 +1927,16 @@
   .md\:mt-20 {
     @media (width >= 48rem) {
       margin-top: calc(var(--spacing) * 20);
+    }
+  }
+  .md\:mt-\[10px\] {
+    @media (width >= 48rem) {
+      margin-top: 10px;
+    }
+  }
+  .md\:mt-\[30px\] {
+    @media (width >= 48rem) {
+      margin-top: 30px;
     }
   }
   .md\:mt-\[100px\] {

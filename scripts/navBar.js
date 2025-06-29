@@ -73,11 +73,11 @@ function createNavbar() {
 
 }
 function initNavBarAudio() {
-    // Add audio element to the body if not already present
+    
     if (!document.getElementById('navbar-audio')) {
         const audio = document.createElement('audio');
         audio.id = 'navbar-audio';
-        audio.src = './audio/theOrdinary.mp3'; // <-- Update with your music file path
+        audio.src = './audio/theOrdinary.mp3';
         // audio.loop = true;
         document.body.appendChild(audio);
     }
@@ -108,11 +108,7 @@ function loadNavbar() {
 
 }
 loadNavbar();
-// ...existing code...
 
-
-
-// ...existing code...
 
 // document.addEventListener("scroll", () => {
 //     const nav = document.getElementById("mainNav");
