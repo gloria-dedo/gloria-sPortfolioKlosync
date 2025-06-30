@@ -116,4 +116,7 @@ document.addEventListener("scroll", () => {
 
     nav.style.backgroundColor = isScrolled ? "rgba(59, 53, 59, 50)" : "transparent";
     nav.style.transition = "background-color 0.3s ease";
+    nav.style.boxShadow = isScrolled
+        ? "0 4px 24px 0 rgba(0,0,0,0.15), 0 1.5px 4px 0 rgba(255,153,255,0.10)"
+        : "none";
 });
