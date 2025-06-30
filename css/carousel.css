@@ -1,20 +1,20 @@
 /* Additional custom styles for the carousel */
-.carousel-dot {
+/* .carousel-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: #d1d5db;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+} */
 
-.carousel-dot.active {
+/* .carousel-dot.active {
     background-color: #4f46e5;
 }
 
 .carousel-dot:hover {
     background-color: #9ca3af;
-}
+} */
 
 /* Fade animation for image transitions */
 .fade-out {
@@ -32,6 +32,14 @@
     transform: scale(1.05);
     transition: transform 0.2s ease;
 }
+.carousel-img {
+  transition: opacity 0.3s ease;
+}
+#carousel-image {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
 
 /* Responsive font sizing for project names */
 @media (max-width: 640px) {

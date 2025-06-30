@@ -3,7 +3,7 @@
 function createNavbar() {
     return `
 
-    <nav id="mainNav" class="z-50 top-0 left-0 right-0 fixed flex justify-between items-center p-4 md:p-12 w-full">
+    <nav id="mainNav" class="z-50 top-0 left-0 right-0 fixed flex justify-between items-center px-6 py-9 w-full">
 
             <!-- Sound Icon -->
             <div class="flex items-center">
@@ -99,8 +99,7 @@ function initNavBarAudio() {
     });
 }
 function loadNavbar() {
-    document.getElementById('navbar').innerHTML = createNavbar();
-     
+    document.getElementById('navbar').innerHTML = createNavbar();   
      setTimeout(() => {
         initNavBarAudio();
         initButtons();     
@@ -111,10 +110,10 @@ function loadNavbar() {
 loadNavbar();
 
 
-// document.addEventListener("scroll", () => {
-//     const nav = document.getElementById("mainNav");
-//     const isScrolled = window.scrollY > 70;
+document.addEventListener("scroll", () => {
+    const nav = document.getElementById("mainNav");
+    const isScrolled = window.scrollY > 70;
 
-//     nav.style.backgroundColor = isScrolled ? "rgba(59, 53, 59, 50)" : "transparent";
-//     nav.style.transition = "background-color 0.3s ease";
-// });
+    nav.style.backgroundColor = isScrolled ? "rgba(59, 53, 59, 50)" : "transparent";
+    nav.style.transition = "background-color 0.3s ease";
+});

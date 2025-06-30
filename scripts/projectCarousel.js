@@ -42,7 +42,7 @@ const dotsContainer = document.getElementById('dots-container');
 // Update carousel display
 function updateCarousel() {
     // Fade out effect
-    carouselImage.style.opacity = '0';
+    // carouselImage.style.opacity = '0';
     
     setTimeout(() => {
         // Update image and name
@@ -50,7 +50,11 @@ function updateCarousel() {
         projectName.textContent = projectImages[currentIndex].name;
         
         // Fade in effect
-        carouselImage.style.opacity = '1';
+        carouselImage.onload =() =>{
+            carouselImage.classList.remove('fade-out');
+            carouselImage.classList.add('fade-in')
+        }
+        // carouselImage.style.opacity = '1';
         
         // Update dots
         // updateDots();
