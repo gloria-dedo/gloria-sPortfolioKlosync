@@ -1,26 +1,33 @@
 {
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.7",
-    "motion": "^12.12.2",
-    "tailwindcss": "^4.1.7"
-  },
   "name": "gloria-sportfolioklosync",
   "version": "1.0.0",
-  "description": "This is a portfolio site for Gloria Dede made with html,Tailwind css and Javascript",
-  "main": "index.js",
-  "devDependencies": {},
+  "private": true,
+  "description": "Portfolio site for Gloria Dede built with Next.js, React and Tailwind CSS",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gloria-dedo/gloria-sPortfolioKlosync.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gloria-dedo/gloria-sPortfolioKlosync/issues"
   },
-  "homepage": "https://github.com/gloria-dedo/gloria-sPortfolioKlosync#readme"
+  "homepage": "https://github.com/gloria-dedo/gloria-sPortfolioKlosync#readme",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "next": "^16.3.5",
+    "postcss": "^8.5.28",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-icons": "^5.7.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
+  }
 }

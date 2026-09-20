@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-jost: var(--f-jost), sans-serif;
+  --font-alatsi: var(--f-alatsi), sans-serif;
+  --font-rubik: var(--f-rubik), sans-serif;
+  --font-anton: var(--f-anton), sans-serif;
+  --font-fajardose: var(--f-fajardose), cursive;
+}
+
+/* Expanding pink circle behind pill buttons */
+.spread-bg::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #f8bbd9;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  z-index: 0;
+}
+
+.spread-bg:hover::before {
+  width: 200%;
+  height: 200%;
+}
+
+/* Hero "scroll" indicator dot */
+@keyframes fadeBounceFast {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-12px);
+    opacity: 0.4;
+  }
+}
+
+.fade-bounce-fast {
+  animation: fadeBounceFast 1s infinite;
+}
+
+/* Orbiting tech icons */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Scroll reveal: toggled by <ScrollReveal /> */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.scrolled {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Project name in the home carousel */
+@media (max-width: 640px) {
+  .project-carousel-name {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .project-carousel-name {
+    font-size: 3.75rem;
+  }
+}
