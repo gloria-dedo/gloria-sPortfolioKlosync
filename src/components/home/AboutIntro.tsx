@@ -1,13 +1,13 @@
 import { LinkButton } from "@/components/ui/LinkButton";
 
-const PARAGRAPH = "font-jost text-base leading-relaxed font-normal sm:text-lg md:text-xl lg:text-2xl";
+const PARAGRAPH = "font-sans text-base leading-relaxed font-light sm:text-lg md:text-xl lg:text-2xl";
 
 export function AboutIntro() {
   return (
-    <section className="relative min-h-screen bg-[url(/images/CharcoalSmudgeReal.svg)] bg-cover bg-center">
+    <section className="relative bg-[#262226] bg-[url(/images/CharcoalSmudgeReal.svg)] bg-cover bg-center">
       <div className="absolute inset-0 z-10 bg-[#262226] opacity-80 mix-blend-multiply" />
-      <div className="scroll-reveal relative z-20 flex min-h-screen w-full flex-col items-center justify-between px-4 py-8 text-white sm:px-6 md:flex-row md:px-8 md:py-0 lg:px-12">
-        <div className="mt-8 flex w-full flex-col space-y-4 text-white sm:mt-12 sm:space-y-6 md:mt-20 md:max-w-xl lg:max-w-2xl">
+      <div className="scroll-reveal relative z-20 mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-10 px-4 py-16 text-white sm:px-6 md:flex-row md:gap-12 md:px-8 md:py-24 lg:px-12">
+        <div className="flex w-full flex-col space-y-4 text-white sm:space-y-6 md:max-w-xl lg:max-w-2xl">
           <p className={PARAGRAPH}>
             I am a multi-skilled professional in design and coding, focused on building projects that positively impact
             people&apos;s lives
@@ -17,13 +17,18 @@ export function AboutIntro() {
             of all trades is often better than being a master of one. I believe my varied expertise brings a unique
             perspective that surpasses those confined to a single field.
           </p>
-          <div className="mt-6 flex w-full sm:mt-8 md:mt-14">
+          <div className="mt-4 flex w-full sm:mt-6 md:mt-10">
             <LinkButton href="/about">Get to know me more</LinkButton>
           </div>
         </div>
-        <div className="mt-8 flex w-full justify-center md:mt-0 md:w-auto">
+        <div className="flex w-full justify-center md:w-2/5 md:shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/croppedGif.gif" alt="globe" className="w-3/4 max-w-md sm:w-2/3 md:w-full lg:min-w-sm" />
+          <img
+            src="/images/optimized/croppedGif.webp"
+            alt=""
+            loading="lazy"
+            className="aspect-square w-3/5 max-w-sm sm:w-1/2 md:w-full"
+          />
         </div>
       </div>
     </section>

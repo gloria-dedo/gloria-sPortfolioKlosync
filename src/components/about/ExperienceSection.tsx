@@ -4,24 +4,22 @@ import { experience } from "@/data/about";
 
 export function ExperienceSection() {
   return (
-    <SectionShell centered={false}>
-      <div className="w-full max-w-4xl space-y-7 px-4 font-jost md:px-12">
-        <SectionPill widthClass="md:w-[200px]">MY EXPERIENCE</SectionPill>
-        <div className="mx-auto w-full max-w-6xl">
-          {experience.map(({ role, company, period }) => (
-            <div
-              key={`${role}-${company}`}
-              className="flex cursor-pointer flex-col items-start justify-between border-b border-[#A69CA6] px-1 py-2 transition delay-150 duration-700 ease-in-out hover:bg-[#262226] md:flex-row md:items-center md:px-2 md:py-4"
-            >
-              <div className="flex flex-col text-xs font-normal text-[#CCC4CC]">
-                <p className="text-xs font-medium text-[#FF99FF] md:text-lg">{role}</p>
-                <p className="text-xs font-normal text-[#CCC4CC] md:text-sm">{company}</p>
-              </div>
-              <p className="mt-1 text-xs font-normal text-[#CCC4CC] md:mt-0 md:text-sm">{period}</p>
+    <SectionShell>
+      <SectionPill>My Experience</SectionPill>
+      <ul className="w-full">
+        {experience.map(({ role, company, period }) => (
+          <li
+            key={`${role}-${company}`}
+            className="flex flex-col gap-1 border-b border-[#A69CA6]/60 px-1 py-4 transition-colors duration-500 hover:bg-[#262226] sm:flex-row sm:items-center sm:justify-between sm:gap-4 md:px-3 md:py-5"
+          >
+            <div className="flex flex-col">
+              <p className="text-base font-semibold text-[#FF99FF] md:text-lg">{role}</p>
+              <p className="text-sm text-[#CCC4CC]">{company}</p>
             </div>
-          ))}
-        </div>
-      </div>
+            <p className="shrink-0 text-sm text-[#CCC4CC]">{period}</p>
+          </li>
+        ))}
+      </ul>
     </SectionShell>
   );
 }

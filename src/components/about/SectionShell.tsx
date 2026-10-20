@@ -1,14 +1,15 @@
 type SectionShellProps = {
   children: React.ReactNode;
-  /** Centre the content horizontally (default) or leave it left-aligned */
-  centered?: boolean;
+  className?: string;
 };
 
-/** Full-height dark section used throughout the About page. */
-export function SectionShell({ children, centered = true }: SectionShellProps) {
+/** Dark About-page section with the site's standard vertical rhythm and content width. */
+export function SectionShell({ children, className = "" }: SectionShellProps) {
   return (
-    <section className={`flex min-h-screen w-full items-center bg-[#3B353B] ${centered ? "justify-center" : ""}`}>
-      {children}
+    <section className={`w-full bg-[#3B353B] py-12 md:py-20 ${className}`}>
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 font-sans text-white sm:px-6 md:gap-10 md:px-12">
+        {children}
+      </div>
     </section>
   );
 }

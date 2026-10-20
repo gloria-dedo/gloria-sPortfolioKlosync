@@ -9,12 +9,11 @@ export function FaqSection() {
 
   return (
     <SectionShell>
-      <div className="w-full max-w-6xl space-y-8 px-4 py-10 font-jost md:px-12">
-        <div className="flex flex-col gap-6 md:flex-row">
-          <h1 className="inline-block bg-gradient-to-r from-pink-400 via-pink-300 to-purple-400 bg-clip-text font-jost text-2xl leading-none font-bold tracking-tight text-transparent md:w-full md:text-6xl">
+      <div className="grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10">
+          <h2 className="w-fit bg-gradient-to-r from-pink-400 via-pink-300 to-purple-400 bg-clip-text font-display text-[clamp(2.25rem,6vw,4rem)] leading-none font-bold tracking-tight text-transparent">
             FAQs
-          </h1>
-          <div className="flex flex-col gap-6">
+          </h2>
+          <div className="flex flex-col gap-4 md:gap-5">
             {faqs.map(({ question, answer }, i) => (
               <div
                 key={question}
@@ -24,11 +23,10 @@ export function FaqSection() {
                   type="button"
                   aria-expanded={isOpen(i)}
                   onClick={() => toggle(i)}
-                  className="flex w-full cursor-pointer items-center justify-between px-6 py-4 text-left transition-colors duration-200 hover:bg-[#544D54]"
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left transition-colors duration-200 hover:bg-[#544D54] md:px-6"
                 >
                   <span className="text-sm font-medium text-white md:text-lg">{question}</span>
-                  <div />
-                  <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <svg className="h-6 w-6 shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -45,13 +43,12 @@ export function FaqSection() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-6 pb-4 font-light text-white">{answer}</div>
+                    <div className="px-5 pb-4 text-sm leading-relaxed font-light text-white md:px-6 md:text-base">{answer}</div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
       </div>
     </SectionShell>
   );

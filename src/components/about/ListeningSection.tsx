@@ -20,21 +20,17 @@ function SpotifyEmbed({ src, title }: { src: string; title: string }) {
 export function ListeningSection() {
   return (
     <SectionShell>
-      <div className="w-full max-w-6xl space-y-8 px-4 py-16 font-jost md:px-12">
-        <SectionPill widthClass="md:w-[500px]">HERE IS WHAT I AM LISTENTING TO</SectionPill>
-        <p className="text-sm font-light text-white md:text-lg">
-          From focus-boosting soundtracks to inspiring
-          <br />
-          podcasts, here&apos;s what keeps me energized
-          <br /> and creatively tuned while designing and coding.
-        </p>
-        <div className="flex flex-col gap-8 md:flex-row">
+      <SectionPill>Here is what I am listening to</SectionPill>
+      <p className="max-w-2xl text-base leading-relaxed font-light md:text-lg">
+        From focus-boosting soundtracks to inspiring podcasts, here&apos;s what keeps me energized and creatively tuned
+        while designing and coding.
+      </p>
+      <div className="flex flex-col gap-6 md:flex-row">
           {spotifyEmbeds.tracks.map((src, i) => (
             <SpotifyEmbed key={src} src={src} title={`Spotify track ${i + 1}`} />
           ))}
-        </div>
-        <SpotifyEmbed src={spotifyEmbeds.playlist} title="Spotify playlist" />
       </div>
+      <SpotifyEmbed src={spotifyEmbeds.playlist} title="Spotify playlist" />
     </SectionShell>
   );
 }

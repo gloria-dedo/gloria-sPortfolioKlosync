@@ -1,29 +1,50 @@
 import { orbitIcons } from "@/data/expertise";
 
-const ORBIT_ICON_SIZE = "w-[15px] sm:w-[20px] md:w-[25px] lg:w-[30px] xl:w-[40px]";
-
 function TechOrbit() {
   return (
-    <div className="relative mx-auto h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] md:h-[350px] md:w-[350px] lg:h-[400px] lg:w-[400px]">
+    <div className="relative mx-auto aspect-square w-[240px] sm:w-[300px] lg:w-[360px]">
+      <div aria-hidden className="absolute inset-0 rounded-full border border-dashed border-white/15" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/Laptop-Porfolio.svg"
-        alt="laptop"
-        className="absolute top-1/2 left-1/2 z-10 w-[80px] -translate-x-1/2 -translate-y-1/2 sm:w-[100px] md:w-[120px] lg:w-[180px] xl:w-[250px]"
+        alt=""
+        className="absolute top-1/2 left-1/2 z-10 w-[45%] -translate-x-1/2 -translate-y-1/2"
       />
-      <div className="spin-slow absolute top-0 left-0 h-full w-full">
+      <div className="spin-slow absolute inset-0">
         {orbitIcons.map(({ src, alt, position }) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img key={alt} src={src} alt={alt} className={`absolute ${ORBIT_ICON_SIZE} ${position}`} />
+          <span
+            key={alt}
+            className={`absolute flex h-9 w-9 items-center justify-center rounded-full bg-[#262226] ring-1 ring-white/15 sm:h-11 sm:w-11 lg:h-12 lg:w-12 ${position}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt={alt} className="spin-slow-reverse h-1/2 w-1/2 object-contain" />
+          </span>
         ))}
       </div>
     </div>
   );
 }
 
+function TechStack() {
+  return (
+    <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      {orbitIcons.map(({ src, name }) => (
+        <li
+          key={name}
+          className="flex items-center gap-2.5 rounded-xl bg-white/[0.04] px-3 py-2.5 ring-1 ring-white/10 transition-colors hover:ring-white/30"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} alt="" className="h-5 w-5 shrink-0 object-contain" />
+          <span className="truncate font-sans text-sm font-medium text-white/85">{name}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function ServiceCards() {
   return (
-    <div className="mt-8 flex flex-col justify-between gap-4 font-jost sm:gap-6 lg:flex-row">
+    <div className="mt-8 flex flex-col justify-between gap-4 font-sans sm:gap-6 lg:flex-row">
       <div className="flex w-full flex-col gap-4 rounded-xl border border-[#A69CA6] bg-[#544D54] p-4 text-white shadow-md sm:flex-row sm:gap-6 sm:p-6 lg:max-w-sm lg:flex-col xl:flex-row">
         <div className="flex flex-col justify-between">
           <h1 className="mb-3 text-sm leading-tight font-semibold sm:mb-0 sm:text-base md:text-lg">
@@ -63,19 +84,18 @@ function ServiceCards() {
 
 export function WebDevPanel() {
   return (
-    <div>
-      <div className="flex flex-col items-center justify-center gap-8 lg:flex-row lg:gap-0">
-        <div className="flex w-full flex-col items-center gap-4 sm:gap-6 lg:w-1/2 lg:items-start">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/techStack.svg" alt="" className="w-[150px] sm:w-[180px] md:w-[200px]" />
-          <h1 className="px-2 text-center font-jost text-xs uppercase sm:text-sm lg:text-left">
-            I build fast, responsive websites using modern technologies ensuring your site performs beautifully on every
-            device.
-          </h1>
+    <div className="flex flex-col gap-12 md:gap-16">
+      <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div className="flex flex-col gap-6">
+          <h3 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] font-bold tracking-tight text-white">
+            Fast, responsive interfaces that feel as good as they look.
+          </h3>
+          <p className="max-w-xl font-sans text-base leading-relaxed font-light text-white/75 md:text-lg">
+            I build websites and products with modern technologies, so your site performs beautifully on every device.
+          </p>
+          <TechStack />
         </div>
-        <div className="flex w-full items-center justify-center lg:w-1/2">
-          <TechOrbit />
-        </div>
+        <TechOrbit />
       </div>
       <ServiceCards />
     </div>

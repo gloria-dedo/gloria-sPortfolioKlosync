@@ -11,13 +11,13 @@ export function QuoteSection() {
     <section
       onMouseEnter={pause}
       onMouseLeave={resume}
-      className="relative min-h-screen bg-[url(/images/quotebg.jpg)] bg-cover bg-center"
+      className="relative bg-[#262226] bg-[url(/images/optimized/quotebg.webp)] bg-cover bg-center"
     >
       <div className="absolute inset-0 z-10 bg-[#262226] opacity-90 mix-blend-multiply" />
-      <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center px-4 py-12 font-rubik md:px-12 md:py-24">
+      <div className="relative z-20 mx-auto flex w-full max-w-4xl flex-col items-center justify-center px-4 py-16 font-rubik md:min-h-[70svh] md:px-12 md:py-24">
         <div className="space-y-6 text-center md:space-y-8">
           <blockquote
-            className={`inline-block bg-gradient-to-r from-pink-200 via-pink-300 to-pink-400 bg-clip-text text-xl leading-tight font-bold text-transparent sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl ${fade}`}
+            className={`inline-block bg-gradient-to-r from-pink-200 via-pink-300 to-pink-400 bg-clip-text text-[clamp(1.5rem,4.5vw,3.5rem)] leading-tight font-bold text-transparent ${fade}`}
           >
             {quotes[index].text}
           </blockquote>

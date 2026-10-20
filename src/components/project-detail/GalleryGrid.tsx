@@ -2,16 +2,16 @@ import { SkeletonImage } from "@/components/ui/SkeletonImage";
 import type { GalleryItem } from "@/data/projects";
 import { groupGallery } from "@/lib/projects";
 
-const TILE = "flex items-center justify-center overflow-hidden rounded-xl px-6 py-8 max-w-full md:h-[445px]";
-const WIDE_IMAGE = "block h-auto max-w-full md:max-w-lg lg:max-w-xl";
+const TILE = "flex w-full items-center justify-center overflow-hidden rounded-2xl min-h-40 p-2 sm:p-3 md:rounded-3xl";
+const IMAGE = "block h-auto w-full";
 
-function Tile({ item, className, alt }: { item: GalleryItem; className: string; alt: string }) {
+function Tile({ item, className = "", alt }: { item: GalleryItem; className?: string; alt: string }) {
   return (
     <SkeletonImage
       src={item.src}
       alt={alt}
       wrapperClassName={`${TILE} ${item.bg} ${className}`}
-      className={item.imgClass ?? WIDE_IMAGE}
+      className={item.imgClass ?? IMAGE}
     />
   );
 }
@@ -23,11 +23,11 @@ export function GalleryGrid({ gallery, name }: { gallery: GalleryItem[]; name: s
     <>
       {groupGallery(gallery).map((row, i) =>
         row.type === "wide" ? (
-          <Tile key={i} item={row.item} alt={alt} className="ml-auto w-full md:w-[934px]" />
+          <Tile key={i} item={row.item} alt={alt} />
         ) : (
-          <div key={i} className="flex flex-col gap-6 lg:flex-row">
-            {row.items.map((item, j) => (
-              <Tile key={item.src} item={item} alt={alt} className={`w-full lg:w-[459px] ${j === 0 ? "ml-auto" : ""}`} />
+          <div key={i} className="grid gap-6 sm:grid-cols-2">
+            {row.items.map((item) => (
+              <Tile key={item.src} item={item} alt={alt} className="sm:aspect-square" />
             ))}
           </div>
         ),

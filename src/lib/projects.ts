@@ -1,14 +1,24 @@
-import { projects, type GalleryItem, type Project } from "@/data/projects";
+import { projects, type CaseStudy, type GalleryItem, type Project } from "@/data/projects";
 
-export type ProjectGroup =
-  | { type: "featured"; project: Project }
-  | { type: "grid"; projects: Project[] };
+export type CaseStudyProject = Project & { caseStudy: CaseStudy };
 
 export type GalleryRow = { type: "wide"; item: GalleryItem } | { type: "pair"; items: GalleryItem[] };
+
+export function isCaseStudy(project: Project): project is CaseStudyProject {
+  return project.caseStudy !== undefined;
+}
 
 /** Single seam for loading projects; swap the body for a CMS/API call later. */
 export async function getProjects(): Promise<Project[]> {
   return projects.filter((project) => project.listed);
+}
+
+export async function getCaseStudies(): Promise<CaseStudyProject[]> {
+  return (await getProjects()).filter(isCaseStudy);
+}
+
+export async function getOtherProjects(): Promise<Project[]> {
+  return (await getProjects()).filter((project) => !isCaseStudy(project));
 }
 
 export async function getProject(slug: string): Promise<Project | undefined> {
@@ -21,18 +31,12 @@ export async function getNextProject(slug: string): Promise<Project | undefined>
   return index === -1 ? undefined : listed[index + 1];
 }
 
-/** Consecutive "grid" projects are rendered side by side as one row. */
-export function groupProjects(list: Project[]): ProjectGroup[] {
-  return list.reduce<ProjectGroup[]>((groups, project) => {
-    if (project.layout === "featured") {
-      groups.push({ type: "featured", project });
-      return groups;
-    }
-    const last = groups[groups.length - 1];
-    if (last?.type === "grid") last.projects.push(project);
-    else groups.push({ type: "grid", projects: [project] });
-    return groups;
-  }, []);
+/** Up to `count` other listed projects, starting after this one and wrapping around. */
+export async function getMoreProjects(slug: string, count: number): Promise<Project[]> {
+  const listed = await getProjects();
+  const index = listed.findIndex((project) => project.slug === slug);
+  const rotated = [...listed.slice(index + 1), ...listed.slice(0, Math.max(index, 0))];
+  return rotated.slice(0, count);
 }
 
 /** Consecutive "half" tiles are laid out side by side as one row. */

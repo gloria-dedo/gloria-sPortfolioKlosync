@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Alatsi, Anton, Jost, Miss_Fajardose, Rubik } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import { Navbar } from "@/components/layout/Navbar";
 import { ScrollReveal } from "@/components/layout/ScrollReveal";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -13,16 +14,16 @@ const fajardose = Miss_Fajardose({ subsets: ["latin"], weight: "400", variable: 
 
 export const metadata: Metadata = {
   title: { default: "Home", template: "%s | Gloria Dede Tetteh" },
-  description: "Portfolio of Gloria Dede Tetteh, UI/UX designer and frontend developer based in Ghana.",
-  icons: { icon: "/images/gloriaLogo.svg" },
+  description: "Portfolio of Gloria Dede Tetteh, product designer and frontend engineer based in Ghana.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const fonts = [jost, rubik, alatsi, anton, fajardose].map((font) => font.variable).join(" ");
 
   return (
-    <html lang="en">
-      <body className={fonts}>
+    <html lang="en" className={fonts}>
+      <body>
+        <NextTopLoader color="#FF99FF" height={3} showSpinner={false} shadow="0 0 10px #FF99FF,0 0 5px #FF99FF" />
         <Navbar />
         {children}
         <WhatsAppButton />

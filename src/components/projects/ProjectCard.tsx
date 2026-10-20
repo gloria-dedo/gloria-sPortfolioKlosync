@@ -1,39 +1,30 @@
 import Link from "next/link";
-import { CARD_SHAPE, CARD_STYLES } from "./cardStyles";
 import { SkeletonImage } from "@/components/ui/SkeletonImage";
 import type { Project } from "@/data/projects";
 
-export function ProjectCard({ project }: { project: Project }) {
-  const styles = CARD_STYLES[project.layout];
+export const CARD_FRAME = "aspect-[4/3] w-full overflow-hidden rounded-2xl md:rounded-3xl";
 
+/** Framed preview with breathing room around the image, then title, subtitle and industry tag. */
+export function ProjectCard({ project, priority = false }: { project: Project; priority?: boolean }) {
   return (
-    <Link href={`/projects/${project.slug}`} className={styles.link}>
-      <div
-        className={`${CARD_SHAPE} ${styles.card} ${project.cardBg} ${project.cardHover} cursor-pointer transition-all duration-700 ease-in-out`}
-      >
+    <Link href={`/projects/${project.slug}`} className="group flex flex-col gap-4 md:gap-5">
+      <div className={`${CARD_FRAME} ${project.cardBg} ${project.cardHover} p-5 transition-all duration-700 ease-in-out sm:p-8 lg:p-10`}>
         <SkeletonImage
           src={project.cardImage}
           alt={project.title}
-          wrapperClassName={`w-full ${styles.image} transition-all duration-800 ease-out hover:scale-90`}
-          className="h-full w-full object-contain"
+          priority={priority}
+          wrapperClassName="h-full w-full"
+          className="h-full w-full object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
-        <div className={`flex w-full flex-col items-center sm:flex-row sm:items-start sm:justify-around ${styles.row}`}>
-          <div className="text-center sm:text-left">
-            <h4 className={`leading-tight font-medium text-white ${styles.title}`}>
-              {project.title}
-              <br className="hidden sm:block" />
-              <span className="text-sm! font-light sm:hidden"> - </span>
-              {project.subtitle}
-            </h4>
-          </div>
-          <div className="flex-shrink-0">
-            <span
-              className={`rounded-full bg-[#544D54] font-medium whitespace-nowrap text-white ${styles.tag}`}
-            >
-              {project.tag}
-            </span>
-          </div>
+      </div>
+      <div className="flex items-start justify-between gap-4 px-1">
+        <div className="min-w-0">
+          <h3 className="font-display text-lg font-semibold tracking-tight text-white md:text-xl">{project.title}</h3>
+          <p className="mt-0.5 font-sans text-sm font-light text-white/55 md:text-base">{project.subtitle}</p>
         </div>
+        <span className="shrink-0 rounded-xl bg-white/10 px-3.5 py-2 font-sans text-sm font-medium whitespace-nowrap text-white md:px-4">
+          {project.tag}
+        </span>
       </div>
     </Link>
   );

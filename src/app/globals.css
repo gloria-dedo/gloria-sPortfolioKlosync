@@ -1,11 +1,25 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-jost: var(--f-jost), sans-serif;
-  --font-alatsi: var(--f-alatsi), sans-serif;
-  --font-rubik: var(--f-rubik), sans-serif;
+  /* Jost for reading, Alatsi for headings, Anton for condensed display titles, Rubik for accents */
+  --font-sans: var(--f-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--f-alatsi), var(--f-jost), sans-serif;
   --font-anton: var(--f-anton), sans-serif;
+  --font-rubik: var(--f-rubik), sans-serif;
   --font-fajardose: var(--f-fajardose), cursive;
+}
+
+/* Dark base so nothing flashes white while background images load or sections fade in */
+html,
+body {
+  background-color: #262226;
+  color: #fff;
+}
+
+body {
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Expanding pink circle behind pill buttons */
@@ -36,7 +50,7 @@
     opacity: 1;
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-8px);
     opacity: 0.4;
   }
 }
@@ -56,6 +70,11 @@
   animation: spin-slow 20s linear infinite;
 }
 
+/* Keeps each orbiting icon upright while its ring turns */
+.spin-slow-reverse {
+  animation: spin-slow 20s linear infinite reverse;
+}
+
 /* Scroll reveal: toggled by <ScrollReveal /> */
 .scroll-reveal {
   opacity: 0;
@@ -69,15 +88,14 @@
   transform: translateY(0);
 }
 
-/* Project name in the home carousel */
-@media (max-width: 640px) {
-  .project-carousel-name {
-    font-size: 1.875rem;
+/* Scrolling text band on case study pages */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
   }
 }
 
-@media (min-width: 768px) {
-  .project-carousel-name {
-    font-size: 3.75rem;
-  }
+.marquee {
+  animation: marquee 30s linear infinite;
 }
+

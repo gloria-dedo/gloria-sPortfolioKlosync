@@ -1,45 +1,42 @@
 "use client";
 
-import { FaVolumeHigh, FaVolumeXmark, FaXmark } from "react-icons/fa6";
+import Link from "next/link";
+import { FaXmark } from "react-icons/fa6";
+import { BackButton } from "./BackButton";
 import { MenuOverlay } from "./MenuOverlay";
-import { useAudioToggle } from "@/hooks/useAudioToggle";
+import { Logo } from "@/components/ui/Logo";
 import { useMenu } from "@/hooks/useMenu";
-import { useScrolled } from "@/hooks/useScrolled";
-
-const SCROLLED_STYLE =
-  "bg-[#3B353B] shadow-[0_4px_24px_0_rgba(0,0,0,0.15),0_1.5px_4px_0_rgba(255,153,255,0.10)]";
 
 export function Navbar() {
   const { isOpen, toggle, close } = useMenu();
-  const { isPlaying, toggle: toggleSound } = useAudioToggle("/audio/theOrdinary.mp3");
-  const scrolled = useScrolled(70);
-  const SoundIcon = isPlaying ? FaVolumeHigh : FaVolumeXmark;
 
   return (
     <>
-      <nav
-        className={`fixed top-0 right-0 left-0 z-50 flex w-full items-center justify-between px-6 py-9 transition-[background-color,box-shadow] duration-300 ${scrolled ? SCROLLED_STYLE : ""}`}
-      >
-        <button
-          type="button"
-          onClick={toggleSound}
-          aria-label={isPlaying ? "Mute music" : "Play music"}
-          className="cursor-pointer text-2xl text-white transition-colors hover:text-gray-300 sm:text-3xl md:text-4xl"
-        >
-          <SoundIcon />
-        </button>
+      <nav className="pointer-events-none fixed top-0 right-0 left-0 z-50 flex w-full items-center justify-between px-4 py-4 sm:px-6 md:px-8 md:py-6">
+        <div className="pointer-events-auto flex items-center gap-3">
+          <Link
+            href="/"
+            onClick={close}
+            aria-label="Gloria Dede Tetteh, home"
+            className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] transition-transform hover:scale-105"
+          >
+            <Logo className="h-10 w-10 md:h-12 md:w-12" />
+          </Link>
+          <BackButton className={isOpen ? "invisible" : ""} />
+        </div>
 
         <button
           type="button"
           onClick={toggle}
           aria-label={isOpen ? "Close menu" : "Open menu"}
-          className="text-2xl text-white transition-transform hover:scale-110 focus:outline-none"
+          aria-expanded={isOpen}
+          className="pointer-events-auto flex h-10 w-10 cursor-pointer items-center justify-center text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] transition-transform hover:scale-110 focus:outline-none md:h-12 md:w-12"
         >
           {isOpen ? (
-            <FaXmark className="text-2xl text-white" />
+            <FaXmark className="text-2xl md:text-3xl" />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src="/images/tabmenu.svg" alt="Menu" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-10 lg:w-10" />
+            <img src="/images/tabmenu.svg" alt="" className="h-6 w-6 md:h-8 md:w-8" />
           )}
         </button>
       </nav>

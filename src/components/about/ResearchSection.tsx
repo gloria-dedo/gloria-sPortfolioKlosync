@@ -5,18 +5,16 @@ import { researchInterests } from "@/data/about";
 export function ResearchSection() {
   return (
     <SectionShell>
-      <div className="w-full max-w-6xl space-y-8 px-4 font-jost md:px-12">
-        <SectionPill widthClass="md:w-[300px]">MY RESEARCH INTERESTS</SectionPill>
-        <div className="w-full space-y-4 md:space-y-8">
-          {researchInterests.map((interest) => (
-            <div key={interest} className="flex w-full items-center justify-start gap-4 md:justify-end">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="w-[15px] md:order-2 md:w-[30px]" src="/images/notation.svg" alt="" />
-              <p className="text-left text-lg font-light text-white md:order-1 md:text-right md:text-2xl">{interest}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <SectionPill>My Research Interests</SectionPill>
+      <ul className="flex w-full flex-col gap-4 md:gap-6">
+        {researchInterests.map((interest) => (
+          <li key={interest} className="flex items-start gap-3 md:justify-end md:gap-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="mt-1.5 w-4 shrink-0 md:order-2 md:mt-2 md:w-6" src="/images/notation.svg" alt="" />
+            <p className="text-lg leading-snug font-light md:order-1 md:text-right md:text-2xl">{interest}</p>
+          </li>
+        ))}
+      </ul>
     </SectionShell>
   );
 }

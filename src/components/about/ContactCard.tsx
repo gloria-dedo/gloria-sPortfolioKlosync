@@ -5,18 +5,18 @@ import { EMAIL, SOCIAL_LINKS } from "@/data/site";
 export function ContactCard() {
   return (
     <SectionShell>
-      <div className="w-full max-w-6xl space-y-8 px-4 font-jost md:px-12">
-        <div className="flex w-full flex-col items-center justify-center gap-8 rounded-lg bg-[#544D54] py-8">
-          <p className="text-xl font-medium text-white md:text-4xl">{EMAIL}</p>
-          <AvailableBadge />
-          <p className="font-fajardose text-3xl text-white md:text-5xl">I am everywhere</p>
-          <div className="flex gap-8">
-            {SOCIAL_LINKS.map(({ label, href }) => (
-              <a key={label} href={href} className="text-xs text-white italic underline hover:text-pink-300 md:text-2xl">
-                {label}
-              </a>
-            ))}
-          </div>
+      <div className="flex w-full flex-col items-center gap-6 rounded-2xl bg-[#544D54] px-4 py-10 text-center md:gap-8 md:py-14">
+        <a href={`mailto:${EMAIL}`} className="text-lg font-semibold break-all hover:text-pink-300 sm:text-2xl md:text-4xl">
+          {EMAIL}
+        </a>
+        <AvailableBadge />
+        <p className="font-fajardose text-4xl md:text-5xl">I am everywhere</p>
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:gap-x-10">
+          {SOCIAL_LINKS.map(({ label, href }) => (
+            <a key={label} href={href} className="text-sm italic underline hover:text-pink-300 md:text-xl">
+              {label}
+            </a>
+          ))}
         </div>
       </div>
     </SectionShell>

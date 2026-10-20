@@ -11,12 +11,19 @@ type LinkButtonProps = {
 
 const SIZES = {
   md: "px-4 py-3",
-  lg: "justify-center px-4 py-4 max-w-full md:max-w-3xs",
+  lg: "justify-center px-5 py-4",
 };
 
-export function LinkButton({ href, children, direction = "right", size = "md", className = "" }: LinkButtonProps) {
+export function LinkButton({
+  href,
+  children,
+  direction = "right",
+  size = "md",
+  className = "",
+}: LinkButtonProps) {
   const Arrow = direction === "left" ? FaArrowLeftLong : FaArrowRightLong;
-  const classes = `spread-bg group relative flex items-center overflow-hidden rounded-full bg-[#262226] font-jost text-white transition-colors duration-500 hover:bg-[#FF99FF] hover:text-[#262226] ${SIZES[size]} ${className}`;
+  // Sized to its content, so it never stretches to fill a column layout on small screens
+  const classes = `spread-bg group relative inline-flex w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full whitespace-nowrap bg-[#262226] font-sans text-white transition-colors duration-500 hover:bg-[#FF99FF] hover:text-[#262226] ${SIZES[size]} ${className}`;
 
   const content = (
     <>
@@ -35,8 +42,9 @@ export function LinkButton({ href, children, direction = "right", size = "md", c
       </Link>
     );
   }
+  const external = href.startsWith("http");
   return (
-    <a href={href} className={classes}>
+    <a href={href} className={classes} {...(external && { target: "_blank", rel: "noopener noreferrer" })}>
       {content}
     </a>
   );
