@@ -8,3 +8,6 @@
 [build.environment]
   # Next.js 16 needs Node 20.9 or newer
   NODE_VERSION = "22"
+  # A static export needs no server: skip Netlify's auto-installed Next.js adapter,
+  # which expects .next and fails when the publish directory is out/
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
