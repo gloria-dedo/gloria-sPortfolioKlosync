@@ -2,12 +2,16 @@ import { img } from "./images";
 
 export type GalleryItem = {
   src: string;
-  /** Full Tailwind class(es) for the tile background */
-  bg: string;
+  /** Full Tailwind class(es) for the tile background; unused when `fill` is set */
+  bg?: string;
+  /** The image is a finished mockup with its own background: show it edge to edge, unframed */
+  fill?: boolean;
   /** Layout of the tile: full width, or one half of a pair */
   size: "wide" | "half";
   /** Extra classes for the <img> */
   imgClass?: string;
+  /** Screen recording (.mp4) that loops silently in the tile; `src` is its poster */
+  video?: string;
 };
 
 export type CaseStudyImage = {
@@ -18,6 +22,8 @@ export type CaseStudyImage = {
   size?: "wide" | "half";
   /** Tailwind background for this frame; defaults to the case study's `frameBg` */
   bg?: string;
+  /** The image is a finished mockup with its own background: show it edge to edge, unframed */
+  fill?: boolean;
   /**
    * Screen recording (.mp4) of an interaction. Short clips loop silently in place; add `flow: true`
    * for longer walkthroughs, which show a "View flow" button that opens the recording with controls.
@@ -53,6 +59,8 @@ export type CaseStudy = {
   cover: string;
   /** Tailwind background for the cover image's frame; defaults to `frameBg` */
   coverBg?: string;
+  /** The cover is a finished mockup with its own background: show it edge to edge, unframed */
+  coverFill?: boolean;
   /** Tailwind background class for the frames behind screenshots */
   frameBg: string;
   sections: CaseStudySection[];
@@ -114,6 +122,38 @@ export const projects: Project[] = [
     listed: true,
   },
   {
+    slug: "sweet-cheeks",
+    title: "Sweet Cheeks",
+    heading: "SweetCheeks",
+    subtitle: "Dessert brand identity & website",
+    tag: "Food & Bakery",
+    category: "Branding",
+    date: "2026-10",
+    description:
+      "SweetCheeks is a dessert brand serving handmade cakes, pastries and sweet drinks. I designed the website, where customers browse the menu, customise a treat, pre-order for a date and get in touch, and carried the identity into packaging, cups and stationery so every touchpoint feels as indulgent as the food: deep wine, soft blush and a playful script wordmark.",
+    cardImage: img("sweetcheeks-card"),
+    cardBg: "bg-[#F6EFE9]",
+    cardHover: "hover:bg-[#F6EFE9]",
+    cardFill: true,
+    bannerImage: img("sweetcheeks-hero"),
+    gallery: [
+      { src: img("sweetcheeks-hero"), size: "wide", fill: true },
+      { src: img("sweetcheeks-pack-range"), size: "wide", fill: true },
+      { src: img("sweetcheeks-pack-dieline"), size: "half", fill: true },
+      { src: img("sweetcheeks-pack-spread"), size: "half", fill: true },
+      { src: img("sweetcheeks-pack-hands"), size: "half", fill: true },
+      { src: img("sweetcheeks-pack-table-linen"), size: "half", fill: true },
+      { src: img("sweetcheeks-pack-table"), size: "wide", fill: true },
+      { src: img("sweetcheeks-pack-flatlay"), size: "wide", fill: true },
+      { src: img("sweetcheeks-packaging-cafe"), size: "wide", fill: true },
+      { src: img("sweetcheeks-screens-home"), size: "wide", fill: true },
+      { src: img("sweetcheeks-flow-poster"), video: "/videos/sweetcheeks-flow.mp4", size: "wide", fill: true },
+      { src: img("sweetcheeks-screens-menu"), size: "wide", fill: true },
+      { src: img("sweetcheeks-screens-pre-order"), size: "wide", fill: true },
+    ],
+    listed: true,
+  },
+  {
     slug: "echo-farms",
     title: "Echo Farms",
     heading: "EchoFarms",
@@ -123,9 +163,10 @@ export const projects: Project[] = [
     date: "2024-11",
     description:
       "My team and I developed EchoFarms, a dedicated Agriculture Ad Management Platform where vendors can easily create and manage ads, while buyers can search, filter, and purchase agricultural products with confidence. I was entrusted with designing a clean, intuitive interface for the homepage, vendor dashboard, and shop experience. I collaborated with developers and contributed to coding core pages and features, including ad posting forms, home page, shop, and search/filter functionality.",
-    cardImage: img("echofarms-responsive"),
+    cardImage: img("echofarms-card"),
     cardBg: "bg-[#0D2A1B]",
     cardHover: "hover:bg-[#1B4630]",
+    cardFill: true,
     bannerImage: img("echofarms-responsive"),
     caseStudy: {
       tagline: "An agriculture ad marketplace where vendors list farm products and buyers shop with confidence.",
@@ -138,7 +179,7 @@ export const projects: Project[] = [
       overview:
         "EchoFarms is an Agriculture Ad Management Platform. Vendors create and manage ads for equipment, seeds and produce, while buyers search, filter and purchase what they need. The objective was a marketplace that feels simple for vendors posting their first ad and fast for buyers who know exactly what they are looking for.",
       cover: img("echofarms-responsive"),
-      coverBg: "bg-[#0D2A1B]",
+      coverFill: true,
       frameBg: "bg-[#87A898]",
       sections: [
         {
@@ -163,16 +204,16 @@ export const projects: Project[] = [
           title: "Homepage & Shop",
           body: "I designed and helped build the homepage, shop and search and filter experience, bringing the most in-demand categories forward and keeping product imagery at the centre.",
           images: [
-            { src: img("echofarms-hero-laptop"), alt: "EchoFarms homepage hero with product and location search", bg: "bg-[#ECE7D8]" },
-            { src: img("echofarms-full-page-overview"), alt: "Full EchoFarms homepage on desktop and mobile", bg: "bg-[#F1EDE2]" },
+            { src: img("echofarms-hero-laptop"), alt: "EchoFarms homepage hero with product and location search", fill: true },
+            { src: img("echofarms-full-page-overview"), alt: "Full EchoFarms homepage on desktop and mobile", fill: true },
           ],
         },
         {
           title: "Vendor Dashboard",
           body: "The vendor dashboard puts the essentials first: a snapshot of ad performance, what is trending in the marketplace, and a clear table for creating and managing ads.",
           images: [
-            { src: img("echofarms-dashboard-overview"), alt: "EchoFarms vendor dashboard overview", bg: "bg-[#ECE7D8]" },
-            { src: img("echofarms-dashboard-manage-ads"), alt: "EchoFarms manage ads screen", bg: "bg-[#0D2A1B]" },
+            { src: img("echofarms-dashboard-overview"), alt: "EchoFarms vendor dashboard overview", fill: true },
+            { src: img("echofarms-dashboard-manage-ads"), alt: "EchoFarms manage ads screen", fill: true },
           ],
         },
         {
@@ -187,13 +228,12 @@ export const projects: Project[] = [
             },
           ],
           images: [
-            { src: img("echofarms-mobile-trio"), alt: "EchoFarms listings, hero and vendor sections on three phones", size: "half", bg: "bg-[#C9E24B]" },
-            { src: img("echofarms-mobile-screens"), alt: "EchoFarms mobile screens from hero to footer", size: "half", bg: "bg-[#123522]" },
+            { src: img("echofarms-mobile-trio"), alt: "EchoFarms listings, hero and vendor sections on three phones", size: "half", fill: true },
+            { src: img("echofarms-mobile-screens"), alt: "EchoFarms mobile screens from hero to footer", size: "half", fill: true },
           ],
         },
       ],
     },
-    visitUrl: "https://echo-farms.netlify.app/",
     listed: true,
   },
   {
@@ -216,7 +256,6 @@ export const projects: Project[] = [
       { src: img("BookDetails"), bg: "bg-[#2067B7]", size: "half" },
       { src: img("echBookGrid"), bg: "bg-[#8CBEF6]", size: "wide" },
     ],
-    visitUrl: "https://echo-stack.netlify.app/dashboard",
     listed: true,
   },
   {
@@ -239,8 +278,6 @@ export const projects: Project[] = [
       { src: "/images/Home6Small.svg", bg: "bg-[#bcccfd]", size: "half", imgClass: "max-h-[70svh] w-auto object-contain sm:h-full sm:max-h-none" },
       { src: img("PlanItScreensBig2"), bg: "bg-linear-to-r from-[#A0A3FD] via-[#b2b4fd] to-[#3E5BAC]", size: "wide" },
     ],
-    visitUrl:
-      "https://www.figma.com/proto/3UDh13tUtkWdCEZuLBtqn7/Task-Management-App?page-id=0%3A1&node-id=1-5&p=f&viewport=642%2C296%2C0.02&t=k7qWMhQH6A6IjyIO-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A5",
     listed: true,
   },
   {
@@ -321,7 +358,6 @@ export const projects: Project[] = [
         },
       ],
     },
-    visitUrl: "https://lumeaai.netlify.app/",
     listed: true,
   },
   {

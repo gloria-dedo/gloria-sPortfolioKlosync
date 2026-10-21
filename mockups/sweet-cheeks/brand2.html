@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sweet Cheeks brand boards</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/wm.css" />
+<link rel="stylesheet" href="kit.css" />
+<style>
+  /* Hero bento: same markup for the 16:10 board and the 4:3 card */
+  .hero { position: absolute; inset: 0; background: #f6efe9; }
+  .hero .a { left: 34px; top: 34px; bottom: 34px; width: 46%; }
+  .hero .b { left: calc(46% + 54px); right: 34px; top: 34px; height: calc(50% - 44px); }
+  .hero .c { left: calc(46% + 54px); right: 34px; bottom: 34px; height: calc(50% - 44px); background: linear-gradient(160deg, #f8dfe6, #f2cbd7); }
+
+  .poster { position: absolute; box-shadow: 18px 26px 40px -14px rgba(70,30,40,.35), 2px 3px 6px rgba(70,30,40,.12); }
+  .clip { position: absolute; left: 50%; top: -14px; width: 54px; height: 26px; margin-left: -27px; border-radius: 5px; background: linear-gradient(180deg, #3a3236, #1d181b); box-shadow: 0 3px 5px rgba(0,0,0,.3); z-index: 2; }
+  .polaroid { position: absolute; background: #fffdfb; padding: 14px 14px 52px; box-shadow: 0 1px 1px rgba(60,20,30,.08), 0 20px 32px -14px rgba(60,20,30,.32); }
+  .polaroid img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .phone { position: absolute; background: #121012; padding: 12px; border-radius: 56px; box-shadow: 0 0 0 2px #6a6468, 0 0 0 4px #1c1a1c, 0 50px 90px -30px rgba(70,20,40,.5); }
+  .phone .scr { position: relative; border-radius: 44px; overflow: hidden; background: #fff; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; color: #1c1214; }
+  .phone .island { position: absolute; top: 11px; left: 50%; width: 30%; height: 28px; margin-left: -15%; border-radius: 20px; background: #000; z-index: 5; }
+  .status { height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; font-weight: 600; font-size: 15px; }
+  .ig-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; }
+  .av { width: 34px; height: 34px; border-radius: 50%; background: var(--wine); display: grid; place-items: center; box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--rose); }
+  .av .heart { color: var(--rose); font-size: 15px; }
+  .ig-head b { font-size: 14px; }
+  .ig-head small { display: block; font-size: 11.5px; color: #8a7a7e; }
+  .icons { display: flex; gap: 16px; padding: 12px 14px 6px; }
+  .icons svg { width: 24px; height: 24px; }
+  .caption { padding: 0 14px; font-size: 13.5px; line-height: 1.45; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .grid3 > * { aspect-ratio: 1; overflow: hidden; position: relative; }
+  .grid3 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</head>
+<body data-ready="0">
+
+<template id="hero-tpl">
+  <div class="hero">
+    <div class="tile a"><img class="fill-img" src="assets/portrait.jpg" style="object-position: 47% 50%"></div>
+    <div class="tile b"><img class="fill-img" src="assets/stilllife-branded.jpg" style="object-position: 42% 55%"></div>
+    <div class="tile c">
+      <div class="win" style="left:70px; width:636px; top:12%" data-win data-src="screens/home.jpg" data-h="2400"></div>
+    </div>
+  </div>
+</template>
+
+<!-- Hero 16:10 -->
+<section class="board grain" id="h1" data-hero></section>
+<!-- Hero 4:3 (project card) -->
+<section class="board grain" id="h1c" data-hero style="height:1200px"></section>
+
+<!-- Campaign posters -->
+<section class="board grain" id="p1">
+  <div class="studio cream" style="--horizon:84%"></div>
+  <div class="poster" style="left:300px; top:120px; width:470px; height:640px; transform: rotate(-1.2deg)">
+    <span class="clip"></span>
+    <img class="fill-img" src="assets/portrait.jpg" style="object-position: 47% 50%">
+    <div style="position:absolute; inset:0; background: linear-gradient(180deg, rgba(45,1,20,0) 45%, rgba(45,1,20,.88) 100%)"></div>
+    <div style="position:absolute; left:40px; right:40px; bottom:44px; color: var(--blush)">
+      <div style="font-weight:800; font-size:50px; line-height:1">Unapologetically<br>sweet.</div>
+      <span class="wm" style="width:170px; margin-top:22px"></span>
+    </div>
+  </div>
+  <div class="poster" style="left:850px; top:170px; width:440px; height:590px; background:#fbe6ec; transform: rotate(1.4deg)">
+    <span class="clip"></span>
+    <div style="position:absolute; left:50%; top:62px; width:300px; height:300px; margin-left:-150px; border-radius:50%; overflow:hidden; box-shadow: 0 0 0 10px #fff"><img class="fill-img" src="assets/red-velvet.jpg" style="object-position:50% 45%"></div>
+    <div style="position:absolute; left:0; right:0; top:400px; text-align:center; color: var(--wine)">
+      <div style="font-weight:800; font-size:46px; line-height:1">Dangerously<br>good.</div>
+      <div class="tag" style="font-size:11px; color:#a35a76; margin-top:16px">Red velvet · baked daily</div>
+    </div>
+    <div style="position:absolute; left:0; right:0; bottom:30px; display:grid; place-items:center"><span class="wm wine" style="width:120px"></span></div>
+  </div>
+  <div class="gobo" style="--gobo-o:.2; --gobo-x:55%; --gobo-y:35%; --gobo-a:112deg"></div>
+  <div class="sunlight" style="--sun-x:35%; --sun-y:25%"></div>
+</section>
+
+<!-- Stationery + photo prints flat lay -->
+<section class="board grain" id="p5" style="background: radial-gradient(1200px 800px at 25% 15%, #f8f0ea, transparent 70%), #ebdfd5">
+  <div class="card" style="left:120px; top:150px; width:420px; height:580px; background: var(--blush); transform: rotate(-5deg)">
+    <div style="position:absolute; inset:26px; border:2px solid var(--rose); border-radius:6px"></div>
+    <div style="position:absolute; left:0; right:0; top:120px; text-align:center">
+      <span class="heart" style="color: var(--rose); font-size:42px"></span>
+      <div style="font-weight:800; font-size:42px; color: var(--wine); line-height:1.02; margin-top:14px">Thank you<br>for treating<br>yourself</div>
+      <div style="font-weight:500; font-size:16px; color:#8a4a62; margin:18px auto 0; width:280px; line-height:1.5">Every slice is baked fresh, by hand, just for you.</div>
+    </div>
+    <div style="position:absolute; left:0; right:0; bottom:58px; display:grid; place-items:center"><span class="wm wine" style="width:180px"></span></div>
+  </div>
+  <div class="polaroid" style="left:600px; top:90px; width:300px; height:356px; transform: rotate(6deg)"><img src="assets/lemon-cupcakes.jpg"></div>
+  <div class="polaroid" style="left:570px; top:480px; width:300px; height:356px; transform: rotate(-4deg)"><img src="assets/bite.jpg" style="object-position:50% 40%"></div>
+  <div class="card" style="left:960px; top:150px; width:400px; height:228px; background: var(--wine-3); transform: rotate(3deg)"><div style="position:absolute; inset:0; display:grid; place-items:center"><span class="wm" style="width:260px"></span></div></div>
+  <div class="card" style="left:990px; top:420px; width:400px; height:228px; background:#fbf4ef; transform: rotate(-3deg)">
+    <div style="position:absolute; left:32px; top:30px"><span class="wm wine" style="width:150px"></span></div>
+    <div style="position:absolute; left:32px; bottom:28px; color: var(--wine); font-size:14.5px; line-height:1.55; font-weight:500"><div style="font-weight:800; font-size:18px; margin-bottom:4px">Orders &amp; reservations</div>+233 20 099 4812<br>hello@sweetcheeks.com</div>
+    <div class="pattern-wine" style="position:absolute; right:0; top:0; bottom:0; width:96px"></div>
+  </div>
+  <div class="sticker" style="left:1000px; top:700px; width:170px; height:170px; background: var(--rose)">
+    <svg style="position:absolute; inset:0" viewBox="0 0 170 170"><defs><path id="ring" d="M85 85 m-62 0 a62 62 0 1 1 124 0 a62 62 0 1 1 -124 0"/></defs><text font-size="12.5" font-weight="700" letter-spacing="2.6" fill="#4b0322" font-family="Baloo 2"><textPath href="#ring">UNAPOLOGETICALLY SWEET • DANGEROUSLY GOOD •</textPath></text></svg>
+    <span class="heart" style="color: var(--wine); font-size:48px"></span>
+  </div>
+  <div class="sticker" style="left:1220px; top:720px; width:140px; height:140px; background:#fbf4ef; transform: rotate(10deg)"><span class="wm wine" style="width:106px"></span></div>
+  <div class="gobo" style="--gobo-o:.2; --gobo-x:60%; --gobo-y:40%; --gobo-a:128deg"></div>
+  <div class="sunlight" style="--sun-x:25%; --sun-y:10%"></div>
+</section>
+
+<!-- Social feed on phones -->
+<section class="board grain" id="p6" style="background: radial-gradient(1000px 700px at 50% 20%, #fbeaf0, transparent 70%), linear-gradient(160deg, #f6d6df, #efc3d1)">
+  <div class="phone" style="left:430px; top:80px; width:360px">
+    <div class="scr" style="height:760px">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><span style="letter-spacing:2px">▮▮▮</span></div>
+      <div class="ig-head"><span class="av"><span class="heart"></span></span><div><b>sweetcheeks</b><small>Accra, Ghana</small></div><span style="margin-left:auto; font-weight:700">···</span></div>
+      <div style="height:336px; overflow:hidden"><img class="fill-img" src="assets/portrait.jpg" style="object-position:47% 50%"></div>
+      <div class="icons">
+        <svg viewBox="0 0 24 24" fill="#e0245e"><path d="M12 21s-7.5-4.6-10-9.2C.3 8.4 2.3 4 6.4 4c2.4 0 4 1.4 5.6 3.4C13.6 5.4 15.2 4 17.6 4 21.7 4 23.7 8.4 22 11.8 19.5 16.4 12 21 12 21Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1c1214" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1c1214" stroke-width="2" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1c1214" stroke-width="2" style="margin-left:auto"><path d="M6 3h12v18l-6-4-6 4Z"/></svg>
+      </div>
+      <div class="caption"><b>2,481 likes</b><br><b>sweetcheeks</b> Red velvet, layered thick and frosted by hand. Unapologetically sweet, every single slice.<br><span style="color:#8a7a7e">View all 186 comments</span></div>
+    </div>
+  </div>
+  <div class="phone" style="left:830px; top:150px; width:360px">
+    <div class="scr" style="height:760px">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><span style="letter-spacing:2px">▮▮▮</span></div>
+      <div style="display:flex; align-items:center; gap:18px; padding:8px 16px 12px">
+        <span class="av" style="width:72px; height:72px"><span class="heart" style="font-size:30px"></span></span>
+        <div style="display:flex; flex:1; justify-content:space-around; text-align:center; font-size:12px; color:#6a5a5e"><div><b style="display:block; font-size:16px; color:#1c1214">128</b>posts</div><div><b style="display:block; font-size:16px; color:#1c1214">12.4k</b>followers</div><div><b style="display:block; font-size:16px; color:#1c1214">310</b>following</div></div>
+      </div>
+      <div style="padding:0 16px 12px; font-size:13px; line-height:1.4"><b>SweetCheeks</b><br>Cakes, pastries &amp; sweet drinks, baked fresh daily.<br><span style="color:#a0244f">Pre-order for your next celebration</span></div>
+      <div class="grid3">
+        <div><img src="assets/red-velvet.jpg"></div>
+        <div style="background: var(--wine); display:grid; place-items:center"><span class="wm" style="width:80%"></span></div>
+        <div><img src="assets/lemon-cupcakes.jpg"></div>
+        <div><img src="assets/bite.jpg"></div>
+        <div><img src="assets/brownies.jpg"></div>
+        <div style="background: var(--rose); display:grid; place-items:center; text-align:center; color: var(--wine); font-family:'Baloo 2'; font-weight:800; font-size:17px; line-height:1">Dangerously<br>good.</div>
+        <div style="background: var(--blush); display:grid; place-items:center"><span class="heart" style="color: var(--rose); font-size:42px"></span></div>
+        <div><img src="assets/decorating.jpg"></div>
+        <div><img src="assets/donut.jpg"></div>
+        <div><img src="assets/parfait.jpg"></div>
+        <div><img src="assets/mocha.jpg"></div>
+        <div><img src="assets/oreo-cheesecake.jpg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Logo + palette, light -->
+<section class="board" id="p7" style="background:#f6efe9">
+  <div class="tile grain" style="left:34px; top:34px; width:960px; height:932px; background:#fbf4ef; display:grid; place-items:center">
+    <div style="text-align:center"><span class="wm wine" style="width:600px"></span><div class="tag" style="color:#a35a76; font-size:14px; margin-top:28px">Unapologetically sweet · Dangerously good</div></div>
+  </div>
+  <div class="tile grain" style="left:1014px; top:34px; right:34px; height:450px; background: var(--wine); display:grid; place-items:center"><span class="wm" style="width:400px"></span></div>
+  <div class="tile" style="left:1014px; top:504px; right:34px; height:250px"><img class="fill-img" src="assets/red-velvet.jpg" style="object-position:50% 40%"></div>
+  <div style="position:absolute; left:1014px; right:34px; top:774px; height:192px; display:grid; grid-template-columns: repeat(5, 1fr); gap:10px">
+    <div class="tile" style="position:relative; border-radius:18px; background:#fbf4ef; box-shadow: inset 0 0 0 1px #eadfd8"><span style="position:absolute; left:14px; bottom:12px; font-weight:600; font-size:12px; color:#7a5a64">#FBF4EF</span></div>
+    <div class="tile" style="position:relative; border-radius:18px; background: var(--blush)"><span style="position:absolute; left:14px; bottom:12px; font-weight:600; font-size:12px; color:#7a5a64">#FEECF0</span></div>
+    <div class="tile" style="position:relative; border-radius:18px; background: var(--rose)"><span style="position:absolute; left:14px; bottom:12px; font-weight:600; font-size:12px; color: var(--wine)">#FC8AAC</span></div>
+    <div class="tile" style="position:relative; border-radius:18px; background: var(--wine)"><span style="position:absolute; left:14px; bottom:12px; font-weight:600; font-size:12px; color:#fff; opacity:.8">#4B0322</span></div>
+    <div class="tile" style="position:relative; border-radius:18px; background: var(--wine-2)"><span style="position:absolute; left:14px; bottom:12px; font-weight:600; font-size:12px; color:#fff; opacity:.8">#2D0114</span></div>
+  </div>
+</section>
+
+<script>
+  // Stamp the hero template into both hero boards before the kit builds screens.
+  const tpl = document.getElementById("hero-tpl");
+  document.querySelectorAll("[data-hero]").forEach((b) => b.appendChild(tpl.content.cloneNode(true)));
+</script>
+<script src="kit.js"></script>
+</body>
+</html>

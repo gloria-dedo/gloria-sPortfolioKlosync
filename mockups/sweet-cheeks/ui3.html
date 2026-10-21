@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sweet Cheeks screens</title>
+<link rel="stylesheet" href="kit.css" />
+<style>
+  /* Clean screen cut-outs: no browser chrome, each one continues where the last stopped */
+  .scr-cut { position: absolute; overflow: hidden; border-radius: 18px; background: #fff;
+    box-shadow: 0 1px 2px rgba(60,20,30,.06), 0 24px 60px -24px rgba(60,20,30,.32), 0 70px 120px -60px rgba(60,20,30,.28); }
+</style>
+</head>
+<body data-ready="0">
+
+<!--
+  Section map (design px, 1728 wide). Shared FAQ / CTA / footer are shown once only.
+  home: 0-9328 unique (FAQ 7652-9328), CTA+footer 9328-10524
+  menu: 0-2676 unique · product: 0-1504 unique · pre-order: 0-1672 unique · contact: 0-1082 unique, CTA+footer 1082-2279
+-->
+
+<!-- 1. Home, cut in the middle: left runs 0-4664, right continues 4664-9328 -->
+<section class="board grain" id="s1" style="height:2110px; background: radial-gradient(1400px 900px at 50% 0%, #fff8fa, transparent 70%), linear-gradient(180deg, #f7e2e8, #f3e9e3)">
+  <div class="scr-cut" style="left:50px; top:70px; width:730px" data-win data-nobar data-src="screens/home.jpg" data-y="0" data-h="4664"></div>
+  <div class="scr-cut" style="left:820px; top:70px; width:730px" data-win data-nobar data-src="screens/home.jpg" data-y="4664" data-h="4664"></div>
+</section>
+
+<!-- 2. Menu (left) · product detail over contact (right) -->
+<section class="board grain" id="s2" style="height:1271px; background: radial-gradient(1400px 900px at 50% 0%, #fffaf8, transparent 70%), #f2e9e2">
+  <div class="scr-cut" style="left:50px; top:70px; width:730px" data-win data-nobar data-src="screens/menu.jpg" data-y="0" data-h="2676"></div>
+  <div class="scr-cut" style="left:820px; top:70px; width:730px" data-win data-nobar data-src="screens/product.jpg" data-y="0" data-h="1504"></div>
+  <div class="scr-cut" style="left:820px; top:739px; width:730px" data-win data-nobar data-src="screens/contact.jpg" data-y="0" data-h="1082"></div>
+</section>
+
+<!-- 3. Pre-order (left) · the one shared CTA + footer (right) -->
+<section class="board grain" id="s3" style="height:846px; background: radial-gradient(1200px 800px at 50% 0%, #fff6f8, transparent 70%), linear-gradient(180deg, #f6d9e2, #f4e4e6)">
+  <div class="scr-cut" style="left:50px; top:70px; width:730px" data-win data-nobar data-src="screens/pre-order.jpg" data-y="0" data-h="1672"></div>
+  <div class="scr-cut" style="left:820px; top:170px; width:730px" data-win data-nobar data-src="screens/contact.jpg" data-y="1082" data-h="1197"></div>
+</section>
+
+<script src="kit.js"></script>
+</body>
+</html>

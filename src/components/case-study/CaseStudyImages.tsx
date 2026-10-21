@@ -19,6 +19,9 @@ const FRAME = "flex w-full items-center justify-center overflow-hidden rounded-2
 
 const WIDE_MEDIA = "block h-auto w-full rounded-lg md:rounded-xl";
 const PAIR_MEDIA = "block h-auto w-full rounded-lg sm:h-full sm:object-contain md:rounded-xl";
+/** Finished mockups carry their own background, so they sit edge to edge with no frame */
+const FILL_FRAME = "block w-full overflow-hidden rounded-2xl md:rounded-3xl";
+const FILL_MEDIA = "block h-auto w-full";
 
 /** An image, or a screen recording when the item has a `video`. */
 function Media({ media, wrapperClassName, className, priority = false }: {
@@ -40,6 +43,7 @@ function Media({ media, wrapperClassName, className, priority = false }: {
 }
 
 export function CaseStudyFrame({ image, frameBg, priority = false }: { image: CaseStudyImage; frameBg: string; priority?: boolean }) {
+  if (image.fill) return <Media media={image} priority={priority} wrapperClassName={FILL_FRAME} className={FILL_MEDIA} />;
   return <Media media={image} priority={priority} wrapperClassName={`${FRAME} ${image.bg ?? frameBg} min-h-40`} className={WIDE_MEDIA} />;
 }
 
@@ -55,8 +59,8 @@ export function CaseStudyImages({ images, frameBg }: { images: CaseStudyImage[];
               <Media
                 key={image.src}
                 media={image}
-                wrapperClassName={`${FRAME} ${image.bg ?? frameBg} min-h-40 sm:aspect-[16/11]`}
-                className={PAIR_MEDIA}
+                wrapperClassName={image.fill ? FILL_FRAME : `${FRAME} ${image.bg ?? frameBg} min-h-40 sm:aspect-[16/11]`}
+                className={image.fill ? FILL_MEDIA : PAIR_MEDIA}
               />
             ))}
           </div>

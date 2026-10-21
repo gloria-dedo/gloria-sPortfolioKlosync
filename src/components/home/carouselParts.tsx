@@ -13,7 +13,8 @@ export type CarouselItem = {
 };
 
 /** Frame colour for the active slide; images that carry their own background get none. */
-export const frameTone = (item: CarouselItem) => (item.fill ? "" : `ring-1 ring-white/10 ${item.cardBg}`);
+/** Edge-to-edge images keep the card colour behind them, so any letterboxing matches the artwork */
+export const frameTone = (item: CarouselItem) => (item.fill ? item.cardBg : `ring-1 ring-white/10 ${item.cardBg}`);
 
 /** Vertical section label pinned to the left edge of the screen, level with the top of the frame. */
 export function SideLabel({ children }: { children: string }) {

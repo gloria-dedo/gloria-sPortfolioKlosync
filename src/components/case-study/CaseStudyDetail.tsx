@@ -169,7 +169,7 @@ export function CaseStudyDetail({ project }: { project: CaseStudyProject }) {
 
         <div className="flex min-w-0 flex-col gap-12 md:gap-16 lg:pl-10 xl:pl-14">
           <CaseStudyFrame
-            image={{ src: caseStudy.cover, alt: `${project.title} overview`, bg: caseStudy.coverBg }}
+            image={{ src: caseStudy.cover, alt: `${project.title} overview`, bg: caseStudy.coverBg, fill: caseStudy.coverFill }}
             frameBg={caseStudy.frameBg}
             priority
           />

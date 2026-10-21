@@ -1,0 +1,109 @@
+/* Shared pieces for the Sweet Cheeks mockup boards. */
+:root {
+  --wine: #4b0322;
+  --wine-2: #2d0114;
+  --wine-3: #6a0f35;
+  --rose: #fc8aac;
+  --rose-2: #f7a8c0;
+  --blush: #feecf0;
+  --petal: #f9d6e0;
+  --cream: #f8f2ec;
+  --linen: #efe5dc;
+  --sand: #e6d7cc;
+  --ink: #2a1219;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Baloo 2", system-ui, sans-serif; background: #ccc; -webkit-font-smoothing: antialiased; }
+.board { position: relative; width: 1600px; height: 1000px; overflow: hidden; margin: 0 auto 40px; }
+.board.solo { margin: 0; }
+.abs { position: absolute; }
+
+/* Paper grain */
+.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .38; mix-blend-mode: soft-light; z-index: 60;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+/* Window light falling across the scene (sits above objects, multiplies like real shade) */
+.gobo { position: absolute; inset: -10%; pointer-events: none; z-index: 40; mix-blend-mode: multiply; opacity: var(--gobo-o, .2); filter: blur(var(--gobo-b, 16px));
+  background: repeating-linear-gradient(var(--gobo-a, 118deg), transparent 0 70px, rgba(92,40,48,.9) 70px 128px, transparent 128px 150px, rgba(92,40,48,.9) 150px 168px, transparent 168px 260px);
+  -webkit-mask: radial-gradient(70% 80% at var(--gobo-x, 70%) var(--gobo-y, 30%), #000 30%, transparent 85%); mask: radial-gradient(70% 80% at var(--gobo-x, 70%) var(--gobo-y, 30%), #000 30%, transparent 85%); }
+.sunlight { position: absolute; inset: 0; pointer-events: none; z-index: 39; mix-blend-mode: soft-light;
+  background: radial-gradient(60% 55% at var(--sun-x, 30%) var(--sun-y, 20%), rgba(255,240,225,.9), transparent 70%); }
+
+/* Real logotype as a mask (wm.css), so it takes any brand colour */
+.wm { display: block; aspect-ratio: 1800 / 326; background: var(--rose); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; }
+.wm.wine { background: var(--wine); }
+.wm.blush { background: var(--blush); }
+.wm.cream { background: var(--cream); }
+
+.heart { display: inline-block; width: 1em; height: 1em; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-10-9.2C.3 8.4 2.3 4 6.4 4c2.4 0 4 1.4 5.6 3.4C13.6 5.4 15.2 4 17.6 4 21.7 4 23.7 8.4 22 11.8 19.5 16.4 12 21 12 21Z'/></svg>") center / contain no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-10-9.2C.3 8.4 2.3 4 6.4 4c2.4 0 4 1.4 5.6 3.4C13.6 5.4 15.2 4 17.6 4 21.7 4 23.7 8.4 22 11.8 19.5 16.4 12 21 12 21Z'/></svg>") center / contain no-repeat; }
+.pattern-wine { background-color: var(--wine); background-size: 56px 56px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='%23fc8aac' fill-opacity='.9'><path transform='translate(6 6) scale(.55)' d='M12 21s-7.5-4.6-10-9.2C.3 8.4 2.3 4 6.4 4c2.4 0 4 1.4 5.6 3.4C13.6 5.4 15.2 4 17.6 4 21.7 4 23.7 8.4 22 11.8 19.5 16.4 12 21 12 21Z'/><path transform='translate(34 34) scale(.55)' d='M12 21s-7.5-4.6-10-9.2C.3 8.4 2.3 4 6.4 4c2.4 0 4 1.4 5.6 3.4C13.6 5.4 15.2 4 17.6 4 21.7 4 23.7 8.4 22 11.8 19.5 16.4 12 21 12 21Z'/></g></svg>"); }
+.pattern-cream { background-color: var(--cream); background-size: 50px 50px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='%234b0322' fill-opacity='.8'><path transform='translate(6 6) scale(.5)' d='M12 21s-7.5-4.6-10-9.2C.3 8.4 2.3 4 6.4 4c2.4 0 4 1.4 5.6 3.4C13.6 5.4 15.2 4 17.6 4 21.7 4 23.7 8.4 22 11.8 19.5 16.4 12 21 12 21Z'/></g><g fill='%23fc8aac'><path transform='translate(34 34) scale(.5)' d='M12 21s-7.5-4.6-10-9.2C.3 8.4 2.3 4 6.4 4c2.4 0 4 1.4 5.6 3.4C13.6 5.4 15.2 4 17.6 4 21.7 4 23.7 8.4 22 11.8 19.5 16.4 12 21 12 21Z'/></g></svg>"); }
+
+/* Studio: wall falling into a tabletop */
+.studio { position: absolute; inset: 0; background: linear-gradient(180deg, var(--wall-1) 0%, var(--wall-2) var(--horizon, 62%), var(--floor-1) var(--horizon, 62%), var(--floor-2) 100%); }
+.studio.cream { --wall-1: #efe4dc; --wall-2: #f6eee8; --floor-1: #eadbd0; --floor-2: #f3e8e0; }
+.studio.blush { --wall-1: #f6dce3; --wall-2: #fbe9ee; --floor-1: #f1cfd9; --floor-2: #f8e0e7; }
+.studio.petal { --wall-1: #f3c6d4; --wall-2: #f8d6e0; --floor-1: #eeb7c8; --floor-2: #f4c9d6; }
+.shadow { position: absolute; border-radius: 50%; pointer-events: none; }
+
+/* CSS 3D box */
+.scene { position: absolute; perspective: 2600px; }
+.rig { position: absolute; left: 0; top: 0; transform-style: preserve-3d; }
+.box { position: absolute; left: 0; top: 0; transform-style: preserve-3d; width: var(--w); height: var(--h); }
+.box > .f { position: absolute; overflow: hidden; backface-visibility: hidden; }
+.box > .front, .box > .back, .box > .inner-back { width: var(--w); height: var(--h); }
+.box > .front { transform: translateZ(calc(var(--d) / 2)); }
+.box > .back { transform: rotateY(180deg) translateZ(calc(var(--d) / 2)); }
+.box > .inner-back { transform: translateZ(calc(var(--d) / -2 + 1px)); backface-visibility: visible; }
+.box > .right, .box > .left, .box > .inner-left { width: var(--d); height: var(--h); left: calc((var(--w) - var(--d)) / 2); }
+.box > .right { transform: rotateY(90deg) translateZ(calc(var(--w) / 2)); }
+.box > .left { transform: rotateY(-90deg) translateZ(calc(var(--w) / 2)); }
+.box > .inner-left { transform: rotateY(90deg) translateZ(calc(var(--w) / -2 + 1px)); backface-visibility: visible; }
+.box > .top, .box > .bottom { width: var(--w); height: var(--d); top: calc((var(--h) - var(--d)) / 2); }
+.box > .top { transform: rotateX(90deg) translateZ(calc(var(--h) / 2)); }
+.box > .bottom { transform: rotateX(-90deg) translateZ(calc(var(--h) / 2)); }
+.lit-top::before, .lit-front::before, .lit-side::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+.lit-top::before { background: linear-gradient(160deg, rgba(255,255,255,.28), rgba(255,255,255,.06) 60%); }
+.lit-front::before { background: linear-gradient(100deg, rgba(255,255,255,.08), rgba(0,0,0,.03) 60%, rgba(0,0,0,.12)); }
+.lit-side::before { background: linear-gradient(90deg, rgba(40,10,20,.26), rgba(40,10,20,.16) 55%, rgba(40,10,20,.24)); }
+.glass { position: absolute; inset: 0; background: linear-gradient(118deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.08) 26%, rgba(255,255,255,0) 40%, rgba(255,255,255,.14) 70%, rgba(255,255,255,0) 77%); box-shadow: inset 0 0 0 2px rgba(255,255,255,.4), inset 0 10px 22px rgba(0,0,0,.25); }
+
+/* Cups: tapered shell, cylindrical shading over the print */
+.cup { position: absolute; }
+.cup .shell { position: absolute; left: 0; right: 0; bottom: 0; clip-path: polygon(0 0, 100% 0, 89% 100%, 11% 100%); overflow: hidden; }
+.cup .shell::after { content: ""; position: absolute; inset: 0; z-index: 3; background: linear-gradient(90deg, rgba(40,10,20,.36) 0%, rgba(40,10,20,.10) 11%, rgba(255,255,255,.32) 27%, rgba(255,255,255,.08) 40%, rgba(0,0,0,.02) 58%, rgba(40,10,20,.18) 82%, rgba(40,10,20,.4) 100%); }
+.cup .band { position: absolute; left: 0; right: 0; display: grid; place-items: center; z-index: 1; }
+.cup .foot { position: absolute; left: 11%; right: 11%; bottom: -7px; height: 16px; border-radius: 50%; }
+.cup .rim { position: absolute; left: -3.5%; right: -3.5%; border-radius: 12px 12px 6px 6px; z-index: 4; }
+.cup .rim::after, .cup .dome::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(90deg, rgba(40,10,20,.3), rgba(255,255,255,.4) 28%, rgba(255,255,255,.06) 48%, rgba(40,10,20,.26) 100%); }
+.cup .dome { position: absolute; left: 7%; right: 7%; border-radius: 50% 50% 0 0 / 100% 100% 0 0; z-index: 4; }
+.cup .sip { position: absolute; z-index: 5; width: 26%; height: 9px; left: 50%; transform: translateX(-50%); border-radius: 6px; background: rgba(0,0,0,.3); }
+
+/* Flat objects */
+.card { position: absolute; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 1px rgba(60,20,30,.08), 0 18px 30px -12px rgba(60,20,30,.28), 0 44px 70px -34px rgba(60,20,30,.38); }
+.sticker { position: absolute; border-radius: 50%; display: grid; place-items: center; overflow: hidden; box-shadow: 0 1px 1px rgba(60,20,30,.1), 0 14px 24px -10px rgba(60,20,30,.4); }
+.photo { position: absolute; overflow: hidden; }
+.photo img, .fill-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tag { font-weight: 700; letter-spacing: .3em; text-transform: uppercase; }
+
+/* Screen viewports and frames */
+.view { position: relative; overflow: hidden; background: #fff; }
+.view img { position: absolute; left: 0; top: 0; display: block; }
+.win { position: absolute; overflow: hidden; background: #fff; border-radius: 14px; box-shadow: 0 1px 2px rgba(60,20,30,.08), 0 30px 70px -30px rgba(60,20,30,.45); }
+.bar { height: 34px; background: #fbf6f4; border-bottom: 1px solid #efe3e0; display: flex; align-items: center; padding: 0 14px; gap: 7px; position: relative; }
+.bar b { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.bar b:nth-child(2) { background: #febc2e; } .bar b:nth-child(3) { background: #28c840; }
+.bar .url { position: absolute; left: 50%; transform: translateX(-50%); width: 34%; height: 21px; border-radius: 7px; background: #fff; border: 1px solid #efe3e0; }
+.tile { position: absolute; overflow: hidden; border-radius: 26px; }
+
+/* Laptop */
+.laptop { position: absolute; }
+.lid { background: #0c0c0d; border-radius: 22px 22px 6px 6px; padding: 18px 18px 26px; box-shadow: inset 0 0 0 2px #2c2c30, 0 0 0 1.5px #8a8a90; position: relative; }
+.lid::before { content: ""; position: absolute; top: 7px; left: 50%; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #26262a; }
+.screen { border-radius: 6px; overflow: hidden; background: #fff; }
+.base { position: relative; height: 22px; margin: 0 -9%; background: linear-gradient(180deg, #f1f1f3 0%, #d2d2d7 45%, #9a9aa0 100%); border-radius: 2px 2px 22px 22px / 2px 2px 100% 100%; box-shadow: 0 30px 50px -14px rgba(60,20,30,.4); }
+.base::before { content: ""; position: absolute; left: 50%; top: 0; width: 15%; height: 9px; transform: translateX(-50%); background: linear-gradient(180deg, #ababb1, #cacacf); border-radius: 0 0 12px 12px; }

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sweet Cheeks flow recorder</title>
+<script src="https://cdn.jsdelivr.net/npm/mp4-muxer@5.1.3/build/mp4-muxer.js"></script>
+<style>body { margin: 0; background: #111; } canvas { display: block; width: 960px; }</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// Renders the site walkthrough frame by frame and encodes it to H.264 MP4.
+// Page coordinates are design px (1728 wide); renders are 1.5x.
+const W = 1920, H = 1080, FPS = 30, DURATION = 40;
+const PAGE_W = 1728, RENDER = 1.5;
+const WIN = { x: 80, y: 52, w: 1760, h: 976, bar: 44, r: 18 };
+const VIEW = { x: WIN.x, y: WIN.y + WIN.bar, w: WIN.w, h: WIN.h - WIN.bar };
+const S = VIEW.w / PAGE_W;                 // screen px per design px
+const VIEW_H = VIEW.h / S;                  // visible design px
+
+// Which page is on screen; each change cross-fades over FADE seconds.
+const FADE = 0.55;
+const shots = [
+  { page: "home", at: 0 },
+  { page: "menu", at: 10.4 },
+  { page: "product", at: 17.2 },
+  { page: "pre-order", at: 25.6 },
+  { page: "contact", at: 32.0 },
+  { page: "home", at: 38.2 },
+];
+// Scroll keyframes per shot index: [t, y]
+const scrolls = [
+  [[0, 0], [2.2, 0], [7.5, 2620], [10.4, 2620]],
+  [[10.4, 0], [12.4, 0], [14.6, 560]],
+  [[17.2, 0], [20.0, 0], [21.5, 380], [23.0, 380], [24.2, 560]],
+  [[25.6, 0], [27.2, 0], [28.8, 700]],
+  [[32.0, 0], [34.6, 0], [37.4, 1368]],
+  [[38.2, 0]],
+];
+// Cursor keyframes in viewport design px: [t, x, y]
+const cursor = [
+  [0, 1500, 760], [2.4, 1180, 560], [7.8, 700, 500], [9.4, 208, 706],
+  [12.2, 860, 420], [14.8, 780, 600], [16.2, 613, 555],
+  [19.0, 1395, 380], [20.4, 1395, 380], [21.8, 1050, 583], [23.2, 1050, 583], [24.6, 1253, 693],
+  [27.0, 1400, 520], [29.2, 1061, 229], [30.2, 1061, 229], [31.0, 1274, 734],
+  [33.6, 697, 580], [34.6, 697, 580], [37.0, 1200, 600], [40, 1500, 760],
+];
+const clicks = [9.8, 16.6, 19.3, 22.1, 22.6, 25.0, 29.6, 31.4, 34.0];
+
+const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+function track(keys, t) {
+  if (t <= keys[0][0]) return keys[0].slice(1);
+  for (let i = 1; i < keys.length; i++) {
+    const [t1, ...b] = keys[i], [t0, ...a] = keys[i - 1];
+    if (t <= t1) { const k = ease((t - t0) / (t1 - t0)); return a.map((v, j) => v + (b[j] - v) * k); }
+  }
+  return keys[keys.length - 1].slice(1);
+}
+
+const imgs = {};
+const load = (n) => new Promise((r) => { const i = new Image(); i.onload = () => r(i); i.src = `screens/${n}.jpg`; });
+
+const cv = document.getElementById("c"), ctx = cv.getContext("2d");
+let bg;
+function makeBackground() {
+  bg = document.createElement("canvas"); bg.width = W; bg.height = H;
+  const b = bg.getContext("2d");
+  let g = b.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, "#f7dfe6"); g.addColorStop(1, "#f3e7e2");
+  b.fillStyle = g; b.fillRect(0, 0, W, H);
+  g = b.createRadialGradient(W * 0.5, 0, 0, W * 0.5, 0, W * 0.65);
+  g.addColorStop(0, "rgba(255,247,249,0.95)"); g.addColorStop(1, "rgba(255,247,249,0)");
+  b.fillStyle = g; b.fillRect(0, 0, W, H);
+  // window shadow + chrome
+  b.save(); b.shadowColor = "rgba(90,30,45,0.28)"; b.shadowBlur = 60; b.shadowOffsetY = 24;
+  rr(b, WIN.x, WIN.y, WIN.w, WIN.h, WIN.r); b.fillStyle = "#fbf3f5"; b.fill(); b.restore();
+  b.save(); rr(b, WIN.x, WIN.y, WIN.w, WIN.h, WIN.r); b.clip();
+  b.fillStyle = "#fbf3f5"; b.fillRect(WIN.x, WIN.y, WIN.w, WIN.bar);
+  b.fillStyle = "#f0dde3"; b.fillRect(WIN.x, WIN.y + WIN.bar - 1, WIN.w, 1);
+  [["#ff5f57", 0], ["#febc2e", 1], ["#28c840", 2]].forEach(([c, i]) => { b.beginPath(); b.arc(WIN.x + 26 + i * 22, WIN.y + WIN.bar / 2, 7, 0, 7); b.fillStyle = c; b.fill(); });
+  rr(b, WIN.x + WIN.w / 2 - 300, WIN.y + 10, 600, 24, 8); b.fillStyle = "#fff"; b.fill(); b.strokeStyle = "#f0dde3"; b.stroke();
+  b.restore();
+}
+function rr(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+
+function drawPage(name, y, alpha, lift) {
+  const img = imgs[name];
+  const maxY = img.naturalHeight / RENDER - VIEW_H;
+  y = Math.max(0, Math.min(maxY, y));
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.drawImage(img, 0, y * RENDER, PAGE_W * RENDER, VIEW_H * RENDER, VIEW.x, VIEW.y + lift, VIEW.w, VIEW.h);
+  ctx.restore();
+}
+
+// macOS-style arrow pointer
+const ARROW = new Path2D("M0 0 L0 22 L5.2 17 L9 25.6 L12.6 24 L8.9 15.6 L16 15.6 Z");
+function drawCursor(x, y, press) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(1.45 * press, 1.45 * press);
+  ctx.shadowColor = "rgba(0,0,0,0.35)"; ctx.shadowBlur = 6; ctx.shadowOffsetY = 2;
+  ctx.fillStyle = "#111"; ctx.fill(ARROW);
+  ctx.shadowColor = "transparent"; ctx.lineWidth = 1.6; ctx.strokeStyle = "#fff"; ctx.lineJoin = "round"; ctx.stroke(ARROW);
+  ctx.restore();
+}
+
+function frame(t) {
+  ctx.drawImage(bg, 0, 0);
+  ctx.save(); rr(ctx, VIEW.x, VIEW.y, VIEW.w, VIEW.h + 1, 0); ctx.clip();
+  // clip the bottom corners to the window radius
+  ctx.beginPath(); ctx.moveTo(VIEW.x, VIEW.y); ctx.lineTo(VIEW.x + VIEW.w, VIEW.y); ctx.arcTo(VIEW.x + VIEW.w, VIEW.y + VIEW.h, VIEW.x, VIEW.y + VIEW.h, WIN.r); ctx.arcTo(VIEW.x, VIEW.y + VIEW.h, VIEW.x, VIEW.y, WIN.r); ctx.closePath(); ctx.clip();
+  let cur = 0; for (let i = 0; i < shots.length; i++) if (t >= shots[i].at) cur = i;
+  const prev = cur - 1, since = t - shots[cur].at;
+  if (prev >= 0 && since < FADE) {
+    const k = ease(since / FADE);
+    drawPage(shots[prev].page, track(scrolls[prev], t)[0], 1, 0);
+    drawPage(shots[cur].page, track(scrolls[cur], t)[0], k, (1 - k) * 24);
+  } else {
+    drawPage(shots[cur].page, track(scrolls[cur], t)[0], 1, 0);
+  }
+  ctx.restore();
+
+  // click ripples
+  let press = 1;
+  for (const c of clicks) {
+    const d = t - c;
+    if (d > -0.12 && d < 0.1) press = 0.86;
+    if (d >= 0 && d < 0.55) {
+      const [cx, cy] = track(cursor, c), k = d / 0.55;
+      ctx.beginPath(); ctx.arc(VIEW.x + cx * S, VIEW.y + cy * S, 10 + 34 * ease(k), 0, 7);
+      ctx.fillStyle = `rgba(252,138,172,${0.42 * (1 - k)})`; ctx.fill();
+      ctx.lineWidth = 2.5; ctx.strokeStyle = `rgba(252,138,172,${0.9 * (1 - k)})`; ctx.stroke();
+    }
+  }
+  const [x, y] = track(cursor, t);
+  drawCursor(VIEW.x + x * S, VIEW.y + y * S, press);
+}
+
+window.ready = (async () => {
+  for (const n of ["home", "menu", "product", "pre-order", "contact"]) { imgs[n] = await load(n); await imgs[n].decode(); }
+  makeBackground();
+  frame(0);
+  return true;
+})();
+
+// Encode every frame; returns the MP4 bytes as base64 in window.mp4.
+window.render = async (quantizer = 24) => {
+  await window.ready;
+  const muxer = new Mp4Muxer.Muxer({ target: new Mp4Muxer.ArrayBufferTarget(), video: { codec: "avc", width: W, height: H, frameRate: FPS }, fastStart: "in-memory" });
+  const enc = new VideoEncoder({ output: (chunk, meta) => muxer.addVideoChunk(chunk, meta), error: (e) => { throw e; } });
+  enc.configure({ codec: "avc1.640028", width: W, height: H, framerate: FPS, bitrateMode: "quantizer", avc: { format: "avc" } });
+  const total = DURATION * FPS;
+  for (let i = 0; i < total; i++) {
+    frame(i / FPS);
+    const vf = new VideoFrame(cv, { timestamp: Math.round((i * 1e6) / FPS), duration: Math.round(1e6 / FPS) });
+    enc.encode(vf, { keyFrame: i % (FPS * 2) === 0, avc: { quantizer } });
+    vf.close();
+    while (enc.encodeQueueSize > 8) await new Promise((r) => setTimeout(r, 2));
+  }
+  await enc.flush();
+  muxer.finalize();
+  const buf = new Uint8Array(muxer.target.buffer);
+  let s = ""; for (let k = 0; k < buf.length; k += 0x8000) s += String.fromCharCode(...buf.subarray(k, k + 0x8000));
+  window.mp4 = btoa(s);
+  return window.mp4.length;
+};
+window.still = async (t) => { await window.ready; frame(t); return cv.toDataURL("image/png").split(",")[1]; };
+</script>
+</body>
+</html>

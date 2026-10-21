@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sweet Cheeks packaging system</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/wm.css" />
+<link rel="stylesheet" href="kit.css" />
+<style>
+  .panel { position: absolute; overflow: hidden; }
+  .front-panel, .back-panel { width: 600px; height: 800px; }
+  .side-panel { width: 220px; height: 800px; }
+  .lid-panel { width: 600px; height: 220px; }
+  .label { position: absolute; left: 70px; top: 128px; width: 460px; height: 232px; border-radius: 28px; background: #fff8f2; box-shadow: 0 10px 24px -12px rgba(0,0,0,.35); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .label .rule { width: 46px; height: 3px; border-radius: 2px; margin: 18px 0 14px; opacity: .5; }
+  .label .flavour { font-weight: 800; font-size: 36px; line-height: 1; letter-spacing: -.01em; }
+  .label .note { font-weight: 600; font-size: 13px; letter-spacing: .26em; text-transform: uppercase; margin-top: 10px; opacity: .75; }
+  .badge { position: absolute; right: 36px; bottom: 40px; width: 128px; height: 128px; border-radius: 50%; background: #fff8f2; display: grid; place-items: center; text-align: center; box-shadow: 0 10px 20px -10px rgba(0,0,0,.4); }
+  .badge .heart { position: absolute; top: 20px; left: 50%; margin-left: -11px; font-size: 22px; color: currentColor; }
+  .badge b { display: block; margin-top: 20px; font-weight: 800; font-size: 17px; line-height: 1.05; text-transform: uppercase; letter-spacing: .02em; }
+  .weight { position: absolute; left: 36px; bottom: 46px; padding: 8px 16px; border-radius: 999px; background: #fff8f2; color: #2a1219; font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
+  .side-tag { position: absolute; left: 50%; top: 40px; transform: translateX(-50%) rotate(90deg); transform-origin: center; white-space: nowrap; width: 0; }
+  .side-tag::before { content: attr(data-x); }
+  .side-panel .side-tag { left: 110px; top: 160px; width: auto; transform: translate(-50%, 0) rotate(90deg); color: #fff8f2; font-weight: 700; font-size: 15px; letter-spacing: .3em; text-transform: uppercase; transform-origin: 50% 50%; }
+  .back-panel { background: #fff8f2; color: var(--ink); }
+  .back-body { padding: 34px 44px; }
+  .blurb { font-size: 16px; line-height: 1.5; margin: 16px 0 22px; font-weight: 500; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; font-size: 12.5px; line-height: 1.45; }
+  .cols h4 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 6px; }
+  .cols p { margin-bottom: 14px; }
+  .cols table { width: 100%; border-collapse: collapse; }
+  .cols td { border-top: 1px solid currentColor; padding: 5px 0; } .cols td:last-child { text-align: right; font-weight: 700; }
+  .cols tr:first-child td { border-top-width: 2px; }
+  .foot { position: absolute; left: 44px; right: 44px; bottom: 40px; display: flex; justify-content: space-between; align-items: end; font-size: 12.5px; line-height: 1.5; }
+  .barcode { display: flex; gap: 2px; height: 70px; padding: 8px; background: #fff; border-radius: 6px; }
+  .barcode i { display: block; background: #1a1a1a; }
+  .shad { box-shadow: 0 2px 3px rgba(0,0,0,.18), 0 26px 40px -18px rgba(0,0,0,.45); }
+</style>
+</head>
+<body data-ready="0">
+
+<!-- Single pack fronts, used to wrap artwork onto photos -->
+<div id="fronts"></div>
+
+<!-- 1. Variant wall -->
+<section class="board" id="wall"></section>
+
+<!-- 2. Dieline (square) -->
+<section class="board" id="dieline" style="height:1600px; background:#2a292c"></section>
+
+<!-- 3. Front + back spread (square) -->
+<section class="board" id="spread" style="height:1600px; background:#2a292c"></section>
+
+<!-- 4. Angled flat lay -->
+<section class="board grain" id="flatlay" style="background:#efe5dc"></section>
+
+<script src="pack.js"></script>
+<script>
+  // Single fronts
+  document.getElementById("fronts").innerHTML = FLAVOURS.map((f, i) => `<section class="board" id="f${i}" style="width:600px; height:800px">${front(f, i)}</section>`).join("")
+    + `<section class="board" id="tall0" style="width:600px; height:1000px">${front(FLAVOURS[0], 0, 1000)}</section>`;
+
+  // Variant wall: 5 x 3 colour cells, each holding a pack
+  const wall = document.getElementById("wall");
+  for (let k = 0; k < 15; k++) {
+    const order = [0, 3, 6, 9, 2, 5, 8, 1, 4, 7, 4, 7, 0, 3, 6]; // no flavour repeats in a row or column
+    const i = order[k], f = FLAVOURS[i], col = k % 5, row = Math.floor(k / 5);
+    const cell = document.createElement("div");
+    cell.style.cssText = `position:absolute; left:${col * 320}px; top:${row * 333.34}px; width:320px; height:333.34px; background:${f.cell}; overflow:hidden`;
+    cell.innerHTML = `<div class="shad" style="position:absolute; left:50%; top:50%; width:600px; height:800px; transform: translate(-50%,-50%) scale(.34); border-radius:6px; overflow:hidden">${front(f, i)}</div>`;
+    wall.appendChild(cell);
+  }
+
+  // Dieline: glue flap | side | front | side | back, with lid/tuck above the front and base flaps below
+  const F = FLAVOURS[0];
+  const net = `
+    <div style="position:absolute; left:0; top:290px; width:60px; height:800px; background:${F.bands[1]}; clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 94%)"></div>
+    <div style="position:absolute; left:60px; top:290px">${side(F, 0)}</div>
+    <div style="position:absolute; left:280px; top:290px">${front(F, 0)}</div>
+    <div style="position:absolute; left:880px; top:290px">${side(F, 1)}</div>
+    <div style="position:absolute; left:1100px; top:290px">${back(F)}</div>
+    <div style="position:absolute; left:280px; top:70px">${lid(F, 0)}</div>
+    <div style="position:absolute; left:280px; top:0; width:600px; height:70px; background:${F.base}; border-radius:40px 40px 0 0"></div>
+    <div style="position:absolute; left:60px; top:140px; width:220px; height:150px; background:${F.bands[1]}; clip-path: polygon(8% 100%, 0 30%, 30% 0, 100% 0, 100% 100%)"></div>
+    <div style="position:absolute; left:880px; top:140px; width:220px; height:150px; background:${F.bands[1]}; clip-path: polygon(0 0, 70% 0, 100% 30%, 92% 100%, 0 100%)"></div>
+    <div style="position:absolute; left:280px; top:1090px; width:600px; height:220px; background:${F.base}"></div>
+    <div style="position:absolute; left:1100px; top:1090px; width:600px; height:200px; background:#f3e6dd; clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%)"></div>
+    <div style="position:absolute; left:60px; top:1090px; width:220px; height:150px; background:${F.bands[1]}; clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%, 0 70%)"></div>
+    <div style="position:absolute; left:880px; top:1090px; width:220px; height:150px; background:${F.bands[1]}; clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%)"></div>
+    <svg width="1700" height="1380" style="position:absolute; left:0; top:0; overflow:visible" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2" stroke-dasharray="10 8">
+      <path d="M60 290 V1090 M280 290 V1090 M880 290 V1090 M1100 290 V1090 M280 290 H880 M280 70 H880 M280 1090 H880 M60 290 H280 M880 290 H1100 M60 1090 H280 M880 1090 H1100 M1100 1090 H1700"/>
+    </svg>`;
+  document.getElementById("dieline").innerHTML = `<div style="position:absolute; left:50%; top:50%; width:1700px; height:1380px; transform: translate(-50%,-50%) scale(.86)">${net}</div>`;
+
+  // Front + back spread
+  document.getElementById("spread").innerHTML = `
+    <div class="shad" style="position:absolute; left:110px; top:250px; transform-origin:0 0; transform: scale(1.15); border-radius:6px; overflow:hidden; width:600px; height:800px">${front(F, 0)}</div>
+    <div class="shad" style="position:absolute; left:820px; top:250px; transform-origin:0 0; transform: scale(1.15); border-radius:6px; overflow:hidden; width:600px; height:800px">${back(F)}</div>`;
+
+  // Angled flat lay: rows of packs rotated across a linen surface
+  let lay = "";
+  for (let row = 0; row < 4; row++) for (let c = 0; c < 7; c++) {
+    const i = (row * 7 + c * 3) % 10;
+    lay += `<div class="shad" style="position:absolute; left:${c * 330 + (row % 2) * 160 - 260}px; top:${row * 450 - 220}px; width:600px; height:800px; transform-origin:0 0; transform: scale(.5); border-radius:6px; overflow:hidden">${front(FLAVOURS[i], i)}</div>`;
+  }
+  document.getElementById("flatlay").innerHTML = `<div style="position:absolute; left:0; top:0; width:2400px; height:1700px; transform: rotate(-24deg) translate(-180px, 160px); transform-origin: 0 0">${lay}</div><div class="sunlight" style="--sun-x:25%; --sun-y:15%"></div><div class="gobo" style="--gobo-o:.14; --gobo-x:70%; --gobo-y:30%"></div>`;
+
+  (async () => { await document.fonts.ready; document.body.dataset.ready = "1"; })();
+  const only = new URLSearchParams(location.search).get("b");
+  if (only) document.querySelectorAll(".board").forEach((b) => b.id === only ? b.classList.add("solo") : b.remove());
+</script>
+</body>
+</html>
