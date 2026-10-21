@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EchoFarms — Farm equipment, inputs & produce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --forest: #0d2a1b;
+    --forest-2: #123522;
+    --forest-3: #1b4630;
+    --leaf: #2f7a4a;
+    --lime: #c9e24b;
+    --lime-2: #b6d03a;
+    --cream: #f6f3ea;
+    --sand: #ece6d5;
+    --paper: #fffdf8;
+    --ink: #0f2018;
+    --muted: #5d6c63;
+    --line: #e3ddcc;
+    --line-dark: rgba(255, 255, 255, 0.12);
+    --radius: 20px;
+    --shadow: 0 24px 60px -24px rgba(13, 42, 27, 0.35);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; }
+  body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--ink); background: var(--paper); font-size: 16px; line-height: 1.6; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  h1, h2, h3, .display { font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: -0.02em; line-height: 1.1; }
+  .wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  .icon { width: 20px; height: 20px; flex: none; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; transition: transform .15s, background .15s; }
+  .btn-lime { background: var(--lime); color: var(--forest); }
+  .btn-lime:hover { background: var(--lime-2); }
+  .btn-ghost { border: 1.5px solid rgba(255,255,255,.28); color: #fff; }
+  .btn-dark { background: var(--forest); color: #fff; }
+  .btn-outline { border: 1.5px solid var(--ink); color: var(--ink); }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--leaf); }
+  .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; border-radius: 2px; }
+  .section { padding: 112px 0; }
+  .section-head { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 48px; }
+  .section-head h2 { font-size: 48px; font-weight: 600; margin-top: 14px; max-width: 760px; }
+  .section-head p { color: var(--muted); max-width: 400px; }
+  .link-arrow { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; }
+
+  /* ---------- Header + hero ---------- */
+  .hero { background: radial-gradient(1200px 600px at 85% -10%, #1f5536 0%, transparent 60%), var(--forest); color: #fff; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px); background-size: 22px 22px; pointer-events: none; mask-image: linear-gradient(to bottom, #000, transparent 70%); }
+  .nav { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; height: 88px; border-bottom: 1px solid var(--line-dark); }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; }
+  .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--lime); display: grid; place-items: center; color: var(--forest); }
+  .nav-links { display: flex; gap: 36px; font-size: 15px; color: rgba(255,255,255,.72); }
+  .nav-links a.active { color: #fff; }
+  .nav-actions { display: flex; align-items: center; gap: 20px; font-size: 15px; font-weight: 500; }
+  .nav-actions .btn { height: 44px; padding: 0 20px; font-size: 14px; }
+  .menu-btn { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-dark); place-items: center; }
+
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; padding: 72px 0 96px; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid var(--line-dark); font-size: 13px; color: rgba(255,255,255,.85); }
+  .pill b { background: var(--lime); color: var(--forest); padding: 3px 10px; border-radius: 999px; font-size: 12px; }
+  .hero h1 { font-size: 68px; font-weight: 600; margin: 24px 0 22px; }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .hero-sub { font-size: 18px; color: rgba(255,255,255,.72); max-width: 520px; }
+
+  .search { margin-top: 36px; display: flex; align-items: center; background: #fff; border-radius: 18px; padding: 8px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); color: var(--ink); max-width: 600px; }
+  .search-field { flex: 1; display: flex; align-items: center; gap: 10px; padding: 0 14px; height: 52px; min-width: 0; }
+  .search-field + .search-field { border-left: 1px solid var(--line); }
+  .search-field .icon { color: var(--leaf); }
+  .search-field span { font-size: 15px; color: #8a958e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search .btn { height: 52px; border-radius: 12px; padding: 0 22px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; align-items: center; font-size: 13px; color: rgba(255,255,255,.6); }
+  .tags a { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-dark); color: rgba(255,255,255,.85); }
+
+  .trust { display: flex; align-items: center; gap: 16px; margin-top: 40px; font-size: 14px; color: rgba(255,255,255,.7); }
+  .avatars { display: flex; }
+  .avatars img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--forest); margin-left: -10px; }
+  .avatars img:first-child { margin-left: 0; }
+  .trust strong { color: #fff; display: block; font-size: 15px; }
+  .stars { color: var(--lime); letter-spacing: 2px; }
+
+  .hero-visual { position: relative; }
+  .hero-img { border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 4.4; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 62% center; }
+  .float { position: absolute; background: #fff; color: var(--ink); border-radius: 18px; box-shadow: var(--shadow); padding: 14px; display: flex; gap: 12px; align-items: center; }
+  .float-listing { left: -48px; bottom: 56px; width: 290px; }
+  .float-listing img { width: 64px; height: 64px; border-radius: 12px; object-fit: cover; }
+  .float small { display: block; font-size: 12px; color: var(--muted); }
+  .float strong { display: block; font-size: 14px; line-height: 1.35; }
+  .float .price { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; color: var(--leaf); font-size: 16px; margin-top: 2px; }
+  .float-verified { right: -20px; top: 40px; padding: 12px 16px; }
+  .badge-check { width: 36px; height: 36px; border-radius: 50%; background: #e6f3d0; color: var(--leaf); display: grid; place-items: center; }
+
+  /* ---------- Stats strip ---------- */
+  .stats { background: var(--forest-2); color: #fff; border-top: 1px solid var(--line-dark); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 36px 32px; border-left: 1px solid var(--line-dark); }
+  .stat:first-child { border-left: 0; padding-left: 0; }
+  .stat .num { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 600; font-size: 40px; line-height: 1; }
+  .stat .num span { color: var(--lime); }
+  .stat p { color: rgba(255,255,255,.6); font-size: 14px; margin-top: 8px; }
+
+  /* ---------- Categories ---------- */
+  .cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .cat { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 4; background: var(--sand); color: #fff; }
+  .cat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .cat:hover img { transform: scale(1.05); }
+  .cat::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,42,27,0) 40%, rgba(13,42,27,.92) 100%); }
+  .cat-body { position: absolute; z-index: 1; left: 22px; right: 22px; bottom: 22px; }
+  .cat-count { display: inline-block; font-size: 12px; font-weight: 600; background: rgba(255,255,255,.16); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .cat h3 { font-size: 24px; font-weight: 600; }
+  .cat p { font-size: 14px; color: rgba(255,255,255,.75); margin-top: 6px; line-height: 1.5; }
+  .cat-arrow { position: absolute; z-index: 1; top: 18px; right: 18px; width: 44px; height: 44px; border-radius: 50%; background: var(--lime); color: var(--forest); display: grid; place-items: center; }
+
+  /* ---------- Listings ---------- */
+  .listings { background: var(--cream); }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+  .chip { padding: 10px 18px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 14px; font-weight: 500; }
+  .chip.on { background: var(--forest); color: #fff; border-color: var(--forest); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); transition: box-shadow .2s, transform .2s; }
+  .card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+  .card-img { position: relative; aspect-ratio: 4 / 3; background: var(--sand); }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .card-tag { position: absolute; left: 12px; top: 12px; background: #fff; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+  .card-fav { position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  .card-fav .icon { width: 16px; height: 16px; }
+  .card-body { padding: 18px; }
+  .card-meta { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+  .card-meta .icon { width: 14px; height: 14px; }
+  .card h3 { font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: 0; font-size: 16px; font-weight: 600; line-height: 1.4; margin: 8px 0 14px; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px dashed var(--line); }
+  .card-price { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; font-size: 20px; }
+  .card-price small { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 400; font-size: 12px; color: var(--muted); }
+  .vendor { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--leaf); }
+  .vendor .icon { width: 16px; height: 16px; }
+
+  /* ---------- Vendor ---------- */
+  .vendor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .collage { position: relative; padding: 0 0 60px 0; }
+  .collage .main { border-radius: 28px; overflow: hidden; aspect-ratio: 5 / 4; }
+  .collage .main img { width: 100%; height: 100%; object-fit: cover; }
+  .collage .sub { position: absolute; right: -24px; bottom: 0; width: 46%; border-radius: 22px; overflow: hidden; border: 8px solid var(--paper); aspect-ratio: 1; }
+  .collage .sub img { width: 100%; height: 100%; object-fit: cover; object-position: 55% center; }
+  .earn { position: absolute; left: 24px; bottom: 20px; background: var(--forest); color: #fff; border-radius: 18px; padding: 18px 20px; width: 240px; box-shadow: var(--shadow); }
+  .earn small { color: rgba(255,255,255,.6); font-size: 12px; }
+  .earn .display { font-size: 30px; font-weight: 600; margin: 4px 0 10px; }
+  .earn .up { display: inline-flex; gap: 4px; align-items: center; font-size: 12px; font-weight: 600; color: var(--forest); background: var(--lime); padding: 3px 8px; border-radius: 999px; }
+  .bars { display: flex; align-items: end; gap: 6px; height: 40px; margin-top: 12px; }
+  .bars i { flex: 1; background: rgba(255,255,255,.18); border-radius: 4px; }
+  .bars i:last-child { background: var(--lime); }
+  .vendor-copy h2 { font-size: 52px; font-weight: 600; margin: 14px 0 18px; }
+  .vendor-copy > p { color: var(--muted); font-size: 18px; max-width: 480px; }
+  .steps { margin: 36px 0 40px; display: grid; gap: 4px; }
+  .step { display: grid; grid-template-columns: 52px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+  .step:last-child { border-bottom: 1px solid var(--line); }
+  .step-num { width: 44px; height: 44px; border-radius: 14px; background: #e9f3d3; color: var(--leaf); display: grid; place-items: center; font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; }
+  .step h3 { font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: 0; font-size: 17px; font-weight: 600; line-height: 1.4; }
+  .step p { color: var(--muted); font-size: 15px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ---------- Testimonial ---------- */
+  .quote { position: relative; border-radius: 32px; overflow: hidden; min-height: 520px; display: flex; align-items: end; color: #fff; }
+  .quote > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .quote::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(13,42,27,.94) 0%, rgba(13,42,27,.75) 45%, rgba(13,42,27,0) 75%); }
+  .quote-body { position: relative; z-index: 2; padding: 64px; max-width: 640px; }
+  .quote-mark { font-family: "Plus Jakarta Sans", sans-serif; font-size: 96px; line-height: .6; color: var(--lime); height: 48px; }
+  .quote blockquote { font-family: "Plus Jakarta Sans", sans-serif; font-size: 34px; font-weight: 500; line-height: 1.25; letter-spacing: -0.015em; }
+  .quote cite { display: block; font-style: normal; margin-top: 28px; font-size: 15px; color: rgba(255,255,255,.7); }
+  .quote cite strong { color: #fff; display: block; font-size: 17px; }
+
+  /* ---------- FAQ ---------- */
+  .faq-grid { display: grid; grid-template-columns: 380px 1fr; gap: 80px; align-items: start; }
+  .faq-side h2 { font-size: 48px; font-weight: 600; margin: 14px 0 18px; }
+  .faq-side p { color: var(--muted); }
+  .help-card { margin-top: 32px; background: var(--cream); border-radius: var(--radius); padding: 24px; }
+  .help-card strong { display: block; font-size: 17px; }
+  .help-card p { font-size: 14px; margin: 6px 0 18px; }
+  .help-card .btn { height: 44px; font-size: 14px; }
+  .faq-item { border-bottom: 1px solid var(--line); padding: 26px 0; }
+  .faq-item:first-child { padding-top: 0; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; gap: 24px; font-weight: 600; font-size: 18px; }
+  .faq-toggle { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; flex: none; }
+  .faq-item.open .faq-toggle { background: var(--forest); color: var(--lime); border-color: var(--forest); }
+  .faq-a { color: var(--muted); margin-top: 12px; max-width: 640px; }
+
+  /* ---------- Newsletter + footer ---------- */
+  .footer { background: var(--forest); color: #fff; padding-top: 96px; }
+  .news { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; background: var(--forest-3); border-radius: 28px; padding: 48px 56px; position: relative; overflow: hidden; }
+  .news::after { content: ""; position: absolute; right: -80px; top: -120px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(201,226,75,.25), transparent 70%); }
+  .news h2 { font-size: 38px; font-weight: 600; }
+  .news p { color: rgba(255,255,255,.65); margin-top: 10px; }
+  .news-form { position: relative; z-index: 1; display: flex; gap: 8px; background: rgba(255,255,255,.08); border: 1px solid var(--line-dark); border-radius: 999px; padding: 6px; }
+  .news-form span { flex: 1; display: flex; align-items: center; gap: 10px; padding: 0 16px; color: rgba(255,255,255,.55); font-size: 15px; }
+  .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr; gap: 40px; padding: 80px 0 64px; }
+  .foot-grid h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.5); font-weight: 600; margin-bottom: 18px; }
+  .foot-grid ul { list-style: none; display: grid; gap: 12px; font-size: 15px; color: rgba(255,255,255,.82); }
+  .foot-about p { color: rgba(255,255,255,.6); font-size: 15px; margin: 18px 0 24px; max-width: 300px; }
+  .socials { display: flex; gap: 10px; }
+  .socials a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-dark); display: grid; place-items: center; }
+  .socials .icon { width: 18px; height: 18px; }
+  .foot-bottom { display: flex; justify-content: space-between; border-top: 1px solid var(--line-dark); padding: 28px 0; font-size: 14px; color: rgba(255,255,255,.5); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1100px) {
+    .hero h1 { font-size: 56px; }
+    .cats, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .foot-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .foot-about { grid-column: 1 / -1; }
+  }
+  @media (max-width: 860px) {
+    .wrap { padding: 0 20px; }
+    .nav { height: 72px; }
+    .nav-links, .nav-actions .signin, .nav-actions .btn { display: none; }
+    .menu-btn { display: grid; }
+    .hero-grid, .vendor-grid, .faq-grid, .news { grid-template-columns: 1fr; }
+    .hero-grid { gap: 48px; padding: 40px 0 56px; }
+    .hero h1 { font-size: 44px; margin: 20px 0 16px; }
+    .hero-sub { font-size: 16px; }
+    .search { flex-direction: column; align-items: stretch; padding: 8px; border-radius: 18px; }
+    .search-field { flex: none; }
+    .search-field + .search-field { border-left: 0; border-top: 1px solid var(--line); }
+    .search .btn { margin-top: 6px; }
+    .hero-img { aspect-ratio: 4 / 3.4; border-radius: 22px; }
+    .float-listing { left: 12px; bottom: -28px; width: auto; right: 12px; }
+    .float-verified { right: 12px; top: 12px; }
+    .trust { margin-top: 28px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 24px 0 24px 20px; border-top: 1px solid var(--line-dark); }
+    .stat:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .stat:nth-child(-n+2) { border-top: 0; }
+    .stat .num { font-size: 32px; }
+    .stats { padding-top: 24px; }
+    .section { padding: 72px 0; }
+    .section-head { flex-direction: column; align-items: start; gap: 12px; margin-bottom: 32px; }
+    .section-head h2, .faq-side h2 { font-size: 34px; }
+    .cats { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cat { aspect-ratio: 3 / 4.2; }
+    .cat h3 { font-size: 17px; }
+    .cat p, .cat-arrow { display: none; }
+    .cat-body { left: 14px; right: 14px; bottom: 14px; }
+    .chips { flex-wrap: nowrap; overflow: hidden; margin-right: -20px; }
+    .chip { flex: none; }
+    .grid-4 { display: flex; gap: 14px; overflow: hidden; margin-right: -20px; }
+    .card { flex: 0 0 78%; }
+    .vendor-grid { gap: 56px; }
+    .collage .sub { right: 0; width: 42%; border-width: 6px; }
+    .earn { left: 12px; bottom: 12px; width: 172px; padding: 14px 16px; }
+    .earn .display { font-size: 24px; }
+    .bars { height: 28px; }
+    .vendor-copy h2 { font-size: 36px; }
+    .vendor-copy > p { font-size: 16px; }
+    .cta-row .btn { flex: 1; }
+    .quote { min-height: 560px; border-radius: 24px; }
+    .quote::before { background: linear-gradient(180deg, rgba(13,42,27,0) 15%, rgba(13,42,27,.95) 70%); }
+    .quote-body { padding: 28px; }
+    .quote blockquote { font-size: 24px; }
+    .faq-grid { gap: 40px; }
+    .faq-q { font-size: 16px; }
+    .help-card { display: none; }
+    .footer { padding-top: 64px; }
+    .news { padding: 32px 24px; gap: 24px; }
+    .news h2 { font-size: 28px; }
+    .news-form { flex-direction: column; border-radius: 20px; padding: 8px; }
+    .news-form span { height: 48px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; padding: 56px 0 40px; }
+    .foot-bottom { flex-direction: column; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14.6 4.4l3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 21.5l-2.6-1.9-3.2.1-1-3L2.6 15l1-3-1-3 2.6-1.9 1-3 3.2.1Z"/><path d="m8.5 12 2.3 2.3 4.7-4.6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7h3l.5-4h-3.5V9c0-.6.4-1 1-1Z"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4v12H4zM6 3a2.2 2.2 0 1 1 0 4.4A2.2 2.2 0 0 1 6 3Zm4.5 6h3.8v1.7c.6-1 1.9-2 3.9-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21h-4Z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8Zm-1.1 16.2h1.7L7.4 4.7H5.6Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#" class="logo"><span class="logo-mark"><svg class="icon"><use href="#i-leaf"/></svg></span>EchoFarms</a>
+      <div class="nav-links">
+        <a href="#" class="active">Home</a><a href="#">Shop</a><a href="#">Sell</a><a href="#">About us</a><a href="#">Blog</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="signin">Sign in</a>
+        <a href="#" class="btn btn-lime"><svg class="icon"><use href="#i-plus"/></svg>Post an ad</a>
+        <button class="menu-btn" aria-label="Menu"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </nav>
+
+    <div class="hero-grid">
+      <div>
+        <span class="pill"><b>New</b> Solar irrigation kits now listed</span>
+        <h1>Farm equipment, inputs &amp; produce — <em>all in one place.</em></h1>
+        <p class="hero-sub">Discover, advertise and connect. Buy from verified vendors near you, or list your products and reach thousands of buyers across the country.</p>
+
+        <div class="search">
+          <div class="search-field"><svg class="icon"><use href="#i-search"/></svg><span>Tractors, fertilizer, seeds…</span></div>
+          <div class="search-field"><svg class="icon"><use href="#i-pin"/></svg><span>Kumasi, Ashanti</span></div>
+          <a href="#" class="btn btn-dark">Search</a>
+        </div>
+        <div class="tags">Popular: <a href="#">NPK fertilizer</a><a href="#">Tractors</a><a href="#">Maize seeds</a><a href="#">Solar pumps</a></div>
+
+        <div class="trust">
+          <div class="avatars">
+            <img src="img/vendor-man.webp" alt="" style="object-position:40% 30%">
+            <img src="img/vendor-store.webp" alt="" style="object-position:50% 30%">
+            <img src="img/vendor-produce.webp" alt="" style="object-position:55% 25%">
+          </div>
+          <div><strong>4,800+ verified vendors</strong><span class="stars">★★★★★</span> 4.8 from 2,100 reviews</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-img"><img src="img/hero-pack.webp" alt="Agricultural products on a table"></div>
+        <div class="float float-verified">
+          <span class="badge-check"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><strong>Verified vendors</strong><small>ID &amp; quality checked</small></div>
+        </div>
+        <div class="float float-listing">
+          <img src="img/fertilizer.webp" alt="">
+          <div><small>Just listed · Tamale</small><strong>Organic liquid fertilizer, 5L</strong><div class="price">GH₵ 320</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat"><div class="num">12k<span>+</span></div><p>Active listings</p></div>
+      <div class="stat"><div class="num">4.8k<span>+</span></div><p>Verified vendors</p></div>
+      <div class="stat"><div class="num">16</div><p>Regions covered</p></div>
+      <div class="stat"><div class="num">&lt;2<span>h</span></div><p>Avg. vendor response</p></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ CATEGORIES ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Shop by category</span><h2>All your farm needs, in one place</h2></div>
+      <a href="#" class="link-arrow">Browse all categories <svg class="icon"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="cats">
+      <a href="#" class="cat"><img src="img/fertilizer.webp" alt="" style="object-position:30% center"><span class="cat-arrow"><svg class="icon"><use href="#i-arrow-up"/></svg></span>
+        <div class="cat-body"><span class="cat-count">3,240 listings</span><h3>Crop protection &amp; fertilizers</h3><p>Pesticides, herbicides and organic inputs.</p></div></a>
+      <a href="#" class="cat"><img src="img/machinery.webp" alt=""><span class="cat-arrow"><svg class="icon"><use href="#i-arrow-up"/></svg></span>
+        <div class="cat-body"><span class="cat-count">1,180 listings</span><h3>Farm machinery &amp; equipment</h3><p>Tractors, harvesters and irrigation.</p></div></a>
+      <a href="#" class="cat"><img src="img/drone.webp" alt="" style="object-position:62% center"><span class="cat-arrow"><svg class="icon"><use href="#i-arrow-up"/></svg></span>
+        <div class="cat-body"><span class="cat-count">640 listings</span><h3>Smart farming &amp; solar</h3><p>Drones, sensors and solar pumps.</p></div></a>
+      <a href="#" class="cat"><img src="img/seeds-jar.webp" alt=""><span class="cat-arrow"><svg class="icon"><use href="#i-arrow-up"/></svg></span>
+        <div class="cat-body"><span class="cat-count">2,050 listings</span><h3>Seeds &amp; planting</h3><p>Certified seeds and seedlings.</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LISTINGS ============ -->
+<section class="section listings">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Fresh on EchoFarms</span><h2>Featured listings</h2></div>
+      <p>Hand-picked ads from verified vendors, updated daily.</p>
+    </div>
+    <div class="chips"><span class="chip on">All</span><span class="chip">Fertilizers</span><span class="chip">Machinery</span><span class="chip">Seeds</span><span class="chip">Produce</span><span class="chip">Solar</span></div>
+    <div class="grid-4">
+      <article class="card"><div class="card-img"><img src="img/seeds.webp" alt="" style="object-position:40% center"><span class="card-tag">Fertilizer</span><span class="card-fav"><svg class="icon"><use href="#i-heart"/></svg></span></div>
+        <div class="card-body"><div class="card-meta"><svg class="icon"><use href="#i-pin"/></svg>Kumasi · 2h ago</div><h3>Slow-release granular fertilizer, 25kg</h3>
+        <div class="card-foot"><div class="card-price">GH₵ 450 <small>/bag</small></div><span class="vendor"><svg class="icon"><use href="#i-check"/></svg>Verified</span></div></div></article>
+      <article class="card"><div class="card-img"><img src="img/machinery.webp" alt=""><span class="card-tag">Machinery</span><span class="card-fav"><svg class="icon"><use href="#i-heart"/></svg></span></div>
+        <div class="card-body"><div class="card-meta"><svg class="icon"><use href="#i-pin"/></svg>Accra · 5h ago</div><h3>Compact excavator — hire or buy</h3>
+        <div class="card-foot"><div class="card-price">GH₵ 1,200 <small>/day</small></div><span class="vendor"><svg class="icon"><use href="#i-check"/></svg>Verified</span></div></div></article>
+      <article class="card"><div class="card-img"><img src="img/bag-green.webp" alt="" style="object-position:45% center"><span class="card-tag">Fertilizer</span><span class="card-fav"><svg class="icon"><use href="#i-heart"/></svg></span></div>
+        <div class="card-body"><div class="card-meta"><svg class="icon"><use href="#i-pin"/></svg>Tamale · 1d ago</div><h3>Nitrogen-rich crop booster, 10kg</h3>
+        <div class="card-foot"><div class="card-price">GH₵ 185 <small>/bag</small></div><span class="vendor"><svg class="icon"><use href="#i-check"/></svg>Verified</span></div></div></article>
+      <article class="card"><div class="card-img"><img src="img/drone.webp" alt="" style="object-position:62% center"><span class="card-tag">Smart farming</span><span class="card-fav"><svg class="icon"><use href="#i-heart"/></svg></span></div>
+        <div class="card-body"><div class="card-meta"><svg class="icon"><use href="#i-pin"/></svg>Takoradi · 1d ago</div><h3>Crop-spraying drone with training</h3>
+        <div class="card-foot"><div class="card-price">GH₵ 18,500</div><span class="vendor"><svg class="icon"><use href="#i-check"/></svg>Verified</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VENDOR ============ -->
+<section class="section">
+  <div class="wrap vendor-grid">
+    <div class="collage">
+      <div class="main"><img src="img/vendor-man.webp" alt="Vendor packing produce"></div>
+      <div class="sub"><img src="img/vendor-store.webp" alt="Vendor in her store"></div>
+      <div class="earn">
+        <small>Sales this month</small>
+        <div class="display">GH₵ 4,250</div>
+        <span class="up"><svg class="icon" style="width:12px;height:12px"><use href="#i-arrow-up"/></svg>18% vs last month</span>
+        <div class="bars"><i style="height:40%"></i><i style="height:55%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:100%"></i></div>
+      </div>
+    </div>
+    <div class="vendor-copy">
+      <span class="eyebrow">Become an EchoFarms vendor</span>
+      <h2>Turn your harvest into steady income</h2>
+      <p>Thousands of buyers search EchoFarms every day. List your products for free and grow your reach beyond the local market.</p>
+      <div class="steps">
+        <div class="step"><span class="step-num">01</span><div><h3>Create a free vendor account</h3><p>Sign up in minutes and get your profile verified.</p></div></div>
+        <div class="step"><span class="step-num">02</span><div><h3>Post your first ad</h3><p>Add photos, price and location — we'll help buyers find it.</p></div></div>
+        <div class="step"><span class="step-num">03</span><div><h3>Connect and get paid</h3><p>Chat with buyers, close deals and track sales from your dashboard.</p></div></div>
+      </div>
+      <div class="cta-row"><a href="#" class="btn btn-dark">Register as a vendor <svg class="icon"><use href="#i-arrow"/></svg></a><a href="#" class="btn btn-outline">See pricing</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIAL ============ -->
+<section style="padding-bottom:112px" class="tq">
+  <div class="wrap">
+    <div class="quote">
+      <img src="img/vendor-produce.webp" alt="Vendor arranging fresh produce">
+      <div class="quote-body">
+        <div class="quote-mark">“</div>
+        <blockquote>Since listing on EchoFarms, buyers from three regions order from my stall every week. My revenue has almost doubled.</blockquote>
+        <cite><strong>Akosua Mensah</strong>Produce vendor, Kumasi · on EchoFarms since 2023</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions, answered</h2>
+      <p>Everything you need to know about buying and selling on EchoFarms.</p>
+      <div class="help-card"><strong>Still have questions?</strong><p>Our support team replies within a few hours.</p><a href="#" class="btn btn-dark">Contact support</a></div>
+    </div>
+    <div>
+      <div class="faq-item open"><div class="faq-q">What is EchoFarms?<span class="faq-toggle"><svg class="icon" style="width:16px;height:16px"><use href="#i-minus"/></svg></span></div>
+        <p class="faq-a">EchoFarms is an online marketplace that connects farmers, vendors and buyers, letting anyone post, manage and discover agricultural products and services.</p></div>
+      <div class="faq-item"><div class="faq-q">Who can use EchoFarms?<span class="faq-toggle"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></div></div>
+      <div class="faq-item"><div class="faq-q">How do I post an ad?<span class="faq-toggle"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></div></div>
+      <div class="faq-item"><div class="faq-q">Is there a fee to use EchoFarms?<span class="faq-toggle"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></div></div>
+      <div class="faq-item"><div class="faq-q">Can I buy products directly on the platform?<span class="faq-toggle"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></div></div>
+      <div class="faq-item"><div class="faq-q">How can I make money with EchoFarms?<span class="faq-toggle"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="news">
+      <div><h2>Farming tips &amp; deals, weekly</h2><p>Join 20,000+ growers getting guides, price trends and new listings in their inbox.</p></div>
+      <div class="news-form"><span><svg class="icon"><use href="#i-mail"/></svg>Enter your email</span><a href="#" class="btn btn-lime">Subscribe</a></div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a href="#" class="logo"><span class="logo-mark"><svg class="icon"><use href="#i-leaf"/></svg></span>EchoFarms</a>
+        <p>The marketplace for farm equipment, inputs and fresh produce — built for growers and the people who supply them.</p>
+        <div class="socials"><a href="#"><svg class="icon"><use href="#i-fb"/></svg></a><a href="#"><svg class="icon"><use href="#i-in"/></svg></a><a href="#"><svg class="icon"><use href="#i-x"/></svg></a><a href="#"><svg class="icon"><use href="#i-ig"/></svg></a></div>
+      </div>
+      <div><h4>Navigation</h4><ul><li>Home</li><li>Shop</li><li>Sell</li><li>About us</li><li>Blog</li></ul></div>
+      <div><h4>Help</h4><ul><li>Customer support</li><li>Buying guide</li><li>Selling guide</li><li>Safety tips</li></ul></div>
+      <div><h4>Legal</h4><ul><li>General info</li><li>Privacy policy</li><li>Terms of service</li></ul></div>
+      <div><h4>Contact</h4><ul><li>support@echofarms.com</li><li>+233 20 000 0000</li><li>Kumasi, Ghana</li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 EchoFarms. All rights reserved.</span><span>Designed by Gloria Dedo</span></div>
+  </div>
+</footer>
+</body>
+</html>

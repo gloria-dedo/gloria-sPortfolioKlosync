@@ -8,13 +8,15 @@ export const CARD_FRAME = "aspect-[4/3] w-full overflow-hidden rounded-2xl md:ro
 export function ProjectCard({ project, priority = false }: { project: Project; priority?: boolean }) {
   return (
     <Link href={`/projects/${project.slug}`} className="group flex flex-col gap-4 md:gap-5">
-      <div className={`${CARD_FRAME} ${project.cardBg} ${project.cardHover} p-5 transition-all duration-700 ease-in-out sm:p-8 lg:p-10`}>
+      <div
+        className={`${CARD_FRAME} transition-all duration-700 ease-in-out ${project.cardFill ? "" : `${project.cardBg} ${project.cardHover} p-5 sm:p-8 lg:p-10`}`}
+      >
         <SkeletonImage
           src={project.cardImage}
           alt={project.title}
           priority={priority}
           wrapperClassName="h-full w-full"
-          className="h-full w-full object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          className={`h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03] ${project.cardFill ? "object-cover" : "object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)]"}`}
         />
       </div>
       <div className="flex items-start justify-between gap-4 px-1">

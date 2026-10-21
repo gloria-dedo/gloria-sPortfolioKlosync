@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { CAROUSEL_COLUMN } from "./CaseStudyCarousel";
-import { ArrowButton, CarouselSlides, DESKTOP_ARROW, MobileHeading, SideLabel, type CarouselItem } from "./carouselParts";
+import { ArrowButton, CarouselSlides, DESKTOP_ARROW, frameTone, MobileHeading, SideLabel, type CarouselItem } from "./carouselParts";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { useCarousel } from "@/hooks/useCarousel";
 
@@ -38,7 +38,7 @@ export function RecentWorkCarousel({ items }: { items: CarouselItem[] }) {
               <Link
                 href={`/projects/${active.slug}`}
                 aria-label={`View ${active.title}`}
-                className={`group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-white/10 transition-colors duration-700 sm:aspect-[16/9] md:rounded-3xl ${active.cardBg}`}
+                className={`group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl transition-colors duration-700 sm:aspect-[16/9] md:rounded-3xl ${frameTone(active)}`}
               >
                 <CarouselSlides items={items} index={index} inset="inset-x-3 top-3 bottom-16 sm:inset-x-10 sm:top-6 sm:bottom-20 md:inset-x-16" />
                 <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 sm:inset-x-6 sm:bottom-6">

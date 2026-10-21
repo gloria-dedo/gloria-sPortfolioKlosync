@@ -34,6 +34,10 @@ export type CaseStudySection = {
   highlights?: { label: string; text: string }[];
   /** Side-by-side text blocks, e.g. "The Challenge" and "Design Strategy" */
   columns?: { title: string; body: string }[];
+  /** Numbered list, e.g. the questions research set out to answer */
+  list?: string[];
+  /** Comparison table. Cells of "yes", "partial" or "no" render as symbols; anything else as text. */
+  table?: { columns: string[]; rows: { label: string; values: string[] }[] };
   images?: CaseStudyImage[];
 };
 
@@ -72,6 +76,8 @@ export type Project = {
   cardImage: string;
   cardBg: string;
   cardHover: string;
+  /** The card image already has its own background, so show it edge to edge with no frame colour */
+  cardFill?: boolean;
   /** Image behind the "next project" banner when this project is next */
   bannerImage: string;
   /** Screens shown on a regular project page */
@@ -117,10 +123,10 @@ export const projects: Project[] = [
     date: "2024-11",
     description:
       "My team and I developed EchoFarms, a dedicated Agriculture Ad Management Platform where vendors can easily create and manage ads, while buyers can search, filter, and purchase agricultural products with confidence. I was entrusted with designing a clean, intuitive interface for the homepage, vendor dashboard, and shop experience. I collaborated with developers and contributed to coding core pages and features, including ad posting forms, home page, shop, and search/filter functionality.",
-    cardImage: img("echoProject"),
-    cardBg: "bg-[#87A898]",
-    cardHover: "hover:bg-gradient-to-r hover:from-emerald-950 hover:to-emerald-200",
-    bannerImage: img("echoFarmcarousel"),
+    cardImage: img("echofarms-responsive"),
+    cardBg: "bg-[#0D2A1B]",
+    cardHover: "hover:bg-[#1B4630]",
+    bannerImage: img("echofarms-responsive"),
     caseStudy: {
       tagline: "An agriculture ad marketplace where vendors list farm products and buyers shop with confidence.",
       meta: [
@@ -131,7 +137,8 @@ export const projects: Project[] = [
       ],
       overview:
         "EchoFarms is an Agriculture Ad Management Platform. Vendors create and manage ads for equipment, seeds and produce, while buyers search, filter and purchase what they need. The objective was a marketplace that feels simple for vendors posting their first ad and fast for buyers who know exactly what they are looking for.",
-      cover: img("echoFarmcarousel"),
+      cover: img("echofarms-responsive"),
+      coverBg: "bg-[#0D2A1B]",
       frameBg: "bg-[#87A898]",
       sections: [
         {
@@ -156,16 +163,16 @@ export const projects: Project[] = [
           title: "Homepage & Shop",
           body: "I designed and helped build the homepage, shop and search and filter experience, bringing the most in-demand categories forward and keeping product imagery at the centre.",
           images: [
-            { src: img("ecoPrev"), alt: "EchoFarms homepage and shop screens", bg: "bg-[#A4D2D9]" },
-            { src: img("echoGrid"), alt: "EchoFarms shop, FAQ and vendor story sections", bg: "bg-[#A4D2D9]" },
+            { src: img("echofarms-hero-laptop"), alt: "EchoFarms homepage hero with product and location search", bg: "bg-[#ECE7D8]" },
+            { src: img("echofarms-full-page-overview"), alt: "Full EchoFarms homepage on desktop and mobile", bg: "bg-[#F1EDE2]" },
           ],
         },
         {
           title: "Vendor Dashboard",
           body: "The vendor dashboard puts the essentials first: a snapshot of ad performance, what is trending in the marketplace, and a clear table for creating and managing ads.",
           images: [
-            { src: img("EcoDashboard"), alt: "EchoFarms vendor dashboard overview", size: "half", bg: "bg-[#507362]" },
-            { src: img("echoLav"), alt: "EchoFarms manage ads screen", size: "half", bg: "bg-[#507362]" },
+            { src: img("echofarms-dashboard-overview"), alt: "EchoFarms vendor dashboard overview", bg: "bg-[#ECE7D8]" },
+            { src: img("echofarms-dashboard-manage-ads"), alt: "EchoFarms manage ads screen", bg: "bg-[#0D2A1B]" },
           ],
         },
         {
@@ -179,7 +186,10 @@ export const projects: Project[] = [
               body: "A calm green palette rooted in farming, generous imagery and a small set of reusable cards and form components kept the homepage, shop and dashboard consistent and made handoff to developers straightforward.",
             },
           ],
-          images: [{ src: img("echoProject"), alt: "EchoFarms landing page and product page" }],
+          images: [
+            { src: img("echofarms-mobile-trio"), alt: "EchoFarms listings, hero and vendor sections on three phones", size: "half", bg: "bg-[#C9E24B]" },
+            { src: img("echofarms-mobile-screens"), alt: "EchoFarms mobile screens from hero to footer", size: "half", bg: "bg-[#123522]" },
+          ],
         },
       ],
     },
@@ -318,70 +328,143 @@ export const projects: Project[] = [
     slug: "mentor-hub",
     title: "Mentor Hub",
     heading: "Mentor Hub",
-    subtitle: "Mentorship platform",
+    subtitle: "AI-matched mentorship platform",
     tag: "Education",
     category: "UI/UX Design",
     date: "2025-03",
     description:
       "Mentor Hub is a web-based mentorship platform that connects mentors and mentees globally. The app features real-time video and voice calls, in-app messaging, smart AI matching, appointment scheduling, personalized dashboards, and support for both free and paid mentorship programs.",
-    cardImage: img("MentorFirstPrototype"),
+    cardImage: img("mentorhub-landing-dashboard"),
     cardBg: "bg-[#BCCFF3]",
     cardHover: "",
-    bannerImage: img("MentorFirstPrototype"),
+    cardFill: true,
+    bannerImage: img("mentorhub-landing-dashboard"),
     caseStudy: {
-      tagline: "A global mentorship platform that connects mentees with the right mentors.",
+      tagline: "A mentorship platform that matches mentees with the right mentor in minutes, then keeps the whole relationship in one place.",
       meta: [
-        { label: "Role", value: "UI/UX Design" },
-        { label: "Industry", value: "Education" },
+        { label: "Role", value: "Product Designer" },
+        { label: "Industry", value: "Education & Careers" },
         { label: "Platform", value: "Web app" },
-        { label: "Features", value: "Calls, chat, AI matching" },
+        { label: "Features", value: "AI matching, calls, scheduling" },
       ],
       overview:
-        "Mentor Hub connects mentors and mentees around the world. It brings real-time video and voice calls, in-app messaging, smart AI matching, appointment scheduling and personalised dashboards together, and supports both free and paid mentorship programmes.",
-      cover: img("MentorFirstPrototype"),
-      frameBg: "bg-[#BCCFF3]",
+        "Mentor Hub connects mentors and mentees around the world. Mentees answer six quick questions and get AI-matched with mentors who fit their field, goals, language and time zone. From there, video and voice calls, in-app messaging, scheduling, shared resources and progress tracking all live in one place, for both free and paid mentorship programmes.",
+      cover: img("mentorhub-landing-dashboard"),
+      coverBg: "bg-transparent",
+      frameBg: "bg-transparent",
       sections: [
+        {
+          title: "Problem Statement",
+          body: "Early-career professionals, students and career switchers know a mentor would help, but finding one is slow and uncertain. They browse long directories, send cold messages that go unanswered, and struggle to judge who is actually a good fit. When a match does happen, the relationship is scattered across email, calendar links, video tools and shared drives, so momentum fades. Mentors face the mirror image: unclear requests, scheduling back-and-forth across time zones, and no simple way to run or get paid for a programme.",
+        },
+        {
+          title: "What We're Solving",
+          body: "Mentor Hub set out to make mentorship easy to start and easy to keep going, for both sides.",
+          list: [
+            "Match mentees with a relevant mentor in minutes, instead of weeks of browsing and cold messaging.",
+            "Make fit visible: field, goals, language and availability, with the reasons behind every match.",
+            "Keep calls, chat, scheduling and resources in one place, so no relationship depends on five separate tools.",
+            "Work across time zones and languages from the very first step, for genuinely global mentorship.",
+            "Support free and paid programmes, giving mentors simple tools to manage mentees, sessions and payments.",
+            "Show progress on goals, so mentees and mentors can see that the time together is paying off.",
+          ],
+        },
         {
           title: "Users & Goals",
           body: "Mentorship only works when the right people find each other, so the product is built around matching and staying connected.",
           highlights: [
             {
               label: "Mentees",
-              text: "Want guidance from experienced people in their field, but are often unsure who to reach out to or how.",
+              text: "Students, junior professionals, career switchers and freelancers who want guidance from someone a few steps ahead, without the awkwardness of cold outreach.",
             },
             {
               label: "Mentors",
-              text: "Want to share what they know, manage sessions easily and, for paid programmes, run mentorship sustainably.",
+              text: "Experienced professionals who want to share what they know, manage sessions easily and, for paid programmes, run mentorship sustainably.",
             },
             {
               label: "Matching",
-              text: "Smart AI matching pairs mentees with relevant mentors, so nobody has to sift through endless profiles.",
+              text: "Smart AI matching pairs mentees with relevant mentors, so nobody has to sift through endless profiles to find a fit.",
             },
           ],
         },
         {
-          title: "Landing & Onboarding",
-          body: "The landing page speaks directly to both audiences with two clear paths, find a mentor or become one, and a welcoming sign-in flow.",
-          images: [
-            { src: img("mentor1"), alt: "Mentor Hub landing page", bg: "bg-[#262226]" },
-            { src: img("mentor2"), alt: "Mentor Hub sign in screen", size: "half" },
-            { src: img("mentor4"), alt: "Mentor Hub mentor profile", size: "half" },
+          title: "Research",
+          body: "I spoke to both sides of the relationship before designing anything. My research focused on these questions:",
+          list: [
+            "How do mentees find mentors today, and where does that search break down?",
+            "What makes a mentee trust that a mentor is the right fit before the first session?",
+            "Which details matter most for a good match: field, goals, seniority, language, or time zone?",
+            "How do mentors decide who to say yes to, and how much admin are they willing to take on?",
+            "Which tools do mentors and mentees juggle today for calls, chat, scheduling and files?",
+            "Why do mentorships stall after the first few sessions?",
+            "What would make paying for mentorship feel worthwhile to mentees, and fair to mentors?",
+            "How do time zones and language affect who people feel comfortable being mentored by?",
           ],
         },
         {
-          title: "Dashboards",
-          body: "Personalised dashboards track mentorship progress, upcoming sessions and notifications at a glance, with a full list of mentors and their status.",
-          images: [{ src: img("mentor3"), alt: "Mentor Hub dashboard" }],
+          title: "What Existing Options Miss",
+          body: "I reviewed the ways people find and run mentorship today. Each solves part of the problem, but none brings guided matching and the whole relationship together in one product.",
+          table: {
+            columns: ["Mentor Hub", "Mentor directories", "Paid marketplaces", "Professional networks", "DIY tool stack"],
+            rows: [
+              { label: "Guided onboarding & matching", values: ["yes", "no", "partial", "no", "no"] },
+              { label: "Language & time zone aware", values: ["yes", "partial", "partial", "no", "no"] },
+              { label: "Video & voice calls built in", values: ["yes", "partial", "partial", "no", "partial"] },
+              { label: "In-app messaging", values: ["yes", "partial", "yes", "yes", "partial"] },
+              { label: "Scheduling & calendar", values: ["yes", "partial", "yes", "no", "yes"] },
+              { label: "Shared resources", values: ["yes", "no", "partial", "no", "partial"] },
+              { label: "Goals & progress tracking", values: ["yes", "no", "partial", "no", "no"] },
+              { label: "Free and paid programmes", values: ["yes", "partial", "partial", "no", "partial"] },
+              { label: "Mentor analytics & payments", values: ["yes", "no", "partial", "no", "no"] },
+            ],
+          },
+        },
+        {
+          title: "Information Architecture",
+          body: "A public site that turns visitors into mentees or mentors, and two connected spaces built around each side's jobs, all sitting on shared matching, scheduling, calling and payment systems.",
+          images: [{ src: img("mentorhub-ia"), alt: "Mentor Hub information architecture", bg: "bg-[#FAFAF7]" }],
+        },
+        {
+          title: "Low-Fidelity Wireframes",
+          body: "I explored the onboarding, the mentor dashboard and scheduling in low fidelity first, to agree on hierarchy and flow before visual design. The annotations capture the decision behind each block.",
+          images: [
+            { src: img("mentorhub-wireframe-onboarding"), alt: "Annotated wireframes of mentee onboarding and matching", bg: "bg-[#FAFAF7]" },
+            { src: img("mentorhub-wireframe-dashboard"), alt: "Annotated wireframe of the mentor dashboard", bg: "bg-[#FAFAF7]" },
+            { src: img("mentorhub-wireframe-appointments"), alt: "Annotated wireframe of appointments, meetings and resources", bg: "bg-[#FAFAF7]" },
+          ],
+        },
+        {
+          title: "Mentee Onboarding",
+          body: "Six questions, one per screen: career level, field, goals, language, time zone and availability, and session type. Each step is quick to answer with chips and pickers, and can be skipped. The walkthrough below plays through the whole flow.",
+          images: [
+            { src: img("mentorhub-onboarding-poster"), alt: "Walkthrough of the Mentor Hub mentee onboarding", video: "/videos/mentorhub-onboarding.mp4" },
+            { src: img("mentorhub-onboarding-career"), alt: "Career level step", size: "half" },
+            { src: img("mentorhub-onboarding-field"), alt: "Field of interest step", size: "half" },
+            { src: img("mentorhub-onboarding-goals"), alt: "Goals step", size: "half" },
+            { src: img("mentorhub-onboarding-language"), alt: "Preferred language step", size: "half" },
+            { src: img("mentorhub-onboarding-availability"), alt: "Time zone and availability step", size: "half" },
+            { src: img("mentorhub-onboarding-sessions"), alt: "Session type step", size: "half" },
+          ],
+        },
+        {
+          title: "Landing Page & Mentor Dashboard",
+          body: "The landing page speaks to both audiences with two clear paths, find a mentor or become one. Inside, the mentor dashboard brings mentees, revenue, programme health, reviews, today's schedule and notifications onto one screen.",
+          images: [{ src: img("mentorhub-landing-dashboard"), alt: "Mentor Hub landing page and mentor dashboard" }],
+        },
+        {
+          title: "Resources, Appointments & Meetings",
+          body: "Mentors share guides, recordings and documents with visibility controls, and manage every session from an agenda beside a full calendar, with meeting links attached.",
+          images: [{ src: img("mentorhub-resources-appointments"), alt: "Mentor Hub resources and appointments screens" }],
         },
         {
           columns: [
             {
               title: "The Challenge",
-              body: "Mentorship covers calls, messaging, scheduling and payments. Bringing all of that together without overwhelming first-time users was the core design problem.",
+              body: "Mentorship covers matching, calls, messaging, scheduling and payments. Bringing all of that together without overwhelming first-time mentees, or burying mentors in admin, was the core design problem.",
             },
             {
               title: "Design Strategy",
-              body: "A confident blue palette signals trust, while progressive disclosure keeps each screen focused on one task. Real faces and friendly copy keep the platform human.",
+              body: "Lead with a short, skippable onboarding that powers explainable AI matches, then keep the relationship in one place. A confident blue palette signals trust, progressive disclosure keeps each screen focused on one job, and real faces keep the platform human.",
             },
           ],
         },

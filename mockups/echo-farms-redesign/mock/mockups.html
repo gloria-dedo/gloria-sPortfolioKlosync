@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EchoFarms mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Plus Jakarta Sans", sans-serif; background: #ddd; -webkit-font-smoothing: antialiased; }
+  .board { position: relative; width: 1600px; height: 1000px; overflow: hidden; margin: 0 auto 40px; }
+  .board.solo { margin: 0; }
+  .label { position: absolute; left: 72px; top: 64px; z-index: 5; }
+  .label small { display: block; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .6; }
+  .label h2 { font-family: "Plus Jakarta Sans", sans-serif; font-size: 34px; font-weight: 600; letter-spacing: -0.02em; margin-top: 6px; }
+  .logo { position: absolute; right: 72px; top: 64px; display: flex; align-items: center; gap: 10px; font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; font-size: 22px; z-index: 5; }
+  .logo i { width: 32px; height: 32px; border-radius: 10px; background: #c9e24b; display: grid; place-items: center; color: #0d2a1b; }
+  .logo svg { width: 18px; height: 18px; }
+
+  /* screen viewport: an image of the full page, shifted to data-y */
+  .view { position: relative; overflow: hidden; background: #fff; }
+  .view img { position: absolute; left: 0; top: 0; width: 100%; display: block; }
+
+  /* ---------- Laptop ---------- */
+  .laptop { position: absolute; }
+  .lid { background: #0c0c0d; border-radius: 22px 22px 6px 6px; padding: 18px 18px 26px; box-shadow: inset 0 0 0 2px #2c2c30, 0 0 0 1.5px #77777c; position: relative; }
+  .lid::before { content: ""; position: absolute; top: 7px; left: 50%; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #26262a; }
+  .browser { border-radius: 6px; overflow: hidden; background: #fff; }
+  .bar { height: 34px; background: #f1f0ec; border-bottom: 1px solid #e2e0d8; display: flex; align-items: center; padding: 0 14px; gap: 7px; position: relative; }
+  .bar b { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+  .bar b:nth-child(2) { background: #febc2e; } .bar b:nth-child(3) { background: #28c840; }
+  .url { position: absolute; left: 50%; transform: translateX(-50%); width: 36%; height: 22px; border-radius: 7px; background: #fff; border: 1px solid #e2e0d8; font-size: 11px; color: #6b7570; display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .url svg { width: 10px; height: 10px; }
+  .base { position: relative; height: 22px; margin: 0 -9%; background: linear-gradient(180deg, #e9e9ec 0%, #c9c9ce 45%, #8e8e94 100%); border-radius: 2px 2px 22px 22px / 2px 2px 100% 100%; box-shadow: 0 30px 60px -10px rgba(0,0,0,.45); }
+  .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 15%; height: 9px; transform: translateX(-50%); background: linear-gradient(180deg, #a5a5ab, #c4c4c9); border-radius: 0 0 12px 12px; }
+
+  /* ---------- Phone ---------- */
+  .phone { position: absolute; background: #0b0b0c; padding: 12px; border-radius: 58px; box-shadow: 0 0 0 2px #5b5b60, 0 0 0 4px #1c1c1f, inset 0 0 0 2px #2b2b2f, 0 50px 90px -30px rgba(0,0,0,.55); }
+  .phone .screen { position: relative; border-radius: 46px; overflow: hidden; }
+  .phone .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 26%; height: 28px; border-radius: 20px; background: #000; z-index: 3; }
+  .status { height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 6px 28px 0 36px; font-weight: 600; font-size: 15px; }
+  .status .icons { display: flex; gap: 6px; align-items: center; }
+  .status svg { height: 12px; }
+  .home-ind { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 36%; height: 5px; border-radius: 3px; background: rgba(0,0,0,.85); z-index: 3; }
+  .home-ind.light { background: rgba(255,255,255,.9); }
+
+  /* ---------- Flat cards ---------- */
+  .card { position: absolute; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.45); }
+</style>
+</head>
+<body>
+
+<!-- 1. Hero on laptop -->
+<section class="board" id="b1" style="background: radial-gradient(900px 500px at 15% 0%, #f9f7ef, transparent 70%), radial-gradient(700px 500px at 100% 100%, #d9e5b4, transparent 70%), #ece7d8; color:#0d2a1b">
+  <div class="label"><small>EchoFarms · Landing page</small><h2>Marketplace hero</h2></div>
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><use href="#leaf"/></svg></i>EchoFarms</div>
+  <div class="laptop" style="left:250px; top:168px; width:1100px" data-laptop data-y="0"></div>
+</section>
+
+<!-- 2. Responsive: laptop + phone -->
+<section class="board" id="b2" style="background: radial-gradient(1000px 600px at 80% 0%, #24603d, transparent 65%), #0d2a1b; color:#fff">
+  <div class="label"><small>Responsive</small><h2>Desktop &amp; mobile</h2></div>
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><use href="#leaf"/></svg></i>EchoFarms</div>
+  <div class="laptop" style="left:150px; top:200px; width:1000px" data-laptop data-y="1778"></div>
+  <div class="phone" style="left:1130px; top:250px; width:330px" data-phone data-y="0" data-theme="dark"></div>
+</section>
+
+<!-- 3. Three phones -->
+<section class="board" id="b3" style="background: radial-gradient(800px 600px at 50% 120%, #e4f28c, transparent 70%), #c9e24b; color:#0d2a1b">
+  <div class="label"><small>Mobile</small><h2>Browse, sell, connect</h2></div>
+  <div class="logo"><i style="background:#0d2a1b;color:#c9e24b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><use href="#leaf"/></svg></i>EchoFarms</div>
+  <div class="phone" style="left:300px; top:250px; width:320px" data-phone data-y="2344" data-theme="cream"></div>
+  <div class="phone" style="left:640px; top:150px; width:320px" data-phone data-y="0" data-theme="dark"></div>
+  <div class="phone" style="left:980px; top:250px; width:320px" data-phone data-y="3145" data-theme="paper"></div>
+</section>
+
+<!-- 4. Full page overview -->
+<section class="board" id="b4" style="height:2400px; background:#f1ede2; color:#0d2a1b">
+  <div class="label"><small>Full page</small><h2>Desktop &amp; mobile overview</h2></div>
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><use href="#leaf"/></svg></i>EchoFarms</div>
+  <div class="card" style="left:235px; top:170px; width:560px; border-radius:16px" data-browser data-y="0" data-full></div>
+  <div class="card" style="left:855px; top:170px; width:240px" data-flat data-y="0" data-h="3596"></div>
+  <div class="card" style="left:1125px; top:170px; width:240px" data-flat data-y="3597" data-h="3596"></div>
+</section>
+
+<!-- 6. Dashboard overview on laptop -->
+<section class="board" id="b6" style="background: radial-gradient(900px 500px at 85% 0%, #f9f7ef, transparent 70%), radial-gradient(700px 500px at 0% 100%, #d9e5b4, transparent 70%), #ece7d8; color:#0d2a1b">
+  <div class="label"><small>Vendor dashboard</small><h2>Performance at a glance</h2></div>
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><use href="#leaf"/></svg></i>EchoFarms</div>
+  <div class="laptop" style="left:250px; top:168px; width:1100px" data-laptop data-src="shots/dashboard-full.png" data-y="0"></div>
+</section>
+
+<!-- 7. Manage ads on laptop -->
+<section class="board" id="b7" style="background: radial-gradient(1000px 600px at 20% 0%, #24603d, transparent 65%), #0d2a1b; color:#fff">
+  <div class="label"><small>Vendor dashboard</small><h2>Manage every listing</h2></div>
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><use href="#leaf"/></svg></i>EchoFarms</div>
+  <div class="laptop" style="left:250px; top:168px; width:1100px" data-laptop data-src="shots/manage-ads-full.png" data-y="0"></div>
+</section>
+
+<!-- 5. Mobile screens strip -->
+<section class="board" id="b5" style="background: radial-gradient(900px 600px at 0% 0%, #2b6a45, transparent 60%), #123522; color:#fff">
+  <div class="label"><small>Mobile screens</small><h2>Every section, thumb-friendly</h2></div>
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><use href="#leaf"/></svg></i>EchoFarms</div>
+  <div class="card" style="left:85px;  top:230px; width:260px" data-flat data-y="0"></div>
+  <div class="card" style="left:375px; top:300px; width:260px" data-flat data-y="1541"></div>
+  <div class="card" style="left:665px; top:200px; width:260px" data-flat data-y="3155"></div>
+  <div class="card" style="left:955px; top:280px; width:260px" data-flat data-y="4387"></div>
+  <div class="card" style="left:1245px; top:220px; width:260px" data-flat data-y="6024"></div>
+</section>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+</defs></svg>
+
+<script>
+  const DESK = "shots/desktop-full.png", MOB = "shots/mobile-full.png";
+  const DESK_W = 1440, MOB_W = 390, MOB_H = 844, DESK_H = 5513, MOB_FULL = 7133;
+  const themes = { dark: ["#0d2a1b", "#fff"], cream: ["#f6f3ea", "#0f2018"], paper: ["#fffdf8", "#0f2018"] };
+
+  // A viewport onto the full-page render: width w, height h, page offset y (in page px).
+  function view(src, pageW, w, h, y) {
+    const v = document.createElement("div");
+    v.className = "view";
+    v.style.width = w + "px"; v.style.height = h + "px";
+    const img = new Image(); img.src = src;
+    img.style.top = (-y * w / pageW) + "px";
+    v.appendChild(img);
+    return v;
+  }
+  function browserBar() {
+    const b = document.createElement("div"); b.className = "bar";
+    b.innerHTML = '<b></b><b></b><b></b><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>echofarms.com</span>';
+    return b;
+  }
+  const statusIcons = '<span class="icons"><svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.5c2.3 0 4.4.9 6 2.4l1.2-1.2A10.3 10.3 0 0 0 8 .8 10.3 10.3 0 0 0 .8 3.7L2 4.9a8.5 8.5 0 0 1 6-2.4Zm0 3.4c1.4 0 2.6.5 3.6 1.4l1.2-1.2A7 7 0 0 0 8 4.2a7 7 0 0 0-4.8 1.9l1.2 1.2c1-.9 2.2-1.4 3.6-1.4ZM8 9.3c-.6 0-1.2.2-1.6.6L8 11.5l1.6-1.6c-.4-.4-1-.6-1.6-.6Z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity=".45"/></svg></span>';
+
+  document.querySelectorAll("[data-laptop]").forEach((el) => {
+    const w = parseFloat(el.style.width) - 36;          // lid padding
+    const lid = document.createElement("div"); lid.className = "lid";
+    const br = document.createElement("div"); br.className = "browser";
+    br.append(browserBar(), view(el.dataset.src || DESK, DESK_W, w, Math.round(w * 0.625) - 34, +el.dataset.y));
+    lid.appendChild(br);
+    const base = document.createElement("div"); base.className = "base";
+    el.append(lid, base);
+  });
+
+  document.querySelectorAll("[data-phone]").forEach((el) => {
+    const w = parseFloat(el.style.width) - 24;
+    const [bg, fg] = themes[el.dataset.theme];
+    const scr = document.createElement("div"); scr.className = "screen"; scr.style.background = bg;
+    const st = document.createElement("div"); st.className = "status"; st.style.color = fg;
+    st.innerHTML = "<span>9:41</span>" + statusIcons;
+    const sb = 50, h = Math.round(w * MOB_H / MOB_W);
+    const island = document.createElement("div"); island.className = "island";
+    const ind = document.createElement("div"); ind.className = "home-ind" + (el.dataset.theme === "dark" ? " light" : "");
+    scr.append(island, st, view(MOB, MOB_W, w, h - sb, +el.dataset.y), ind);
+    el.appendChild(scr);
+  });
+
+  document.querySelectorAll("[data-flat]").forEach((el) => {
+    const w = parseFloat(el.style.width);
+    const pageH = +(el.dataset.h || MOB_H);
+    el.appendChild(view(MOB, MOB_W, w, Math.round(w * pageH / MOB_W), +el.dataset.y));
+  });
+
+  document.querySelectorAll("[data-browser]").forEach((el) => {
+    const w = parseFloat(el.style.width);
+    el.append(browserBar(), view(DESK, DESK_W, w, Math.round(w * DESK_H / DESK_W), 0));
+  });
+
+  // ?b=b3 renders a single board at the top-left for capture
+  const only = new URLSearchParams(location.search).get("b");
+  if (only) document.querySelectorAll(".board").forEach((b) => b.id === only ? b.classList.add("solo") : b.remove());
+</script>
+</body>
+</html>

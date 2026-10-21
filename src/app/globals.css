@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* HeroUI: only what its Skeleton needs. Its full stylesheet would restyle the whole site. */
+@import "@heroui/styles/utilities";
+@import "@heroui/styles/variants";
+@import "@heroui/styles/themes/shared/theme.css";
+@import "@heroui/styles/themes/default/variables.css" layer(theme);
+@import "@heroui/styles/components/skeleton.css" layer(components);
+
 @theme inline {
   /* Jost for reading, Alatsi for headings, Anton for condensed display titles, Rubik for accents */
   --font-sans: var(--f-jost), ui-sans-serif, system-ui, sans-serif;
@@ -14,6 +21,11 @@ html,
 body {
   background-color: #262226;
   color: #fff;
+}
+
+/* Skeleton tint matched to the site's warm greys (HeroUI's dark theme is applied on <html>) */
+[data-theme="dark"] {
+  --surface-tertiary: #4a434a;
 }
 
 body {
@@ -75,17 +87,23 @@ body {
   animation: spin-slow 20s linear infinite reverse;
 }
 
-/* Scroll reveal: toggled by <ScrollReveal /> */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-  will-change: opacity, transform;
+/*
+ * Scroll reveal: sections fade up as they scroll into view. Driven purely by CSS, so content can
+ * never get stuck invisible after a page change; browsers without scroll timelines show it as-is.
+ */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 }
 
-.scroll-reveal.scrolled {
-  opacity: 1;
-  transform: translateY(0);
+@supports (animation-timeline: view()) {
+  .scroll-reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
 }
 
 /* Scrolling text band on case study pages */

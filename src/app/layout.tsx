@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Alatsi, Anton, Jost, Miss_Fajardose, Rubik } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Navbar } from "@/components/layout/Navbar";
-import { ScrollReveal } from "@/components/layout/ScrollReveal";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import "./globals.css";
 
@@ -21,13 +20,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const fonts = [jost, rubik, alatsi, anton, fajardose].map((font) => font.variable).join(" ");
 
   return (
-    <html lang="en" className={fonts}>
+    <html lang="en" data-theme="dark" className={fonts}>
       <body>
         <NextTopLoader color="#FF99FF" height={3} showSpinner={false} shadow="0 0 10px #FF99FF,0 0 5px #FF99FF" />
         <Navbar />
         {children}
         <WhatsAppButton />
-        <ScrollReveal />
       </body>
     </html>
   );

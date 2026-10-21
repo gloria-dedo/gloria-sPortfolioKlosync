@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowButton, CarouselSlides, DESKTOP_ARROW, MobileHeading, SideLabel, type CarouselItem } from "./carouselParts";
+import { ArrowButton, CarouselSlides, DESKTOP_ARROW, frameTone, MobileHeading, SideLabel, type CarouselItem } from "./carouselParts";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { useCarousel } from "@/hooks/useCarousel";
 
@@ -33,7 +33,7 @@ export function CaseStudyCarousel({ items }: { items: CarouselItem[] }) {
             <Link
               href={`/projects/${active.slug}`}
               aria-label={`Read the ${active.title} case study`}
-              className={`group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-white/10 transition-colors duration-700 sm:aspect-[16/9] md:rounded-3xl ${active.cardBg}`}
+              className={`group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl transition-colors duration-700 sm:aspect-[16/9] md:rounded-3xl ${frameTone(active)}`}
             >
               <CarouselSlides items={items} index={index} inset="inset-3 sm:inset-5 md:inset-7" />
             </Link>

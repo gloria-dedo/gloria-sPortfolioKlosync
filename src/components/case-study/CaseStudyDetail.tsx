@@ -63,6 +63,54 @@ function Highlights({ items }: { items: NonNullable<CaseStudySection["highlights
   );
 }
 
+const CELL_SYMBOLS: Record<string, { mark: string; label: string; tone: string }> = {
+  yes: { mark: "✓", label: "Yes", tone: "text-[#FF99FF]" },
+  partial: { mark: "◐", label: "Partly", tone: "text-white/60" },
+  no: { mark: "—", label: "No", tone: "text-white/30" },
+};
+
+/** Feature comparison; the first value column is this project and is highlighted. */
+function ComparisonTable({ table }: { table: NonNullable<CaseStudySection["table"]> }) {
+  return (
+    <div className="overflow-x-auto rounded-2xl border border-white/10 [scrollbar-width:thin]">
+      <table className="w-full min-w-[640px] border-collapse font-sans text-sm">
+        <thead>
+          <tr className="border-b border-white/10">
+            <th className="px-4 py-3 text-left font-semibold text-white/60">Capability</th>
+            {table.columns.map((column, i) => (
+              <th key={column} className={`px-3 py-3 text-center font-semibold ${i === 0 ? "bg-[#FF99FF]/10 text-[#FF99FF]" : "text-white/80"}`}>
+                {column}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map(({ label, values }) => (
+            <tr key={label} className="border-b border-white/5 last:border-0">
+              <td className="px-4 py-3 text-white/85">{label}</td>
+              {values.map((value, i) => {
+                const symbol = CELL_SYMBOLS[value];
+                return (
+                  <td key={i} className={`px-3 py-3 text-center ${i === 0 ? "bg-[#FF99FF]/10" : ""}`}>
+                    {symbol ? (
+                      <span className={`text-base font-semibold ${symbol.tone}`} aria-label={symbol.label} title={symbol.label}>
+                        {symbol.mark}
+                      </span>
+                    ) : (
+                      <span className="text-white/70">{value}</span>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="border-t border-white/10 px-4 py-3 font-sans text-xs text-white/50">✓ Yes · ◐ Partly · — No</p>
+    </div>
+  );
+}
+
 function Section({ section, frameBg }: { section: CaseStudySection; frameBg: string }) {
   const intro = (section.title || section.body) && (
     <div className="flex flex-col gap-3">
@@ -81,6 +129,19 @@ function Section({ section, frameBg }: { section: CaseStudySection; frameBg: str
       ) : (
         intro
       )}
+
+      {section.list && (
+        <ol className="grid gap-x-10 gap-y-4 md:grid-cols-2">
+          {section.list.map((item, i) => (
+            <li key={item} className="flex gap-4 border-t border-white/10 pt-4">
+              <span className="font-anton text-2xl leading-none text-[#FF99FF]">{String(i + 1).padStart(2, "0")}</span>
+              <p className="font-sans text-sm leading-relaxed text-white/85 md:text-base">{item}</p>
+            </li>
+          ))}
+        </ol>
+      )}
+
+      {section.table && <ComparisonTable table={section.table} />}
 
       {section.columns && (
         <div className="grid gap-8 md:grid-cols-2 md:gap-10">

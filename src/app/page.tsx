@@ -8,13 +8,14 @@ import { Footer } from "@/components/layout/Footer";
 import type { Project } from "@/data/projects";
 import { getCaseStudies, getOtherProjects } from "@/lib/projects";
 
-const toItem = ({ slug, title, subtitle, tag, cardBg }: Project, image: string): CarouselItem => ({
+const toItem = ({ slug, title, subtitle, tag, cardBg, cardFill }: Project, image: string): CarouselItem => ({
   slug,
   title,
   subtitle,
   tag,
   cardBg,
   image,
+  fill: cardFill,
 });
 
 export default async function HomePage() {

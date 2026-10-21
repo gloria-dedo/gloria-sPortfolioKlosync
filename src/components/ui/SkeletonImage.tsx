@@ -14,7 +14,10 @@ type SkeletonImageProps = {
   priority?: boolean;
 };
 
-/** An image that shows a pulsing skeleton over its container until it has loaded. */
+/**
+ * An image with a shimmering skeleton behind it while it downloads. The image is never hidden by
+ * JavaScript, so it appears as soon as the browser has it, even before React has loaded.
+ */
 export function SkeletonImage({
   src,
   alt = "",
@@ -27,7 +30,7 @@ export function SkeletonImage({
 
   return (
     <div className={`${position} ${wrapperClassName}`}>
-      {!loaded && <Skeleton className="absolute inset-0 rounded-[inherit] bg-gray-400/30" />}
+      {!loaded && <Skeleton className="absolute inset-0 z-0 rounded-[inherit]" />}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={ref}
@@ -38,7 +41,7 @@ export function SkeletonImage({
         decoding="async"
         onLoad={onLoad}
         onError={onError}
-        className={`${className} transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
+        className={`relative z-[1] ${className}`}
       />
     </div>
   );

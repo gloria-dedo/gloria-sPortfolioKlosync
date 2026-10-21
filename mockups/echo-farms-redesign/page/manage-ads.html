@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EchoFarms — Manage ads</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="dash.css" />
+<style>
+  .layout > .card { overflow: hidden; }
+  .layout td, .layout th { padding-left: 12px; padding-right: 12px; }
+  .layout .ad-cell strong { max-width: 210px; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 16px; align-items: start; }
+  .tabs { display: flex; gap: 26px; padding: 0 22px; border-bottom: 1px solid var(--line); }
+  .tabs span { padding: 18px 0 14px; font-weight: 600; font-size: 14px; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; display: flex; gap: 8px; align-items: center; }
+  .tabs span b { font-size: 11.5px; font-weight: 600; background: var(--bg); color: var(--muted); padding: 1px 8px; border-radius: 999px; }
+  .tabs span.on { color: var(--ink); border-color: var(--forest); }
+  .tabs span.on b { background: var(--forest); color: var(--lime); }
+  .toolbar { display: flex; gap: 10px; align-items: center; padding: 16px 22px; }
+  .toolbar .search { width: 240px; height: 38px; border-radius: 10px; background: var(--bg); border-color: transparent; }
+  .toolbar .chip .icon:last-child { margin-left: 2px; }
+  .toolbar .grow { flex: 1; }
+  .toolbar .sel { color: var(--muted); font-size: 13px; font-weight: 500; white-space: nowrap; }
+  td.cb, th.cb { width: 44px; padding-right: 0; color: #c9c3b2; }
+  td.cb .icon, th.cb .icon { width: 18px; height: 18px; }
+  tr.selected td { background: #f8fbef; }
+  tr.selected td.cb { color: var(--forest); }
+  td.more { color: var(--faint); width: 40px; }
+  .muted { color: var(--muted); }
+  .foot { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  .pages { display: flex; gap: 6px; }
+  .pages span { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; font-weight: 600; border: 1px solid var(--line); color: var(--ink); }
+  .pages span.on { background: var(--forest); border-color: var(--forest); color: #fff; }
+
+  .detail { overflow: hidden; }
+  .detail-img { position: relative; height: 200px; }
+  .detail-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% center; }
+  .detail-img .pill { position: absolute; left: 14px; top: 14px; background: #fff; }
+  .detail-img .plan { position: absolute; right: 14px; top: 14px; background: #fff; }
+  .detail-body { padding: 18px 20px 20px; }
+  .detail-body small.id { color: var(--faint); font-size: 12px; }
+  .detail-body h3 { font-size: 17px; font-weight: 700; margin: 4px 0 6px; }
+  .detail-price { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; }
+  .detail-price small { font-size: 13px; color: var(--faint); font-weight: 500; letter-spacing: 0; }
+  .detail-loc { display: flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .detail-loc .icon { width: 15px; height: 15px; }
+  .mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 18px 0; border: 1px solid var(--line); border-radius: 14px; }
+  .mini-stats div { padding: 12px; text-align: center; }
+  .mini-stats div + div { border-left: 1px solid var(--line); }
+  .mini-stats strong { display: block; font-size: 17px; font-weight: 700; }
+  .mini-stats span { font-size: 12px; color: var(--muted); }
+  .bars-head { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600; margin-bottom: 10px; }
+  .bars-head span { color: var(--faint); font-weight: 500; }
+  .bars { display: flex; align-items: end; gap: 8px; height: 64px; }
+  .bars i { flex: 1; border-radius: 6px; background: var(--leaf-soft); }
+  .bars i.hi { background: var(--forest); }
+  .days { display: flex; gap: 8px; margin-top: 6px; }
+  .days span { flex: 1; text-align: center; font-size: 11px; color: var(--faint); }
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 18px; }
+  .actions .btn { height: 42px; font-size: 13.5px; }
+  .actions .wide { grid-column: 1 / -1; }
+  .delete { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 12px; color: var(--red); font-weight: 600; font-size: 13px; }
+  .delete .icon { width: 15px; height: 15px; }
+</style>
+</head>
+<body data-page="ads">
+<main class="main">
+  <div class="page-head">
+    <div><h1>Manage ads</h1><p>Create, edit and track every listing in one place.</p></div>
+    <div class="head-actions"><span class="btn btn-outline" data-icon="download">Export</span></div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <div class="tabs"><span class="on">All ads <b>64</b></span><span>Published <b>48</b></span><span>Drafts <b>6</b></span><span>Unpublished <b>10</b></span></div>
+      <div class="toolbar" id="toolbar"></div>
+      <table>
+        <thead><tr><th class="cb" data-icon="checkbox"></th><th>Ad</th><th>Price</th><th>Views</th><th>Status</th><th>Plan</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="foot"><span>Showing 1–8 of 64 ads</span><div class="pages"><span class="on">1</span><span>2</span><span>3</span><span>…</span><span>8</span></div></div>
+    </div>
+
+    <div class="card detail">
+      <div class="detail-img"><img src="img/fertilizer.webp" alt=""><span class="pill ok">Published</span><span class="plan basic">Basic</span></div>
+      <div class="detail-body">
+        <small class="id">ID EF-2043 · Updated 1 day ago</small>
+        <h3>All-purpose fertilizer — heavy-duty crop feeding, 25kg</h3>
+        <div class="detail-price">GH₵ 450 <small>/ bag</small></div>
+        <div class="detail-loc" data-icon="pin">East Legon, Greater Accra</div>
+        <div class="mini-stats"><div><strong>1,284</strong><span>Views</span></div><div><strong>46</strong><span>Enquiries</span></div><div><strong>92</strong><span>Saves</span></div></div>
+        <div class="bars-head">Views this week <span>+24% vs last week</span></div>
+        <div class="bars"><i style="height:38%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:61%"></i><i style="height:84%"></i><i class="hi" style="height:100%"></i></div>
+        <div class="days"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+        <div class="actions">
+          <span class="btn btn-lime wide" data-icon="rocket">Boost to Enterprise</span>
+          <span class="btn btn-dark" data-icon="edit">Edit ad</span>
+          <span class="btn btn-outline" data-icon="eye">Preview</span>
+        </div>
+        <div class="delete" data-icon="trash">Delete ad</div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="dash.js"></script>
+<script>
+  document.getElementById("toolbar").innerHTML =
+    `<div class="search">${icon("search")}<span>Search by title or ID</span></div>
+     <span class="chip">${icon("filter")}Category${icon("chevron")}</span>
+     <span class="chip">${icon("pin")}Location${icon("chevron")}</span>
+     <span class="chip">Plan${icon("chevron")}</span>
+     <span class="grow"></span><span class="sel">1 selected</span>`;
+  const ads = [
+    ["tractor", "Massey Ferguson 385 4WD tractor", "EF-2041", "Farm machinery", "185,000", "2,940", "ok", "Published", "ent", "Enterprise"],
+    ["solar", "300W solar panel irrigation kit", "EF-2042", "Solar energy", "6,800", "1,912", "ok", "Published", "ent", "Enterprise"],
+    ["fertilizer", "All-purpose fertilizer, 25kg", "EF-2043", "Crop inputs", "450", "1,284", "ok", "Published", "basic", "Basic", true],
+    ["harvester", "Combine harvester — daily hire", "EF-2044", "Farm machinery", "2,500", "860", "ok", "Published", "basic", "Basic"],
+    ["bulldozer", "Caterpillar D6R bulldozer", "EF-2045", "Farm machinery", "320,000", "645", "off", "Unpublished", "", "Free"],
+    ["sprayer", "Knapsack sprayer, 16L", "EF-2046", "Crop protection", "380", "512", "draft", "Draft", "", "Free"],
+    ["farmer-greenhouse", "Fresh greens bundle", "EF-2047", "Produce", "120", "498", "ok", "Published", "", "Free"],
+    ["farmer-field", "Organic tomatoes, per crate", "EF-2048", "Produce", "260", "377", "off", "Unpublished", "", "Free"],
+  ];
+  document.getElementById("rows").innerHTML = ads.map(([img, title, id, cat, price, views, st, stLabel, plan, planLabel, sel]) =>
+    `<tr class="${sel ? "selected" : ""}"><td class="cb">${icon(sel ? "checked" : "checkbox")}</td>
+      <td><div class="ad-cell"><img class="thumb" src="img/${img}.webp" alt="" ${img === "fertilizer" ? 'style="object-position:30% center"' : ""}><div><strong>${title}</strong><small>${cat} · ${id}</small></div></div></td>
+      <td class="num">GH₵ ${price}</td><td class="num">${views}</td>
+      <td><span class="pill ${st}">${stLabel}</span></td><td><span class="plan ${plan}">${planLabel}</span></td><td class="more">${icon("dots")}</td></tr>`).join("");
+</script>
+</body>
+</html>

@@ -1,5 +1,12 @@
-/** Pulsing placeholder block. Size and shape come from `className`; pass a `bg-*` class to override the tint. */
-export function Skeleton({ className = "" }: { className?: string }) {
-  const tint = className.includes("bg-") ? "" : "bg-white/20";
-  return <div aria-hidden className={`animate-pulse ${tint} ${className}`} />;
+import { Skeleton as HeroSkeleton } from "@heroui/react/skeleton";
+
+type SkeletonProps = {
+  /** Size, shape and position. A `bg-*` class overrides the default tint. */
+  className?: string;
+  animation?: "shimmer" | "pulse" | "none";
+};
+
+/** HeroUI shimmering placeholder, tinted to the site's palette in globals.css. */
+export function Skeleton({ className = "", animation = "shimmer" }: SkeletonProps) {
+  return <HeroSkeleton aria-hidden animationType={animation} className={className} />;
 }

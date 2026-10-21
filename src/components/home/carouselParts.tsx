@@ -8,7 +8,12 @@ export type CarouselItem = {
   tag: string;
   image: string;
   cardBg: string;
+  /** Image has its own background: show it whole, with no frame colour or padding */
+  fill?: boolean;
 };
+
+/** Frame colour for the active slide; images that carry their own background get none. */
+export const frameTone = (item: CarouselItem) => (item.fill ? "" : `ring-1 ring-white/10 ${item.cardBg}`);
 
 /** Vertical section label pinned to the left edge of the screen, level with the top of the frame. */
 export function SideLabel({ children }: { children: string }) {
@@ -56,7 +61,7 @@ export function CarouselSlides({ items, index, inset }: { items: CarouselItem[];
       src={item.image}
       alt={i === index ? `${item.title} preview` : ""}
       priority={i === 0}
-      wrapperClassName={`absolute ${inset} transition-opacity duration-700 ${i === index ? "opacity-100" : "pointer-events-none opacity-0"}`}
+      wrapperClassName={`absolute ${item.fill ? "inset-0" : inset} transition-opacity duration-700 ${i === index ? "opacity-100" : "pointer-events-none opacity-0"}`}
       className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
     />
   ));
