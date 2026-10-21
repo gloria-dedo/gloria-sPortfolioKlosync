@@ -40,15 +40,7 @@ export function RecentWorkCarousel({ items }: { items: CarouselItem[] }) {
                 aria-label={`View ${active.title}`}
                 className={`group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl transition-colors duration-700 sm:aspect-[16/9] md:rounded-3xl ${frameTone(active)}`}
               >
-                <CarouselSlides items={items} index={index} inset="inset-x-3 top-3 bottom-16 sm:inset-x-10 sm:top-6 sm:bottom-20 md:inset-x-16" />
-                <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 sm:inset-x-6 sm:bottom-6">
-                  <p className="font-anton text-[clamp(1.5rem,4.5vw,3.5rem)] leading-none text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]">
-                    {active.title}
-                  </p>
-                  <span className="shrink-0 rounded-full bg-[#262226]/80 px-3 py-1.5 font-sans text-xs font-medium text-white backdrop-blur-sm md:px-4 md:text-sm">
-                    {active.tag}
-                  </span>
-                </div>
+                <CarouselSlides items={items} index={index} inset="inset-3 sm:inset-5 md:inset-7" />
               </Link>
               <ArrowButton direction="prev" label="Previous project" onClick={prev} className={`${DESKTOP_ARROW} -left-[72px] lg:-left-20`} />
               <ArrowButton direction="next" label="Next project" onClick={next} className={`${DESKTOP_ARROW} -right-[72px] lg:-right-20`} />
