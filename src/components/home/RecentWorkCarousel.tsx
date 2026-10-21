@@ -11,17 +11,17 @@ export function RecentWorkCarousel({ items }: { items: CarouselItem[] }) {
   const active = items[index];
 
   return (
-    <section className="relative bg-[#262226] bg-[url(/images/CharcoalSmudgeReal.svg)] bg-cover bg-center pt-6 pb-14 md:pt-10 md:pb-20">
+    <section className="relative bg-[#262226] bg-[url(/images/CharcoalSmudgeReal.svg)] bg-cover bg-center pt-4 pb-12 md:pt-10 md:pb-20">
       <div className="absolute inset-0 bg-[#262226] opacity-80 mix-blend-multiply" />
 
       <div className="scroll-reveal relative text-white">
         <div className={`${CAROUSEL_COLUMN} mb-3 flex items-end justify-between gap-4 md:justify-end`}>
           <MobileHeading>RECENT WORK</MobileHeading>
           <p className="flex flex-col items-end leading-none" aria-live="polite">
-            <span className="font-anton text-5xl text-transparent [-webkit-text-stroke:1.5px_#ffffff] md:text-7xl">
+            <span className="font-anton text-4xl text-transparent [-webkit-text-stroke:1.2px_#ffffff] md:text-7xl md:[-webkit-text-stroke:1.5px_#ffffff]">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="mt-1 font-sans text-sm font-medium text-white uppercase md:text-base">• {active.title}</span>
+            <span className="mt-1 font-sans text-xs font-medium tracking-[0.2em] text-white/80 uppercase md:text-base md:tracking-normal md:text-white">• {active.title}</span>
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export function RecentWorkCarousel({ items }: { items: CarouselItem[] }) {
           </div>
         </div>
 
-        <div className={`${CAROUSEL_COLUMN} mt-5 flex flex-wrap items-center justify-between gap-4 md:mt-6`}>
+        <div className={`${CAROUSEL_COLUMN} mt-4 flex flex-wrap items-center justify-between gap-4 md:mt-6`}>
           <div className="flex items-center gap-2" role="tablist" aria-label="Choose a project">
             {items.map((item, i) => (
               <button

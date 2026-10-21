@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
-/* HeroUI: only what its Skeleton needs. Its full stylesheet would restyle the whole site. */
+/* HeroUI: only the components the site uses. Its full stylesheet would restyle the whole site. */
 @import "@heroui/styles/utilities";
 @import "@heroui/styles/variants";
 @import "@heroui/styles/themes/shared/theme.css";
 @import "@heroui/styles/themes/default/variables.css" layer(theme);
 @import "@heroui/styles/components/skeleton.css" layer(components);
+@import "@heroui/styles/components/drawer.css" layer(components);
+@import "@heroui/styles/components/toggle-button.css" layer(components);
+@import "@heroui/styles/components/toggle-button-group.css" layer(components);
 
 @theme inline {
   /* Jost for reading, Alatsi for headings, Anton for condensed display titles, Rubik for accents */

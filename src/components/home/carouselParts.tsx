@@ -27,10 +27,10 @@ export function SideLabel({ children }: { children: string }) {
   );
 }
 
-/** Pink heading shown on small screens, where the side label is hidden. */
+/** Section label on small screens, where the vertical side label is hidden; styled to match it. */
 export function MobileHeading({ children }: { children: string }) {
   return (
-    <h2 className="mb-6 font-sans text-lg font-bold tracking-[3px] text-[#FF99FF] md:sr-only">{children}</h2>
+    <h2 className="mb-4 font-sans text-xs font-medium tracking-[0.35em] text-white/70 uppercase md:sr-only">{children}</h2>
   );
 }
 

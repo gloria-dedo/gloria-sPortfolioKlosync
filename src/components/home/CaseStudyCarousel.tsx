@@ -13,7 +13,7 @@ export function CaseStudyCarousel({ items }: { items: CarouselItem[] }) {
   const active = items[index];
 
   return (
-    <section className="relative bg-[#262226] bg-[url(/images/CharcoalSmudgeReal.svg)] bg-cover bg-center py-14 md:py-20">
+    <section className="relative bg-[#262226] bg-[url(/images/CharcoalSmudgeReal.svg)] bg-cover bg-center py-10 md:py-20">
       <div className="absolute inset-0 bg-[#262226] opacity-80 mix-blend-multiply" />
 
       <div className="scroll-reveal relative text-white">
@@ -42,15 +42,17 @@ export function CaseStudyCarousel({ items }: { items: CarouselItem[] }) {
           <ArrowButton direction="next" label="Next case study" onClick={next} className={`${DESKTOP_ARROW} right-6 lg:right-8`} />
         </div>
 
-        <div className={`${CAROUSEL_COLUMN} mt-4 flex justify-end gap-3 md:hidden`}>
-          <ArrowButton direction="prev" label="Previous case study" onClick={prev} />
-          <ArrowButton direction="next" label="Next case study" onClick={next} />
-        </div>
-
-        <div className={`${CAROUSEL_COLUMN} mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between md:mt-6`}>
-          <div className="min-w-0">
-            <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">{active.title}</h3>
-            <p className="mt-1 font-sans text-sm font-light text-white/65 md:text-lg">{active.subtitle}</p>
+        <div className={`${CAROUSEL_COLUMN} mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between md:mt-6`}>
+          {/* On phones the arrows share the caption row instead of taking a row of their own */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">{active.title}</h3>
+              <p className="mt-0.5 font-sans text-sm font-light text-white/65 md:mt-1 md:text-lg">{active.subtitle}</p>
+            </div>
+            <div className="flex shrink-0 gap-2 md:hidden">
+              <ArrowButton direction="prev" label="Previous case study" onClick={prev} />
+              <ArrowButton direction="next" label="Next case study" onClick={next} />
+            </div>
           </div>
           <div className="flex shrink-0">
             <LinkButton href={`/projects/${active.slug}`}>View case study</LinkButton>

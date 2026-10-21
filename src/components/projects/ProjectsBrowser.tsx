@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { FaChevronDown } from "react-icons/fa6";
+import { FiltersDrawer, type FilterGroup } from "./FiltersDrawer";
 import { ProjectCard } from "./ProjectCard";
 import { PROJECT_GRID } from "./grid";
 import type { Project } from "@/data/projects";
@@ -20,45 +20,12 @@ const RECENT_COUNT = 4;
 
 const unique = (values: string[]) => [...new Set(values)].sort();
 
-function FilterSelect({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string;
-  value: string;
-  options: string[];
-  onChange: (value: string) => void;
-}) {
-  return (
-    <label className="relative">
-      <span className="sr-only">{label}</span>
-      <select
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className={`cursor-pointer appearance-none rounded-xl py-2.5 pr-10 pl-4 font-sans text-sm font-medium transition-colors focus:ring-2 focus:ring-white/60 focus:outline-none md:text-base ${value ? "bg-white text-[#262226]" : "bg-white/10 text-white hover:bg-white/15"}`}
-      >
-        <option value="">{label}</option>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-      <FaChevronDown
-        aria-hidden
-        className={`pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-xs ${value ? "text-[#262226]" : "text-white/70"}`}
-      />
-    </label>
-  );
-}
-
 export function ProjectsBrowser({ projects }: { projects: Project[] }) {
   const [view, setView] = useState<View>("all");
   const [industry, setIndustry] = useState("");
   const [service, setService] = useState("");
   const [type, setType] = useState("");
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const industries = useMemo(() => unique(projects.map((project) => project.tag)), [projects]);
   const services = useMemo(() => unique(projects.map((project) => project.category)), [projects]);
@@ -74,16 +41,25 @@ export function ProjectsBrowser({ projects }: { projects: Project[] }) {
     return list;
   }, [projects, view, industry, service, type]);
 
-  const reset = () => {
-    setView("all");
+  const clearFilters = () => {
     setIndustry("");
     setService("");
     setType("");
   };
+  const reset = () => {
+    setView("all");
+    clearFilters();
+  };
+
+  const groups: FilterGroup[] = [
+    { id: "industry", label: "Industry", options: industries, value: industry, onChange: setIndustry },
+    { id: "service", label: "Service", options: services, value: service, onChange: setService },
+    { id: "type", label: "Type", options: Object.values(TYPES), value: type, onChange: setType },
+  ];
 
   return (
     <div className="flex flex-col gap-8 md:gap-12">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex items-center justify-between gap-3">
         <div className="flex gap-1" role="tablist" aria-label="Show projects">
           {VIEWS.map(({ id, label }) => (
             <button
@@ -98,11 +74,13 @@ export function ProjectsBrowser({ projects }: { projects: Project[] }) {
             </button>
           ))}
         </div>
-        <div className="flex flex-wrap gap-3">
-          <FilterSelect label="Industry" value={industry} options={industries} onChange={setIndustry} />
-          <FilterSelect label="Service" value={service} options={services} onChange={setService} />
-          <FilterSelect label="Type" value={type} options={Object.values(TYPES)} onChange={setType} />
-        </div>
+        <FiltersDrawer
+          groups={groups}
+          resultCount={visible.length}
+          isOpen={filtersOpen}
+          onOpenChange={setFiltersOpen}
+          onClear={clearFilters}
+        />
       </div>
 
       {visible.length > 0 ? (
