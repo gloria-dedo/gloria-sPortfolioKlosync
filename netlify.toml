@@ -1,8 +1,9 @@
-# The site used to be plain HTML served from the repo root. It is now a Next.js app,
-# so Netlify must build it and publish the Next.js output (these settings override the dashboard).
+# The site is a static export of the Next.js app (output: "export" in next.config.ts):
+# `next build` writes plain HTML, CSS and JS to out/, which Netlify serves as is.
+# These settings override the dashboard.
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
 
 [build.environment]
   # Next.js 16 needs Node 20.9 or newer
