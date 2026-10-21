@@ -27,7 +27,8 @@ export default async function HomePage() {
       <AboutIntro />
       <Expertise />
       <CaseStudyCarousel items={caseStudies.map((project) => toItem(project, project.caseStudy.cover))} />
-      <RecentWorkCarousel items={others.map((project) => toItem(project, project.cardImage))} />
+      {/* Edge-to-edge covers use their wide version here, so the 16:9 frame crops almost nothing */}
+      <RecentWorkCarousel items={others.map((project) => toItem(project, project.cardFill ? project.bannerImage : project.cardImage))} />
       <Footer />
     </main>
   );

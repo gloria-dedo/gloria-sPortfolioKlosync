@@ -133,13 +133,13 @@ export const projects: Project[] = [
     date: "2026-10",
     description:
       "SweetCheeks is a dessert brand serving handmade cakes, pastries and sweet drinks. I designed the website, where customers browse the menu, customise a treat, pre-order for a date and get in touch, and carried the identity into packaging, cups and stationery so every touchpoint feels as indulgent as the food: deep wine, soft blush and a playful script wordmark.",
-    cardImage: img("sweetcheeks-card"),
-    cardBg: "bg-[#F6EFE9]",
-    cardHover: "hover:bg-[#F6EFE9]",
+    cardImage: img("sweetcheeks-cover-card"),
+    cardBg: "bg-[#F8ACB0]",
+    cardHover: "hover:bg-[#F8ACB0]",
     cardFill: true,
-    bannerImage: img("sweetcheeks-hero"),
+    bannerImage: img("sweetcheeks-cover"),
     gallery: [
-      { src: img("sweetcheeks-hero"), size: "wide", fill: true },
+      { src: img("sweetcheeks-cover"), size: "wide", fill: true },
       { src: img("sweetcheeks-pack-range"), size: "wide", fill: true },
       { src: img("sweetcheeks-pack-table"), size: "wide", fill: true },
       { src: img("sweetcheeks-screens-home"), size: "wide", fill: true },
