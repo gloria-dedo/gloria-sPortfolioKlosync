@@ -15,12 +15,12 @@ function toRows(images: CaseStudyImage[]): Row[] {
   }, []);
 }
 
-const FRAME = "flex w-full items-center justify-center overflow-hidden rounded-2xl p-2 sm:p-3 md:rounded-3xl";
+const FRAME = "flex w-full items-center justify-center overflow-hidden rounded-xl p-1.5 sm:p-2 md:rounded-2xl";
 
-const WIDE_MEDIA = "block h-auto w-full rounded-lg md:rounded-xl";
-const PAIR_MEDIA = "block h-auto w-full rounded-lg sm:h-full sm:object-contain md:rounded-xl";
+const WIDE_MEDIA = "block h-auto w-full rounded-md md:rounded-lg";
+const PAIR_MEDIA = "block h-auto w-full rounded-md sm:h-full sm:object-contain md:rounded-lg";
 /** Finished mockups carry their own background, so they sit edge to edge with no frame */
-const FILL_FRAME = "block w-full overflow-hidden rounded-2xl md:rounded-3xl";
+const FILL_FRAME = "block w-full overflow-hidden rounded-xl md:rounded-2xl";
 const FILL_MEDIA = "block h-auto w-full";
 
 /** An image, or a screen recording when the item has a `video`. */
@@ -59,7 +59,7 @@ export function CaseStudyImages({ images, frameBg }: { images: CaseStudyImage[];
               <Media
                 key={image.src}
                 media={image}
-                wrapperClassName={image.fill ? FILL_FRAME : `${FRAME} ${image.bg ?? frameBg} min-h-40 sm:aspect-[16/11]`}
+                wrapperClassName={image.fill ? FILL_FRAME : `${FRAME} ${image.bg ?? frameBg} min-h-40`}
                 className={image.fill ? FILL_MEDIA : PAIR_MEDIA}
               />
             ))}

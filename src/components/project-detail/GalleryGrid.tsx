@@ -3,9 +3,9 @@ import { SkeletonImage } from "@/components/ui/SkeletonImage";
 import type { GalleryItem } from "@/data/projects";
 import { groupGallery } from "@/lib/projects";
 
-const TILE = "flex w-full items-center justify-center overflow-hidden rounded-2xl min-h-40 p-2 sm:p-3 md:rounded-3xl";
+const TILE = "flex w-full items-center justify-center overflow-hidden rounded-xl min-h-40 p-1.5 sm:p-2 md:rounded-2xl";
 /** Finished mockups carry their own background, so they sit edge to edge with no frame */
-const FILL_TILE = "block w-full overflow-hidden rounded-2xl md:rounded-3xl";
+const FILL_TILE = "block w-full overflow-hidden rounded-xl md:rounded-2xl";
 const IMAGE = "block h-auto w-full";
 
 function Tile({ item, className = "", alt }: { item: GalleryItem; className?: string; alt: string }) {
@@ -15,7 +15,7 @@ function Tile({ item, className = "", alt }: { item: GalleryItem; className?: st
       <div className={wrapper}>
         <CaseStudyVideo
           media={{ src: item.src, alt, video: item.video }}
-          className={item.fill ? IMAGE : `${IMAGE} rounded-lg md:rounded-xl`}
+          className={item.fill ? IMAGE : `${IMAGE} rounded-md md:rounded-lg`}
         />
       </div>
     );
