@@ -18,7 +18,7 @@ export function Navbar() {
             href="/"
             onClick={close}
             aria-label="Gloria Dede Tetteh, home"
-            className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] transition-transform hover:scale-105"
+            className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-105 hover:rotate-[30deg]"
           >
             <Logo className="h-10 w-10 md:h-12 md:w-12" />
           </Link>

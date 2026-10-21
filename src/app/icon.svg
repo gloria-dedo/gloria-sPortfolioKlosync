@@ -1,13 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
   <defs>
-    <linearGradient id="g" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FBCFE8" />
-      <stop offset="1" stop-color="#FF99FF" />
-    </linearGradient>
+    <radialGradient id="o" cx="50" cy="50" r="44" gradientUnits="userSpaceOnUse"><stop offset=".15" stop-color="#4c2f94"/><stop offset=".55" stop-color="#7a58cc"/><stop offset="1" stop-color="#b39cf0"/></radialGradient>
+    <radialGradient id="i" cx="50" cy="50" r="38" gradientUnits="userSpaceOnUse"><stop offset=".12" stop-color="#7b3fd1"/><stop offset=".5" stop-color="#b98cf3"/><stop offset="1" stop-color="#efe0ff"/></radialGradient>
+    <radialGradient id="c" cx="47" cy="47" r="10" gradientUnits="userSpaceOnUse"><stop stop-color="#e2b3c4"/><stop offset=".6" stop-color="#9a6079"/><stop offset="1" stop-color="#5e3348"/></radialGradient>
   </defs>
-  <circle cx="24" cy="24" r="22.5" fill="#262226" stroke="url(#g)" stroke-width="1.5" />
-  <g stroke="url(#g)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M22.3 18.7a7.5 7.5 0 1 0 0 10.6V24.5H18" />
-    <path d="M27 16.5h3a7.5 7.5 0 0 1 0 15h-3z" />
+  <!-- Simplified anemone mark (favicon twin of src/components/ui/Logo.tsx) -->
+  <g>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#o)" transform="rotate(12 50 50) translate(50 50) scale(1) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#o)" transform="rotate(72 50 50) translate(50 50) scale(1) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#o)" transform="rotate(132 50 50) translate(50 50) scale(1) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#o)" transform="rotate(192 50 50) translate(50 50) scale(1) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#o)" transform="rotate(252 50 50) translate(50 50) scale(1) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#o)" transform="rotate(312 50 50) translate(50 50) scale(1) translate(-50 -50)"/>
   </g>
+  <g>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#i)" transform="rotate(42 50 50) translate(50 50) scale(0.8) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#i)" transform="rotate(102 50 50) translate(50 50) scale(0.8) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#i)" transform="rotate(162 50 50) translate(50 50) scale(0.8) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#i)" transform="rotate(222 50 50) translate(50 50) scale(0.8) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#i)" transform="rotate(282 50 50) translate(50 50) scale(0.8) translate(-50 -50)"/>
+    <path d="M50 51 C 40 47, 29 33, 31 21 C 33 10, 44 6, 52 8 C 62 10, 70 19, 67 31 C 64 42, 56 48, 50 51 Z" fill="url(#i)" transform="rotate(342 50 50) translate(50 50) scale(0.8) translate(-50 -50)"/>
+  </g>
+  <circle cx="50" cy="50" r="9.5" fill="url(#c)"/>
 </svg>
