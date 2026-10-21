@@ -109,11 +109,13 @@ export const projects: Project[] = [
     date: "2024-04",
     description:
       "Tiara is a cutting-edge skincare platform designed to help individuals find their perfect shade and select skincare products tailored to their unique needs. Using the latest advancements in AI technology, machine learning, and intelligent algorithms, Tiara analyzes your facial features such as wrinkles, age spots, and blemishes to determine your exact skin type and tone.",
-    cardImage: img("project1real1"),
-    cardBg: "bg-[#262226]",
-    cardHover: "hover:bg-gradient-to-r hover:from-slate-400 hover:to-slate-600",
-    bannerImage: img("tiaraCombine1"),
+    cardImage: img("tiara-cover-card"),
+    cardBg: "bg-[#E3CDB5]",
+    cardHover: "hover:bg-[#E3CDB5]",
+    cardFill: true,
+    bannerImage: img("tiara-cover"),
     gallery: [
+      { src: img("tiara-cover"), size: "wide", fill: true },
       { src: img("tiaraCombine1"), bg: "bg-[#262226]", size: "wide" },
       { src: img("tiaraShade"), bg: "bg-[#262226]", size: "half" },
       { src: img("tiaraFace"), bg: "bg-[#262226]", size: "half" },
