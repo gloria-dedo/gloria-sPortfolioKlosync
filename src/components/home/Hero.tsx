@@ -4,8 +4,10 @@ export function Hero() {
   return (
     <section className="relative flex min-h-svh flex-col bg-[#262226] bg-[url(/images/hero-portrait.jpg)] bg-cover bg-center bg-no-repeat text-center md:bg-[url(/images/hero-portrait-wide.jpg)]">
       {/* Fills the screen without zooming in: on wider screens the untouched portrait sits in the middle of a frame
-          whose sides continue its studio backdrop. One flat dark overlay over it so the text reads. */}
-      <div aria-hidden className="absolute inset-0 z-0 bg-black/55" />
+          whose sides continue its studio backdrop. A flat overlay in the site's plum keeps the text readable,
+          and fine grain on top gives it a filmic texture. */}
+      <div aria-hidden className="absolute inset-0 z-0 bg-[#110A11]/70" />
+      <div aria-hidden className="hero-grain absolute inset-0 z-0" />
 
       <div className="scroll-reveal relative z-10 flex flex-1 flex-col items-center justify-center gap-6 px-4 pt-20 pb-36 text-white sm:gap-8 sm:px-6 md:gap-10 lg:px-8">
         <h1 className="w-full max-w-6xl bg-gradient-to-r from-pink-200 via-pink-300 to-pink-400 bg-clip-text font-display text-[clamp(2.25rem,8vw,6.5rem)] leading-[1.05] font-bold tracking-[-0.02em] text-balance text-transparent">
