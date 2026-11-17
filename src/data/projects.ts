@@ -53,7 +53,7 @@ export type CaseStudy = {
   meta: { label: string; value: string }[];
   /** "Concept and Objectives" text in the sidebar */
   overview: string;
-  /** Link for the "View interactive prototype" button, e.g. a Figma prototype; falls back to the project's `visitUrl` */
+  /** Link for the "View interactive prototype" button, e.g. a Figma prototype. A live site goes in the project's `visitUrl`. */
   prototypeUrl?: string;
   /** Lead image of the case study, also used on the home page showcase */
   cover: string;
@@ -92,6 +92,7 @@ export type Project = {
   gallery?: GalleryItem[];
   /** Projects with a case study get the long-form case study page instead of the gallery page */
   caseStudy?: CaseStudy;
+  /** Live site, shown as a "Preview the live website" / "Visit the site" button */
   visitUrl?: string;
   /** Shown on the /projects page and in "next project" order */
   listed: boolean;
@@ -99,6 +100,112 @@ export type Project = {
 
 
 export const projects: Project[] = [
+  {
+    slug: "countercove",
+    title: "Countercove",
+    heading: "Countercove",
+    subtitle: "Inventory & POS SaaS for retail",
+    tag: "SaaS",
+    category: "Web Dev",
+    date: "2026-11",
+    description:
+      "Countercove is a SaaS platform that runs a whole store from one place: real-time inventory, a fast point of sale, invoicing, live reporting, team roles and multi-location stock, all in sync across every branch.",
+    cardImage: img("countercove-hero-card"),
+    cardBg: "bg-[#4545F5]",
+    cardHover: "hover:bg-[#4545F5]",
+    cardFill: true,
+    bannerImage: img("countercove-hero"),
+    visitUrl: "https://countercove.com/",
+    caseStudy: {
+      tagline: "One system for inventory, checkout, invoicing and reporting, so every shop knows what's in stock, what's selling and what happens next.",
+      meta: [
+        { label: "Role", value: "Product Design & Development" },
+        { label: "Industry", value: "Retail SaaS" },
+        { label: "Platform", value: "Web app & marketing site" },
+        { label: "Status", value: "Live, invite-only waitlist" },
+      ],
+      overview:
+        "Many shops still run on a patchwork of spreadsheets, a separate till and a notebook of who owes what. Countercove replaces that patchwork with one platform: stock, sales and customers stay in sync across every location, the counter gets a register built for speed, and owners see the numbers that matter the moment they sign in. The objective was a product that feels as easy as a consumer app while doing the serious work of running a store.",
+      cover: img("countercove-hero"),
+      coverFill: true,
+      frameBg: "bg-[#4545F5]",
+      sections: [
+        {
+          title: "Who It's For",
+          body: "Countercove is built for independent retailers and growing chains, and for every person behind the counter, from the cashier ringing up a sale to the owner planning next month's stock.",
+          highlights: [
+            {
+              label: "Owners",
+              text: "Want one honest view of revenue, top products and their best branch, without stitching reports together at the end of the day.",
+            },
+            {
+              label: "Cashiers",
+              text: "Need a register that is quick at a busy counter: search by name, SKU or barcode, hold a cart, split a payment and print a receipt.",
+            },
+            {
+              label: "Managers",
+              text: "Keep shelves full with low-stock alerts, purchase orders and transfers between branches, and only see the areas their role allows.",
+            },
+          ],
+        },
+        {
+          title: "The Marketing Website",
+          body: "The public site at countercove.com tells the story in one scroll: a bold promise, “Run your whole store from one place”, a live phone preview that switches between checkout, dashboard and invoice, six feature tabs with real product screens, transparent pricing in cedis, use cases for different kinds of shops and an invite-only waitlist. The full page is shown below on desktop and mobile.",
+          images: [
+            { src: img("countercove-landing"), alt: "The full Countercove landing page on desktop beside the mobile version", fill: true },
+          ],
+        },
+        {
+          title: "The Owner Dashboard",
+          body: "Signing in opens on the day so far: revenue, sales, average sale and units sold, each compared with the previous period. A performance chart sits beside a “Needs attention” list that surfaces low stock, overdue invoices and money owed, so the next action is always one click away.",
+          images: [
+            { src: img("countercove-dashboard"), alt: "Countercove owner dashboard on a laptop", fill: true },
+          ],
+        },
+        {
+          title: "Point of Sale & Invoicing",
+          body: "The register is a full-screen grid of products with category chips and search, and the current sale stays pinned on the right with quantities, tax and one big Charge button. For wholesale and trade customers, polished invoices track part payments by mobile money, cash or transfer, and can be downloaded, printed or emailed.",
+          images: [
+            { src: img("countercove-pos"), alt: "Countercove point of sale and invoice screens", fill: true },
+          ],
+        },
+        {
+          title: "On the Go",
+          body: "Every screen is responsive, so an owner can check today's numbers, ring up a sale or record an invoice payment straight from a phone.",
+          images: [
+            { src: img("countercove-phones"), alt: "Countercove checkout, dashboard and invoice on three phones", fill: true },
+          ],
+        },
+        {
+          title: "Reports, Roles & Locations",
+          body: "Reports break revenue down by employee, inventory turnover and location. Roles are written in plain words, view only, add & edit or full access, area by area. Each product shows its stock in every branch, with transfers and adjustments a click away.",
+          images: [
+            { src: img("countercove-manage"), alt: "Countercove reports, role permissions and per-location inventory", fill: true },
+          ],
+        },
+        {
+          title: "Simple Pricing",
+          body: "Three plans that grow with the business, Starter, Growth and Pro, each starting with a 14-day free trial and no card required. Billing can be monthly, every three or six months, or yearly with two months free.",
+          images: [
+            { src: img("countercove-pricing"), alt: "Countercove pricing on desktop and mobile", fill: true },
+          ],
+        },
+        {
+          columns: [
+            {
+              title: "The Challenge",
+              body: "Inventory, sales, invoicing, staff and several branches is a lot of product. The hard part was keeping it powerful enough to run a real store while staying calm and obvious for a cashier on their first day.",
+            },
+            {
+              title: "Design Strategy",
+              body: "A warm off-white canvas with one confident indigo for actions, sunny yellow and pink for moments of delight, and the friendly Figtree typeface. Dashboards lead with plain-language summaries, every list ends in a clear next step, and the same components carry across desktop and mobile.",
+            },
+          ],
+        },
+      ],
+    },
+    listed: true,
+  },
   {
     slug: "tiara",
     title: "Tiara",

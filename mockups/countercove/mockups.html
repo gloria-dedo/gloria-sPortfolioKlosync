@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Countercove mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root { --accent: #4545f5; --sun: #f8e040; --pink: #e84898; --mint: #7bd8a6; --ink: #15151f; --paper: #f3f2ee; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Figtree, sans-serif; background: #999; -webkit-font-smoothing: antialiased; }
+  .board { position: relative; width: 1600px; height: 1000px; overflow: hidden; margin: 0 auto 40px; }
+  .grid::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: var(--go, .14);
+    background-image: linear-gradient(var(--gl, #000) 1px, transparent 1px), linear-gradient(90deg, var(--gl, #000) 1px, transparent 1px);
+    background-size: 56px 56px; }
+  .shape { position: absolute; }
+
+  /* labels */
+  .label { position: absolute; left: 72px; top: 64px; z-index: 6; }
+  .label small { display: block; font-size: 13px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; opacity: .65; }
+  .label h2 { font-size: 40px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin-top: 10px; }
+  .label h2 mark { background: var(--sun); color: var(--ink); padding: 0 10px; border-radius: 14px; }
+  .logo { position: absolute; right: 72px; top: 64px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 24px; letter-spacing: -.02em; z-index: 6; }
+  .logo svg { width: 36px; height: 36px; }
+
+  /* floating toast chips, like the ones on the live hero */
+  .chip { position: absolute; z-index: 8; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px 12px 14px; border-radius: 999px;
+    font-weight: 600; font-size: 17px; box-shadow: 0 18px 40px -14px rgba(10,10,40,.45); }
+  .chip i { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.25); }
+  .chip svg { width: 14px; height: 14px; }
+
+  /* a viewport onto a screenshot */
+  .view { position: relative; overflow: hidden; background: #fff; }
+  .view img { position: absolute; left: 0; top: 0; width: 100%; display: block; }
+
+  /* laptop */
+  .laptop { position: absolute; z-index: 3; }
+  .lid { background: #0c0c0d; border-radius: 22px 22px 6px 6px; padding: 18px 18px 26px; box-shadow: inset 0 0 0 2px #2c2c30, 0 0 0 1.5px #77777c; position: relative; }
+  .lid::before { content: ""; position: absolute; top: 7px; left: 50%; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #26262a; }
+  .browser { border-radius: 6px; overflow: hidden; background: #fff; }
+  .bar { height: 34px; background: #f7f6f2; border-bottom: 1px solid #e4e2dc; display: flex; align-items: center; padding: 0 14px; gap: 7px; position: relative; flex: none; }
+  .bar b { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+  .bar b:nth-child(2) { background: #febc2e; } .bar b:nth-child(3) { background: #28c840; }
+  .url { position: absolute; left: 50%; transform: translateX(-50%); width: 40%; height: 22px; border-radius: 7px; background: #fff; border: 1px solid #e4e2dc; font-size: 11px; color: #6b6b76; display: flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; }
+  .url svg { width: 10px; height: 10px; }
+  .base { position: relative; height: 22px; margin: 0 -9%; background: linear-gradient(180deg, #e9e9ec 0%, #c9c9ce 45%, #8e8e94 100%); border-radius: 2px 2px 22px 22px / 2px 2px 100% 100%; box-shadow: 0 30px 60px -10px rgba(0,0,0,.45); }
+  .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 15%; height: 9px; transform: translateX(-50%); background: linear-gradient(180deg, #a5a5ab, #c4c4c9); border-radius: 0 0 12px 12px; }
+
+  /* phone */
+  .phone { position: absolute; z-index: 5; background: #0b0b0c; padding: 12px; border-radius: 58px; box-shadow: 0 0 0 2px #5b5b60, 0 0 0 4px #1c1c1f, inset 0 0 0 2px #2b2b2f, 0 50px 90px -30px rgba(0,0,0,.55); }
+  .phone .screen { position: relative; border-radius: 46px; overflow: hidden; }
+  .phone .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 28%; height: 28px; border-radius: 20px; background: #000; z-index: 3; }
+  .status { height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 6px 28px 0 38px; font-weight: 600; font-size: 15px; color: var(--ink); }
+  .status .icons { display: flex; gap: 6px; align-items: center; }
+  .status svg { height: 12px; }
+  .home-ind { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 36%; height: 5px; border-radius: 3px; background: rgba(0,0,0,.85); z-index: 3; }
+
+  /* flat browser cards */
+  .card { position: absolute; z-index: 4; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 40px 80px -30px rgba(10,10,40,.5), 0 0 0 1px rgba(0,0,0,.06); }
+  .card .bar { height: 30px; } .card .url { height: 19px; font-size: 10px; }
+  .flat { position: absolute; z-index: 4; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(10,10,40,.5); }
+</style>
+</head>
+<body>
+
+<!-- 1. Cover: responsive hero (16:10) -->
+<section class="board grid" id="hero" style="--gl:#fff; --go:.08; background: radial-gradient(900px 600px at 50% 0%, #5a5aff, transparent 70%), var(--accent); color:#fff">
+  <div class="shape" style="right:-160px; top:-200px; width:640px; height:520px; background:var(--sun); border-radius:0 0 0 320px; transform:rotate(-8deg)"></div>
+  <div class="shape" style="left:-150px; bottom:-170px; width:420px; height:420px; background:var(--pink); border-radius:50%"></div>
+  <div class="laptop" style="left:170px; top:150px; width:1060px" data-laptop data-src="shots/landing-desktop-fold.png" data-pw="1440" data-url="countercove.com"></div>
+  <div class="phone" style="left:1150px; top:200px; width:320px" data-phone data-src="shots/landing-mobile-fold.png" data-pw="390"></div>
+  <span class="chip" style="left:110px; top:250px; background:#fff; color:var(--ink)"><i style="background:var(--accent); color:#fff">✓</i>Live across every branch</span>
+  <span class="chip" style="left:1360px; top:640px; background:var(--mint); color:var(--ink)"><i style="background:rgba(0,0,0,.12)">✓</i>Stock synced</span>
+  <span class="chip" style="left:840px; top:860px; background:#fff; color:var(--ink)"><i style="background:var(--pink); color:#fff">✓</i>INV-1001 paid in full</span>
+</section>
+
+<!-- 1c. Cover for the project card (4:3) -->
+<section class="board grid" id="hero-card" style="height:1200px; --gl:#fff; --go:.08; background: radial-gradient(900px 600px at 50% 0%, #5a5aff, transparent 70%), var(--accent); color:#fff">
+  <div class="shape" style="right:-160px; top:-200px; width:640px; height:560px; background:var(--sun); border-radius:0 0 0 320px; transform:rotate(-8deg)"></div>
+  <div class="shape" style="left:-150px; bottom:-150px; width:460px; height:460px; background:var(--pink); border-radius:50%"></div>
+  <div class="laptop" style="left:150px; top:250px; width:1060px" data-laptop data-src="shots/landing-desktop-fold.png" data-pw="1440" data-url="countercove.com"></div>
+  <div class="phone" style="left:1150px; top:300px; width:320px" data-phone data-src="shots/landing-mobile-fold.png" data-pw="390"></div>
+  <span class="chip" style="left:90px; top:350px; background:#fff; color:var(--ink)"><i style="background:var(--accent); color:#fff">✓</i>Live across every branch</span>
+  <span class="chip" style="left:1360px; top:740px; background:var(--mint); color:var(--ink)"><i style="background:rgba(0,0,0,.12)">✓</i>Stock synced</span>
+</section>
+
+<!-- 2. Owner dashboard on laptop -->
+<section class="board" id="dashboard" style="background: radial-gradient(900px 600px at 50% 110%, #fff, transparent 70%), var(--paper); color:var(--ink)">
+  <div class="shape" style="left:-120px; top:-140px; width:480px; height:480px; background:var(--sun); border-radius:50%"></div>
+  <div class="shape" style="right:-120px; bottom:-60px; width:460px; height:260px; background:var(--accent); border-radius:200px 0 0 0; transform:rotate(-12deg)"></div>
+  <div class="laptop" style="left:230px; top:110px; width:1140px" data-laptop data-src="assets/desktop-dashboard.jpg" data-pw="1440" data-url="yourstore.countercove.com/dashboard"></div>
+  <span class="chip" style="left:1240px; top:300px; background:var(--pink); color:#fff"><i>!</i>4 products low on stock</span>
+</section>
+
+<!-- 3. Three phones -->
+<section class="board grid" id="phones" style="--go:.10; background: var(--sun); color:var(--ink)">
+  <div class="shape" style="left:-140px; bottom:-200px; width:520px; height:520px; background:var(--pink); border-radius:50%"></div>
+  <div class="shape" style="right:-100px; top:-120px; width:520px; height:300px; background:var(--accent); border-radius:0 0 0 260px"></div>
+  <div class="phone" style="left:290px; top:190px; width:330px" data-phone data-src="assets/phone-pos.jpg" data-pw="1170"></div>
+  <div class="phone" style="left:635px; top:100px; width:330px" data-phone data-src="assets/phone-dashboard.jpg" data-pw="1170"></div>
+  <div class="phone" style="left:980px; top:190px; width:330px" data-phone data-src="assets/phone-invoice.jpg" data-pw="1170"></div>
+</section>
+
+<!-- 4. Point of sale and invoicing -->
+<section class="board" id="pos" style="background: radial-gradient(900px 600px at 0% 0%, #2a2a48, transparent 70%), var(--ink); color:#fff">
+  <div class="shape" style="right:-200px; top:-200px; width:560px; height:560px; background:var(--accent); border-radius:50%; opacity:.9"></div>
+  <div class="shape" style="left:120px; bottom:-120px; width:300px; height:300px; background:var(--sun); border-radius:50%"></div>
+  <div class="card" style="left:120px; top:110px; width:960px" data-card data-src="assets/desktop-pos.jpg" data-pw="1440" data-vh="900" data-url="yourstore.countercove.com/pos"></div>
+  <div class="card" style="left:760px; top:400px; width:720px" data-card data-src="assets/desktop-invoice.jpg" data-pw="1440" data-vh="900" data-url="yourstore.countercove.com/invoices"></div>
+  <span class="chip" style="left:150px; top:820px; background:#fff; color:var(--ink)"><i style="background:var(--accent); color:#fff">✓</i>Charged GHS 26.73</span>
+</section>
+
+<!-- 5. Reports, roles and locations -->
+<section class="board grid" id="manage" style="--go:.08; background: var(--mint); color:var(--ink)">
+  <div class="shape" style="right:-140px; bottom:-180px; width:520px; height:520px; background:var(--accent); border-radius:50%"></div>
+  <div class="shape" style="left:-100px; top:-100px; width:340px; height:340px; background:var(--sun); border-radius:50%"></div>
+  <div class="card" style="left:80px;  top:150px; width:700px" data-card data-src="assets/desktop-reports.jpg" data-pw="1440" data-vh="900" data-url="yourstore.countercove.com/reports"></div>
+  <div class="card" style="left:820px; top:150px; width:700px" data-card data-src="assets/desktop-permissions.jpg" data-pw="1440" data-vh="900" data-url="yourstore.countercove.com/settings/roles"></div>
+  <div class="card" style="left:450px; top:520px; width:700px; z-index:6" data-card data-src="assets/desktop-locations.jpg" data-pw="1440" data-vh="900" data-url="yourstore.countercove.com/inventory/house-blend"></div>
+</section>
+
+<!-- 6. Full landing page, desktop and mobile -->
+<section class="board" id="landing" style="height:2400px; background: var(--paper); color:var(--ink)">
+  <div class="shape" style="right:-200px; top:-200px; width:640px; height:640px; background:var(--sun); border-radius:50%"></div>
+  <div class="shape" style="left:-220px; bottom:-220px; width:620px; height:620px; background:var(--accent); border-radius:50%"></div>
+  <div class="card" style="left:215px; top:110px; width:580px" data-card data-src="shots/landing-desktop-full.png" data-pw="1440" data-url="countercove.com"></div>
+  <div class="flat" style="left:845px; top:110px; width:250px" data-flat data-src="shots/landing-mobile-full.png" data-pw="390" data-y="0" data-h="3027"></div>
+  <div class="flat" style="left:1125px; top:110px; width:250px" data-flat data-src="shots/landing-mobile-full.png" data-pw="390" data-y="3027" data-h="3027"></div>
+</section>
+
+<!-- 7. Pricing, desktop + mobile -->
+<section class="board" id="pricing" style="background: radial-gradient(900px 600px at 100% 0%, #5a5aff, transparent 70%), var(--accent); color:#fff">
+  <div class="shape" style="left:-120px; bottom:-160px; width:440px; height:440px; background:var(--pink); border-radius:50%"></div>
+  <div class="shape" style="right:-80px; top:-80px; width:300px; height:300px; background:var(--sun); border-radius:50%"></div>
+  <div class="card" style="left:130px; top:150px; width:1000px" data-card data-src="shots/desktop-pricing.png" data-pw="1440" data-url="countercove.com/#pricing"></div>
+  <div class="phone" style="left:1130px; top:170px; width:320px" data-phone data-src="shots/landing-mobile-full.png" data-pw="390" data-y="3100"></div>
+</section>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="cc" viewBox="0 0 32 32"><rect width="32" height="32" rx="10" fill="#4545f5"/><circle cx="24.5" cy="7.5" r="4.5" fill="#f8e040"/><path d="M21 11.5 A7.5 7.5 0 1 0 21 20.5" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<script>
+  const lock = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+  const statusIcons = '<span class="icons"><svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.5c2.3 0 4.4.9 6 2.4l1.2-1.2A10.3 10.3 0 0 0 8 .8 10.3 10.3 0 0 0 .8 3.7L2 4.9a8.5 8.5 0 0 1 6-2.4Zm0 3.4c1.4 0 2.6.5 3.6 1.4l1.2-1.2A7 7 0 0 0 8 4.2a7 7 0 0 0-4.8 1.9l1.2 1.2c1-.9 2.2-1.4 3.6-1.4ZM8 9.3c-.6 0-1.2.2-1.6.6L8 11.5l1.6-1.6c-.4-.4-1-.6-1.6-.6Z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity=".45"/></svg></span>';
+
+  // A viewport w x h onto a screenshot whose page width is pageW CSS px, shifted to page offset y.
+  function view(src, pageW, w, h, y = 0) {
+    const v = document.createElement("div");
+    v.className = "view";
+    v.style.width = w + "px";
+    if (h) v.style.height = h + "px";
+    const img = new Image(); img.src = src;
+    if (h) img.style.top = (-y * w / pageW) + "px";
+    else { img.style.position = "static"; }
+    v.appendChild(img);
+    return v;
+  }
+  function bar(url) {
+    const b = document.createElement("div"); b.className = "bar";
+    b.innerHTML = `<b></b><b></b><b></b><span class="url">${lock}${url}</span>`;
+    return b;
+  }
+
+  document.querySelectorAll("[data-laptop]").forEach((el) => {
+    const w = parseFloat(el.style.width) - 36;
+    const lid = document.createElement("div"); lid.className = "lid";
+    const br = document.createElement("div"); br.className = "browser";
+    br.append(bar(el.dataset.url), view(el.dataset.src, +el.dataset.pw, w, Math.round(w * 0.625) - 34, +(el.dataset.y || 0)));
+    lid.appendChild(br);
+    const base = document.createElement("div"); base.className = "base";
+    el.append(lid, base);
+  });
+
+  document.querySelectorAll("[data-phone]").forEach((el) => {
+    const w = parseFloat(el.style.width) - 24;
+    const h = Math.round(w * 2.165);
+    const screen = document.createElement("div"); screen.className = "screen";
+    screen.style.width = w + "px"; screen.style.height = h + "px";
+    screen.style.background = el.dataset.bg || "#f3f2ee";
+    const st = document.createElement("div"); st.className = "status"; st.innerHTML = "<span>9:41</span>" + statusIcons;
+    const v = view(el.dataset.src, +el.dataset.pw, w, h - 50, +(el.dataset.y || 0));
+    screen.append(st, v);
+    const island = document.createElement("div"); island.className = "island";
+    const ind = document.createElement("div"); ind.className = "home-ind";
+    screen.append(island, ind);
+    el.appendChild(screen);
+  });
+
+  document.querySelectorAll("[data-card]").forEach((el) => {
+    const w = parseFloat(el.style.width);
+    const vh = el.dataset.vh ? Math.round(+el.dataset.vh * w / +el.dataset.pw) : 0;
+    el.append(bar(el.dataset.url), view(el.dataset.src, +el.dataset.pw, w, vh, 0));
+  });
+
+  document.querySelectorAll("[data-flat]").forEach((el) => {
+    const w = parseFloat(el.style.width);
+    el.append(view(el.dataset.src, +el.dataset.pw, w, Math.round(+el.dataset.h * w / +el.dataset.pw), +el.dataset.y));
+  });
+</script>
+</body>
+</html>

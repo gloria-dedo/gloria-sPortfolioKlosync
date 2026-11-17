@@ -8,8 +8,6 @@ const BODY = "font-sans text-sm leading-relaxed font-light text-white/75 md:text
 
 function Sidebar({ project }: { project: CaseStudyProject }) {
   const { caseStudy } = project;
-  const prototypeUrl = caseStudy.prototypeUrl ?? project.visitUrl;
-
   return (
     <aside className="lg:border-r lg:border-white/10 lg:pr-10 xl:pr-14">
       <div className="flex flex-col gap-8 lg:sticky lg:top-28">
@@ -38,7 +36,8 @@ function Sidebar({ project }: { project: CaseStudyProject }) {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          {prototypeUrl && <LinkButton href={prototypeUrl}>View interactive prototype</LinkButton>}
+          {project.visitUrl && <LinkButton href={project.visitUrl}>Preview the live website</LinkButton>}
+          {caseStudy.prototypeUrl && <LinkButton href={caseStudy.prototypeUrl}>View interactive prototype</LinkButton>}
           <LinkButton href="/projects" direction="left">
             All projects
           </LinkButton>
@@ -176,6 +175,14 @@ export function CaseStudyDetail({ project }: { project: CaseStudyProject }) {
           {caseStudy.sections.map((section, i) => (
             <Section key={section.title ?? i} section={section} frameBg={caseStudy.frameBg} />
           ))}
+          {project.visitUrl && (
+            <div className="flex flex-col items-start gap-4 border-t border-white/10 pt-10 sm:flex-row sm:items-center sm:justify-between">
+              <p className="font-display text-xl font-bold tracking-tight text-white md:text-2xl">See it running live</p>
+              <LinkButton href={project.visitUrl} size="lg">
+                Preview the live website
+              </LinkButton>
+            </div>
+          )}
         </div>
       </div>
     </section>
